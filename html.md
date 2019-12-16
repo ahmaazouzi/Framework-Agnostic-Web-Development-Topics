@@ -168,7 +168,40 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 - `<sub>` and `<sup>` are useful for items like dates, mathematical and checmical formulas, so `CO<sub>2<sub>` results in something like CO<sub>2<sub>.
 
 ### Computer Code:
--
+- To markup code, you can use a variety of elements:
+	+ `<code>`: For generic pieces of code
+	+ `<pre>`: Fro retaining white space
+	+ `<var>`: For mrking variable names.
+	+ `<kbd>`: Keyboard input.
+	+ `<samp>`: Output of a program.
+- The following example shows how these element interact to create a nice block of code. With some css, this would be fabulous: 
+```xml
+<pre>
+	<code>
+		void f(void (*a)(), int b, int s) {
+		    a(b, s);
+		}
+
+		void add(int b, int s) {
+		    printf("%d\n", b + s);
+		}
+	</code>
+</pre>
+```
+- This would result in something like this:
+<pre>
+	<code>
+		void f(void (\*a)(), int b, int s) {
+		    a(b, s);
+		}
+
+		void add(int b, int s) {
+		    printf("%d\n", b + s);
+		}
+	</code>
+</pre>
+
+
 
 ### Marking Time and Date:
 -
@@ -182,4 +215,4 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 
 # Embedding:
 # Tables:
-## Forms:
+# Forms:
