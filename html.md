@@ -211,15 +211,15 @@ void add(int b, int s) {
 ### Basic Sections of a Document:
 - A standard html document should have the following sections:
 <dl>
-	**<dt>header:</dt>**
+	<dt>header:</dt>
 	<dd>A big strip on top of the page with a big heading and maybe a logo. This is a sticky section that will appear on different webpages of the website. It contains some information about the website.</dd>
-	**<dt>navigation bar:</dt>**
+	<dt>navigation bar:</dt>
 	<dd>Contains links to the main sections of the website. It is also sticky and stays the same across webpages. Never have different sections. Some merge it  with the header but others think it's better to have separate from the header for accessibility reasons.</dd>
-	**<dt>main content:</dt>**
+	<dt>main content:</dt>
 	<dd>A big area in the center of the webpage that has content unique to the webpage. It could be text, a video, a map, a game or whatever.</dd>
-	**<dt>sidebar:</dt>**
+	<dt>sidebar:</dt>
 	<dd>Peripheral info, links, ads. Usually contains links to related articles, videos, suggested or recommended content .. etc.</dd>
-	**<dt>footer:</dt>**
+	<dt>footer:</dt>
 	<dd>A strip across containing fine print, copyright notices, contact information ... etc. Might also have quick links to popular content for SEO purposes.</dd>
 </dl>
 
