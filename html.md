@@ -165,13 +165,13 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 - Uses the `<address>` element for contacts.
 
 ### Superscript and Subscript:
-- `<sub>` and `<sup>` are useful for items like dates, mathematical and checmical formulas, so `CO<sub>2<sub>` results in something like CO<sub>2<sub>.
+- `<sub>` and `<sup>` are useful for items like dates, mathematical and chemical formulas, so `CO<sub>2<sub>` results in something like CO<sub>2<sub>.
 
 ### Computer Code:
 - To markup code, you can use a variety of elements:
 	+ `<code>`: For generic pieces of code
 	+ `<pre>`: Fro retaining white space
-	+ `<var>`: For mrking variable names.
+	+ `<var>`: For marking variable names.
 	+ `<kbd>`: Keyboard input. `<kbd>CTRL</kbd>+<kbd>A</kbd>` gives you <kbd>CTRL</kbd>+<kbd>A</kbd>.
 	+ `<samp>`: Output of a program. E.g. `<samp>-bash: lsa: command not found</samp>` gives you <samp>-bash: lsa: command not found</samp>.
 - The following example shows how these element interact to create a nice block of code. With some css, this would be fabulous: 
@@ -189,19 +189,15 @@ void add(int b, int s) {
 </pre>
 ```
 - This would result in something like this:
-<pre>
-	<code>
-void f(void (`*`a)(), int b, int s) {
+```
+void f(void (*a)(), int b, int s) {
     a(b, s);
 }
 
 void add(int b, int s) {
     printf("%d\n", b + s);
 }
-	</code>
-</pre>
-
-
+```
 
 ### Marking Time and Date:
 - The element `<time>` allows for the creation of machine readable dates that can help with automation stuff like grabbing a date and adding to a calender:
@@ -210,12 +206,27 @@ void add(int b, int s) {
 ```
 
 ## Document and Website Structure:
--
+- HTML defines various block elements, some of which are semantic such as the navigation bar and main content. Other block elements are not semantic such as divs.
+
+### Basic Sections of a Document:
+- A standard html document should have the following sections:
+<dl>
+	**<dt>header:</dt>**
+	<dd>A big strip on top of the page with a big heading and maybe a logo. This is a sticky section that will appear on different webpages of the website. It contains some information about the website.</dd>
+	**<dt>navigation bar:</dt>**
+	<dd>Contains links to the main sections of the website. It is also sticky and stays the same across webpages. Never have different sections. Some merge it  with the header but others think it's better to have separate from the header for accessibility reasons.</dd>
+	**<dt>main content:</dt>**
+	<dd>A big area in the center of the webpage that has content unique to the webpage. It could be text, a video, a map, a game or whatever.</dd>
+	**<dt>sidebar:</dt>**
+	<dd>Peripheral info, links, ads. Usually contains links to related articles, videos, suggested or recommended content .. etc.</dd>
+	**<dt>footer:</dt>**
+	<dd>A strip across containing fine print, copyright notices, contact information ... etc. Might also have quick links to popular content for SEO purposes.</dd>
+</dl>
 
 ## Debugging HTML:
--
+- 
 
 
-# Embedding:
+# Embedding Stuff:
 # Tables:
 # Forms:
