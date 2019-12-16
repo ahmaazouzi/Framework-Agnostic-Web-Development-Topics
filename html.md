@@ -222,10 +222,38 @@ void add(int b, int s) {
 	<dt>footer:</dt>
 	<dd>A strip across containing fine print, copyright notices, contact information ... etc. Might also have quick links to popular content for SEO purposes.</dd>
 </dl>
+- Don't abuse these elements and respect semantics for better accessibility and SEO.
+
+### HTML Layout Elements in More Detail:
+- What follows is a more detailed and accurate description of the main semantic html block elements:
+	+ `<main>`: for content unique to the page. A child of `<body>` and shouldn't be nested within any other element. Use only once per page.
+	+ `<article>`: a block of related content that makes sense on its own without the rest of the page. Eg. A single blog post.
+	+ `<section>`: similar to article but is used to group a single part of the page that offers a single piece of functionality such as a map, a set of articles headlines and summaries. An article can be broken into multiple sections and a section can be broken into multiple articles based on the situation at hand.
+	+ `<aside>`: not directly related to the main content but can provide information indirectly related to it such as a set of related articles, the author biography, a glossary. 
+	+ `<header>`: a group of introductory content. If nested within the body, it is a global header for the whole page. If it's nested inside article or section, it is special header for that specific section or article. A header is not a heading.
+	+ `<nav>`: the main navigation functionality for the website. Secondary links should not be part of the nav, can probably be put in an aside to the left of main.
+	+ `<footer>`: a group of end content for the page.
+
+### Non-semantic Wrappers:
+- Yes, they are just that, wrappers and they are also non-semantic. Sometimes, you need to group certain elements for non-semantic purposes to apply css and/or javascript to them as a single entity. You'd use `<div>` and `<span>` for these. It's preferable to use these with a suitable class name for better targeting. 
+- `<span>` is an inline element. It's completely non-semantic and should only be use when there is no semantic element that can fulfill the desired role. Same goes for `<div>`, albeit this one can useful in many situations as when creating a shopping cart widget, for example.
+- divs can be easily abused resulting non-semantic garbage. There no running away from them and you should at least minimize their usage. 
+- `<br>` or lines break forces a line break inside a paragraph. It is useful in some situations such breaking a poem into lines.
+- `<hr>` or horizontal rules create lines in the document that denote thematic changes such as changes in topic or scene.
+
+### Planning a Simple Website:
+- Information architecture aims to create the best user experience. This is done through making information easily usable and findable. To achieve such goals, one needs to carefully plan the sturcture of one's website and plan how the content is to be arranged and pages are needed and how things link to each other. The following is a simple and general guideline on what goes into such planning:
+	1. Determine what's **common to most or all pages** of your website, such as footer, header, nav. Contacts are usually listed in the footer.
+	2. Draw a rough sketch of how the website should look.
+	3. Brainstorm all other content that's not common to every page and write an exhaustive list of it.
+	4. Sort content items into groups to know if such groups can go together in the same or related pages.
+	5. Sketch a rough site map where pages are represented by bubbles. Lines between the bubbles indicate how pages might relate to each other.
 
 ## Debugging HTML:
-- 
-
+- HTML is relatively easier to debug than some other languages such as javascript or even css. It's just more permissive. HTML doesn't have syntax errors as browsers still render pages and sometimes correct errors.
+- One of the most common html errors is missing closing tags. The browser tries to make up, by either ignoring the tag and its functionality altogether or inserting a closing tag where it sees fit, for example at the end of a paragraph or any other block type.
+- The inspect tools in some browsers allows you track such bugs and see how the browser tried to correct them.
+- The[ [Markup Validation Service](https://validator.w3.org/) is a tool you can use to validate your html. It's created by the famous W3C organization. It scans your html and gives a report about what is and what is not wrong with it. You can provide MVS with your code either in the form of a link, a direct upload of an html file or directly inputting html into it. the errors indicated by the tool are self explanatory. Common errors include violating nesting rules and unclosed tags.
 
 # Embedding Stuff:
 # Tables:
