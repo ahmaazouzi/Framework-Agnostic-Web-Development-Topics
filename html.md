@@ -172,26 +172,26 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 	+ `<code>`: For generic pieces of code
 	+ `<pre>`: Fro retaining white space
 	+ `<var>`: For mrking variable names.
-	+ `<kbd>`: Keyboard input.
-	+ `<samp>`: Output of a program.
+	+ `<kbd>`: Keyboard input. `<kbd>CTRL</kbd>+<kbd>A</kbd>` gives you <kbd>CTRL</kbd>+<kbd>A</kbd>.
+	+ `<samp>`: Output of a program. E.g. `<samp>-bash: lsa: command not found</samp>` gives you <samp>-bash: lsa: command not found</samp>.
 - The following example shows how these element interact to create a nice block of code. With some css, this would be fabulous: 
 ```xml
 <pre>
 	<code>
-		void f(void (*a)(), int b, int s) {
-		    a(b, s);
-		}
+void f(void (*a)(), int b, int s) {
+    a(b, s);
+}
 
-		void add(int b, int s) {
-		    printf("%d\n", b + s);
-		}
+void add(int b, int s) {
+    printf("%d\n", b + s);
+}
 	</code>
 </pre>
 ```
 - This would result in something like this:
 <pre>
 	<code>
-void f(void (\*a)(), int b, int s) {
+void f(void (`*`a)(), int b, int s) {
     a(b, s);
 }
 
@@ -204,7 +204,10 @@ void add(int b, int s) {
 
 
 ### Marking Time and Date:
--
+- The element `<time>` allows for the creation of machine readable dates that can help with automation stuff like grabbing a date and adding to a calender:
+```xml
+<time datatime="2020-01-01">01 January 2010</time>
+```
 
 ## Document and Website Structure:
 -
