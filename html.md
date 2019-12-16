@@ -126,8 +126,59 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 - The `mailto:` attribute followed by an optional email results in opening an outgoing email window.
 - You can also add a cc, bcc, subject and body sections in the href attribute following `mailto:`.
 
+## Advanced Text Formatting:
+- These are lesser known html text formatting elements and knowing them will make you a pro.
+
+### Description Lists:
+- These are used to mark up a set of items and their associated descriptions. They follow this syntax:
+```xml
+<dl> <!-- Description list-->
+	<dt>HTML</dt> <!-- description term-->
+	<dd>Gives you structure</dd> <!-- description definition-->
+	<dt>CSS</dt> 
+	<dd>Makes you look better</dd>
+	<dt>JS</dt>
+	<dd>Gives you superpowers</dd>
+</dl>
+```
+
+### Quotatations:
+- **Blockquotes** Allows you to quote a block like a paragraph, multiple paragraphs, a list ... etc resulting an indented block, and it's done through the following syntax:
+```xml
+<p>As Shakespear said in his famous poem <em>Wuthering Heights:</em>
+<blockquote cite="shakespear.aa">
+	To fly or not to fly, that's the respuesta<br>
+	Le draissage de ce chien manque du rigeur
+</blockquote>
+</p>
+```
+- **Inline quotatations** are done with the element `<q>`. This one simply enclose the quote inside double quotes.
+- `cite` is laregely useless and I will just skip it.
+
+### Abbreviations:
+- The element `<abbr>` allows you to show the full text of an abbreviation in a tooltip when the element is hovered over.
+```xml
+<p>We use <abbr title="Hypertext Markup Language">HTML</abbr> to structure our web documents.</p>
+```
+
+### Marking Up Contact Details:
+- Uses the `<address>` element for contacts.
+
+### Superscript and Subscript:
+- `<sub>` and `<sup>` are useful for items like dates, mathematical and checmical formulas, so `CO<sub>2<sub>` results in something like CO<sub>2<sub>.
+
+### Computer Code:
+-
+
+### Marking Time and Date:
+-
+
 ## Document and Website Structure:
+-
+
 ## Debugging HTML:
+-
+
 
 # Embedding:
 # Tables:
