@@ -191,13 +191,13 @@ Find me <a href="https://www.mozilla.org" title="The most useful website everrr"
 - This would result in something like this:
 <pre>
 	<code>
-		void f(void (\*a)(), int b, int s) {
-		    a(b, s);
-		}
+void f(void (\*a)(), int b, int s) {
+    a(b, s);
+}
 
-		void add(int b, int s) {
-		    printf("%d\n", b + s);
-		}
+void add(int b, int s) {
+    printf("%d\n", b + s);
+}
 	</code>
 </pre>
 
