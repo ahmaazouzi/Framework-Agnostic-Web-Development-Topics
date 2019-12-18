@@ -255,6 +255,53 @@ void add(int b, int s) {
 - The inspect tools in some browsers allows you track such bugs and see how the browser tried to correct them.
 - The[ [Markup Validation Service](https://validator.w3.org/) is a tool you can use to validate your html. It's created by the famous W3C organization. It scans your html and gives a report about what is and what is not wrong with it. You can provide MVS with your code either in the form of a link, a direct upload of an html file or directly inputting html into it. the errors indicated by the tool are self explanatory. Common errors include violating nesting rules and unclosed tags.
 
-# Embedding Stuff:
+# Embedding Images and Stuff:
+## Images:
+- An image can be embedded in an html document using the `<img>` empty tag as in the following script:
+```xml
+<img src="images/someimage.jpg">
+```
+- for SEO purposes, put images in a directory named 'images' and give images descriptive names.
+- ***Warning*** Be careful about linking to copyrighted images. Also avoid **hotlinking** which linking images to other domains without authorization. You are stealing bandwidth and making your website slower and have no control over it. If the source change it to a pornographic image, you'd be embarrassed, maybe.
+- The `alt` is used to display textual description of the image if the image cannot be displayed or is too slow loading. Many reasons exist for including this attribute such as accessibility, some browsers display text only, search engines match alt text to queries.. etc.
+- Specifying the image `width` and `height` attributes improves page load speed and smoothness. Don't alter image size with html attributes as that would distort it, make it grainy or waste resources to load a tiny image. If you need to change image size, use [CSS](css.md) instead.
+- The `title` attribute allows you to add information that can be seen in a tooltip when the image is hovered over. This is not very accessibility-friendly.
+
+### Annotating Images and Figures: 
+- To add a caption to an image you can simply append a paragraph to the img element explaining its content, but this too unsemantic. Witht the use of `<figure>` an `<figcaption>` to wrap a an image inside one semantic unit as in the following example:
+```xml
+<figure>
+<img src="something.png">
+<figcaption>This is an amazing image</figcaption>
+</figure>
+```
+- Figures don't have to be images. They can be equations, code, a table ... etc. 
+
+### CSS Background Images:
+- These can be created using the following css syntax:
+```css
+body {
+	background-image: url("images/something.png");
+}
+```
+- CSS images are for decoration only and have no semantic bearing on the document. Use HTML images if they are part of the content of the page and CSS images if they are just for decoration.
+
+## Video and Audio:
+- The `<video>` and `audio` elements are used to embed these in webpages.
+- Embedding a video is almost as trivial as embedding an image as in
+```XML
+<video src="index.mp4" >
+  <p>Your browser doesn't support HTML5 video. Here is a <a href="index.webm">link to the video</a> instead.</p> 
+</video>
+```
+- `src` has the same function as its sister in the img element. `controls` must be included as they allow the user to control the video playback. You can use the browser interface or create your own interface using javascirpt. You must at least provide the ability to control the audio and start and pause the video.
+- It is advisable to provide a **fallback content**. A paragraph explaining why the video couldn't be played in an old browser.The example above also provides a direct link to the file which the user can probably download.
+
+## `object`, `<iFrame>` and Other Embedding Technologies:
+
+## Adding Vectors Graphics to the Web:
+
+## Responsive Images:
+
 # Tables:
 # Forms:
