@@ -385,5 +385,88 @@ body {
   <img src="pyramid.png" alt="regular pyramid built from four equilateral triangles">
 </picture>
 ```
+
 # Tables:
+## Basics:
+- Basics of tables, how a cell span multiple rows and columns also how to group all cells in a column for styling.
+
+### What's a Table?
+- It's a way to organize data into rows and columns. It's easy to spot connections and interesting relations between different data when they are represented in a tabular format.
+- To have an effective and readable table you must add appropriate CSS in addition to effective HTML table formatting.
+- Never use tables for the layout of a website with rows for header, footer and other parts of a webpage layout. That used to be a practice from a bygone era because CSS support was not good in old days. They are bad fro accessibility, they'd result in hard to maintain tag soups and are not automatically responsive. They follow the size of the text they contain. DON'T USE TABLES FOR PAGE LAYOUT!!DON'T DO IT!
+- `<td>` is for data.
+- `<th>` is for headers. They are useful stylistically as they stand out making reading a table an easier task. Along with the `scope` attribute, the headers allow you to associate the header with data in the same row or columns which is good accessibility-wise.
+
+### Cell Spanning Multiple Rows and Columns:
+- Might sound mysterious, but is extremely easy to implement with the following two attributes that can be added to either `<td>` or `<th>`:
+	+ **`colspan="5"`**: allows you stretch a cell over multiple columns.
+	+ **`rowspan="4"`**: allows you to stretch a cell over multiple rows.
+- The following example shows how cell-spannig can be done:
+```xml
+<table>
+  <tr>
+    <th rowspan="8">Programming<br>Languages</th>
+  </tr>
+  <tr>
+    <th colspan="2">Machine Code</th>
+    <td>1939</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Assembly</th>
+    <td>MASM</td>
+    <td>1956</td>
+  </tr>
+  <tr>
+    <td>WASM</td>
+    <td>1956</td>
+  </tr>
+  <tr>
+    <th colspan="2">FORTRAN</th>
+    <td>1950</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Procedural</th>
+    <td>C</td>
+    <td>1969</td>
+  </tr>
+  <tr>
+    <td>Pascal</td>
+    <td>1960</td>
+  </tr>
+</table>
+```
+
+<table>
+  <tr>
+    <th rowspan="8">Programming<br>Languages</th>
+  </tr>
+  <tr>
+    <th colspan="2">Machine Code</th>
+    <td>1939</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Assembly</th>
+    <td>MASM</td>
+    <td>1956</td>
+  </tr>
+  <tr>
+    <td>WASM</td>
+    <td>1956</td>
+  </tr>
+  <tr>
+    <th colspan="2">FORTRAN</th>
+    <td>1950</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Procedural</th>
+    <td>C</td>
+    <td>1969</td>
+  </tr>
+  <tr>
+    <td>Pascal</td>
+    <td>1960</td>
+  </tr>
+</table>
+
+## Advanced Features and Accessibility:
 # Forms:
