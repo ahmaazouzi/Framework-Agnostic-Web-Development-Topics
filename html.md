@@ -342,14 +342,48 @@ body {
 <circle cx="150" cy="100" r="90" fill="red" />
 </svg>
 ```
-<svg version="1.1"
-     baseProfile="full"
-     width="300" height="200"
-     xmlns="http://www.w3.org/2000/svg">
-<circle cx="150" cy="100" r="90" fill="red" />
-</svg>
+- You wouldn't normally code SVGs by hand but use a tool like inkscape which is free.
+- SVGs can be easily styled with CSS and scripted with javascript. The text in these is also accessible which is good for SEO.
+- Vectors and SVGs in particular are not always an ideal choice. They can easily become very complicated and add a significant processing overhead. They are not supported in older browsers and are very hard to create.
+
+### How to embed SVGs:
+- It can be done in two ways, either with the `<img>` but this archaic, or with the `<svg>` element which is the standard now.
 
 ## Responsive Images:
+- Achieving responsive images is more of a css topic, but HTML has its own tools and method to fulfill such a goal.
+- The diverse screen sizes creates two problems when it comees to images, the **resolution switching problem** and the **art direction problem** (different ways an image takes space based on different screen aspect ratios). You also don't want to load large resolution images for small devices, and vectors are limited and can't be used for photos.
+- While CSS is better at producing responsive images, HTML has some of its one and these can be used as follows:
+	+ **Resolution switching through Different Image Sizes:** Bascially you use the multiple copies of the same image with different sizes, and allow html to choose the appropriate image based on the screen resolution as in the following example:
+```xml
+<img srcset="something-480.jpg 480w,
+	something-800.jpg 800w"
+	sizes="(max-width 700px) 480px,
+	800px" 
+	src="something-800.jp" 
+	alt="something" 
+	>
+```
+	In the example above, the `scrset` attribute denotes a list of available images with their widths.
+	The `sizes` list corresponds to the scrset. The two share the same index. While the screen's width is under or equal to 700, use the 480px image, otherwize use the 800px one. Browsers that don't support srcset and sizes attributes will just ignore them and load the image referenced in src.
+	+ **Same Size, Different Resolution:** I don't understand this one.
+	+ **Art direction:** provide a cropped zoomed image with a focus on the figure, and html will choose the right image based on the screen size for you. This can be done with the `<Picure>` element:
+- This can be done with CSS or js but it's a bad idea because images start loading before javascript or CSS start being pasrsed.
+```xml
+<picture>
+  <source media="(max-width: 799px)" srcset="mozilla.png">
+  <source media="(min-width: 800px)" srcset="mozilla.png">
+  <img src="mozilla.png" alt="Chris standing up holding his daughter Elva">
+</picture>
+```
 
+### On the Use of Modern Image Formats:
+- Opt for using moder image formats such as WebP and JPEG-2000. These are cool because they have small file sizes and good image quality. Not all browsers support them but you can use `<pciture>` to provide a fallback strategy when support is inexistent:
+```sql
+<picture>
+  <source type="image/svg+xml" srcset="pyramid.svg">
+  <source type="image/webp" srcset="pyramid.webp"> 
+  <img src="pyramid.png" alt="regular pyramid built from four equilateral triangles">
+</picture>
+```
 # Tables:
 # Forms:
