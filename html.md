@@ -409,29 +409,23 @@ body {
   </tr>
   <tr>
     <th colspan="2">Machine Code</th>
-    <td>1939</td>
   </tr>
   <tr>
     <th rowspan="2">Assembly</th>
     <td>MASM</td>
-    <td>1956</td>
   </tr>
   <tr>
     <td>WASM</td>
-    <td>1956</td>
   </tr>
   <tr>
     <th colspan="2">FORTRAN</th>
-    <td>1950</td>
   </tr>
   <tr>
     <th rowspan="2">Procedural</th>
     <td>C</td>
-    <td>1969</td>
   </tr>
   <tr>
     <td>Pascal</td>
-    <td>1960</td>
   </tr>
 </table>
 ```
@@ -442,31 +436,112 @@ body {
   </tr>
   <tr>
     <th colspan="2">Machine Code</th>
-    <td>1939</td>
   </tr>
   <tr>
     <th rowspan="2">Assembly</th>
     <td>MASM</td>
-    <td>1956</td>
   </tr>
   <tr>
     <td>WASM</td>
-    <td>1956</td>
   </tr>
   <tr>
     <th colspan="2">FORTRAN</th>
-    <td>1950</td>
   </tr>
   <tr>
     <th rowspan="2">Procedural</th>
     <td>C</td>
-    <td>1969</td>
   </tr>
   <tr>
     <td>Pascal</td>
-    <td>1960</td>
   </tr>
 </table>
 
+### Styling Columns:
+- HTML provides the nifty `<colgroup>` and `<col>` to provide wholesale styling to a table's columns.
+- On top of your table you put a `<colgroup>` and use it to enclose one or more of the empty col element. The col element is where you'd apply the styling. If you want to just style the first column, you just place one col element with its styling. If you want to style the third column, then you place the first and second columns without any styling and then you place the third column which you style. The following example shows how it's done:
+```xml
+<table>
+    <colgroup>
+        <col>
+        <col style="background-color: rgb(204, 238, 241)">
+    </colgroup>
+    <tr>
+        <th>Book</th>
+        <th>Category</th>
+    </tr>
+    <tr>
+        <td><em>Wuthering Heights</em></td>
+        <td>Literature</td>
+    </tr>
+    <tr>
+        <td><em>A History of Egypt</em></td>
+        <td>History</td>
+    </tr>
+    <tr>
+        <td>The Origin of Species<em></em></td>
+        <td>Science</td>
+    </tr>
+</table>
+```
+<table>
+    <colgroup>
+        <col>
+        <col style="background-color: rgb(204, 238, 241)">
+    </colgroup>
+    <tr>
+        <th>Book</th>
+        <th>Category</th>
+    </tr>
+    <tr>
+        <td><em>Wuthering Heights</em></td>
+        <td>Literature</td>
+    </tr>
+    <tr>
+        <td><em>A History of Egypt</em></td>
+        <td>History</td>
+    </tr>
+    <tr>
+        <td>The Origin of Species<em></em></td>
+        <td>Science</td>
+    </tr>
+</table>
+
+- Styling using col and colgroup cna also span multiple columns just like rowspan and colspan with teh `span` attribute as in the following example:
+```xml
+<colgroup>
+  <col style="background-color: yellow" span="2">
+</colgroup>
+```
+
 ## Advanced Features and Accessibility:
+### Table Caption:
+- You can add a caption to a table by enclosing the caption text inside a `<caption` element and make this caption a child of the `<table>` element. The caption appears on the top of the table even if you place it below the table. The caption should provide a summary of the contents of the table, and it's advisable to use for semantic and accessibility reasons. The screenreader reads the caption aloud and allows the user to decide if they wish to consume the table or skip it. 
+
+### Adding Structure with `<thead>`, `<tbody>` and `<tfoot>`:
+- These provide structure that's fundamental to styling. In long tables you can make the header and footer repeat on every page. You can scroll through the body while having the body stick to the page. 
+- Even if you place the footer below the header and above the body, the browser will render it at the bottom of the page. The footer can be used for various purposes such as summing up data.
+
+### Tables for the Visually Impaired:
+- To help the visually implement make an effective use of tables, use row and column headers along with the `scope` as in the following example:
+```xml
+<thead>
+  <tr>
+    <th scope="col"> Programming Language</th>
+    <th scope="col">Inventor</th>
+    <th scope="col">Date</th>
+    <th scope="col">Rank</th>
+  </tr>
+</thead>
+```
+- In the example above, each cell in each clumn is associated with its header. This can also be done with rows as in:
+```xml
+<tr>
+  <th scope="row">Haircut</th>
+  <td>C</td>
+  <td>Dennis Ritchie</td>
+  <td>1969</td>
+  <td>4</td>
+</tr>
+```
+
 # Forms:
