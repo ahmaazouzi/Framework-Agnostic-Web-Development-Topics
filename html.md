@@ -1,3 +1,5 @@
+[Learning HTML: Guides and tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML) by Mozilla Contributors is licensed under CC-BY-SA 2.5.
+
 # Introduction:
 ## Basics:
 ### Elements:
@@ -296,10 +298,56 @@ body {
 ```
 - `src` has the same function as its sister in the img element. `controls` must be included as they allow the user to control the video playback. You can use the browser interface or create your own interface using javascirpt. You must at least provide the ability to control the audio and start and pause the video.
 - It is advisable to provide a **fallback content**. A paragraph explaining why the video couldn't be played in an old browser.The example above also provides a direct link to the file which the user can probably download.
+- There are other details on how to embed video/audio, that I don't really care about at the moment.
 
-## `object`, `<iFrame>` and Other Embedding Technologies:
+## `<object>`, `<iframe>` and Other Embedding Technologies:
+- `<iframe>`allows you to embed other webpages into your page, while `<embed>` is used for PDFs and `<object>` for <abbr title="Scalable Vector Graphics"> SVG</abbr>
+
+### History of Embedding:
+- In the beginning there were **frames**. These were small chunks wrapped in html. These were embedded inside master documents called **framesets**. They were cool and resulted in speedy downloads but had many issues so they were abandoned. Soon, flash and applets appeared and these were embedded using the `<embed>` and `<object>`elements. These too were bad for security, accessibility and other reasons.
+- `iframe` came along with `video` and `canvas` later. `iframe` allowed for the embedding of a whole html document into another as if it were an image.
+
+### iframes:
+- They allow you to embed whole documents into other documents. Think of live code examples in MDN, maps, advertising banners, commenting systems like Discus .. etc. iframes have some serious security issues, that's why you need to use them with care and know what you're doing before you use them.
+- iframe attributes include:
+	+ **`allowfullscreen`.**
+	+ **`frameborder`:** set by default 1, draws a border around the frame and to remove it, you must set this attribute value to 0, or you can use the more recommended CSS method `border: none;`
+	+ **`src`.**
+	+ **`width` and `height`.**
+	+ **`sandbox`:** works in modern browsers and requires heightened security to display the frame.
+	+ **Fallback Content:** Give link to the actual page when a browser that doesn't support iframes is encountered. This is rare!
+- An SEO advice: Use javascript to make the iframe load last so the official load time of your page is faster.
+- iframes are a common attack vector. Attacks can be avoided using best practices. **Clickjacking** is one such attack. It embeds invisible iframes into your website or embeds your website into their website enabling the theft of user sensitive data.
+- To combar iframe abuse, Mozilla suggests the following:
+	+ **Only embed when necessary**.
+	+ **Use HTTPS:** HTTPS reduces tampering while data is in transit. It also prevents embedded content from accessing content in the rest of your page.
+	+ **Always use the `sandbox` attribute:** Sandboxing restricts the permissions an iframe content has. You can add certain permissions to its value only if necessary. In all cases you should never add both `allow-scripts` and `allow-same-origin` to a sandbox attribute. This is a security thing. Might touch on it in the future.
+	+ **Configure CSP Directives:** Content Server Security is something you deal with in the server. Something about ***X-Frame-Options***.
+
+### `<object>` and `<embed>`:
+- These are general purpose embedding tools for embedding stuff from plugins like java applets,PDFs plugins to content such as SVGs, videos... etc.
+- These can be avoided altogether.
 
 ## Adding Vectors Graphics to the Web:
+- Vector graphics are highly scalable, they don't pixellate and they have small file sizes.
+
+### SVG:
+- SVG is an XML-based language for describing vector images. It is a markup similar to HTML but it has many different types of elements for defining different shapes. Elements include representations of simple shapes like `<rect>` and `circle`. There other more complex elements such as `<animate>` and `<feColorMatrix>` for transforming colors... etc. 
+- The following snippet is of an svg representing a red disk:
+```xml
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+<circle cx="150" cy="100" r="90" fill="red" />
+</svg>
+```
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+<circle cx="150" cy="100" r="90" fill="red" />
+</svg>
 
 ## Responsive Images:
 
