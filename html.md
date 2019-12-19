@@ -545,3 +545,43 @@ body {
 ```
 
 # Forms:
+## First HTML Form:
+- A form is a fundamental way in which users can interact with a website or an application. They are usually use to send data to the server. It is made of one or more **widgets** which can either be single or multiple-line text fields, checkboxes, buttons, radio buttons or select boxes. Widgets should be paired with properly named labels that describe their functionality. Form HTML is different in that you used it to send that rather than just consume it like when you're watching a youtube video. 
+- Carefully plan in advance when designing a form and keep it short and focused. Sketch it up first.
+
+### Designing A Form:
+-
+
+### Basic Styling of a Form:
+-
+
+### Sending Form Data to a Server:
+
+## Structuring an HTML Form:
+-
+
+## Native Form Widgets:
+-
+
+## Sending Form Data:
+-
+
+## Form Validation:
+-
+
+## Building Custom Form Widgets:
+-
+
+## Sending Forms Through Javascript:
+-
+
+## HTML Forms in Legacy Browsers:
+-
+
+## Styling HTML Forms:
+-
+
+## Advanced Styling for HTML Forms:
+-
+
+## Property Copatibility Table for Form Widgets:
