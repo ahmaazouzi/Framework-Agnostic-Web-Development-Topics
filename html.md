@@ -57,7 +57,7 @@
 ```
 
 ### Setting Page Language:
-- The lang element allows you to set the language of a page as in `<html lang="en-US">`. This is good for SEO is also good for accebility screen-readers.
+- The lang element allows you to set the language of a page as in `<html lang="en-US">`. This is good for SEO is also good for accessibility screen-readers.
 - Languge can also be set for specific sections of the same page.
 
 ## Text:
@@ -550,15 +550,96 @@ body {
 - Carefully plan in advance when designing a form and keep it short and focused. Sketch it up first.
 
 ### Designing A Form:
--
+- The following is a simple unstiled form:
+```xml
+<form action="something.php" method="post">
+    <ul>
+        <li>
+            <label for="name">Name:</label>
+            <input type="text"  id="name" name="user_name">
+        </li>
+        <li>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" name="user_email">
+        </li>
+        <li>
+            <label for="msg">Message:</label>
+            <textarea id="msg" name="user_message"></textarea>
+        </li>
+        <li class="button">
+  			<button type="submit">Send your message</button>
+		</li>
+    </ul>
+</form>
+```
+    <form action="something.php" method="post">
+        <ul>
+            <li>
+                <label for="name">Name:</label>
+                <input type="text"  id="name" name="user_name">
+            </li>
+            <li>
+                <label for="mail">E-mail:</label>
+                <input type="email" id="mail" name="user_email">
+                <input type="email" id="mail" name="user_email">
+            </li>
+            <li>
+                <label for="msg">Message:</label>
+                <textarea id="msg" name="user_message"></textarea>
+            </li>
+            <li class="button">
+  				<button type="submit">Send your message</button>
+			</li>
+        </ul>
+    </form>
+
+- A form would usually have the following elements:
++ **`<form>`**: The main element that defines a form. It's a container element like a div or a p, but in addition to structure, it has attributes which specifies how a form behaves. The attributes are optional, but a proper form must have two fundamental attributes:
+	- The **`action`** attribute defines the location (URL) where data should be sent when submitted.
+	- The **`method`** defines the http method to send the data with ("get" or "post").
++ **`<label>`** labels an input field. It's great for accessibility. The `for` attribute allows associating a label with a form widget. It takes the widget's id as its value. This is also good for accessibility and interactivity. When you click a label, it acctivates the form widget associated with it.
++ **`<input>`** is a single-line text field. Its type attribute has a wide range of values such as text or email which only accepts email addresses (as in the example above). The type attribute is fundamental for form validation. The value attribute specifies the default value (the text inside the text field prompting you to enter your input).
++ **`<textarea>`** similar to the input field but is used to enter multiline text. It's not an empty element, though. For the default value, you don't use a value attribute but you put that text between the tags.
++ **`<button>`** usually used to submit a form. Once clicked the data in the form above would be sent to the page defined in the form's action attribute. The `type` attribute accepts one of three values:
+	- `submit`: sends data to the page defined by `action`.
+	- `reset`: clears entered data and resets to default values of all form fields (UX-wise, this is bad).
+	- `button`: clicking it doesn't do anything, but it's used to create custom buttons with javascript. 
 
 ### Basic Styling of a Form:
--
+- Styling forms is a pain in the bulla. 
+- Styling this form to make it look barely decent requires a ton of CSS.
 
 ### Sending Form Data to a Server:
+- 3 pieces are essential to send data to the server. The form's action defines the URL in the server where the data is to be sent. The method defines the http method used to send the data. The `name` attribute of form control is also essential for both the browser and the server. The name tells the browser which name to give to each piece of data and they allow the server to identify data by names. Form data is sent to the server as key/value pairs.
+- In the example above, three pieces of data are sent to the server whose keys are `user_email`, `user_name` and `user_message` to the server script located at `something.php` using the HTTP POST method.
 
 ## Structuring an HTML Form:
--
+- This section is about forms structure and semantics. What does each part of a form mean what is its role?
+
+### The `<form>` Element:
+- This is the parent element inside which all form action takes place and where all form elements are to be nested. NEVER NEST A FORM WITHIN ANOTHER FORM, IT CAN CAUSE UNPREDICTABLE DISASTERS.
+- A form widget can exist outside a form but it has nothing to do with any form. You can bind it to a form, though, with the form attribute if it is not nested within a form.
+
+### The `<fieldset>` and `<legend>`:
+- `<fieldsets>` are used to delimit groups of widgets together in the same form for styling and semantic reasons. A `<legend>` element is used as label for a fieldset. You can group radio buttons for example inside a fieldset or you can use a fieldset to section a long form for an improved usability. 
+- Fieldsets are also useful accessibility-wise.
+
+### `<label>`:
+- Labels are **the most important element for accessibility in a form**. To achieve such a goal, they are must be used with the **`for`** attribute and input elements must have an **`id`** attribute so the two can be associated. An input element can also be associated with a label through nesting the input element inside a label element. It is recommended that the `for` and `id` attributes be used even when the input is nested inside a label. The nest can be done as in the following example:
+```xml
+<label for="name">
+  Name: <input type="text" id="name" name="user_name">
+</label>
+```
+- **Labels are also clickable** and clicking them activates the associated form widgets. This is especially useful with checkboxes and radio buttons which have very small hit areas. The label enlarges hit areas. Think of touch screens.
+- **Multiple labels** for a single widget are possible but not necessarily recommended. If you must use multiple labels, nest a widget with its labels inside a single label.
+
+### Common HTML Structures Used with Forms:
+- Forms are special but they are just HTML and can be mixed with other html element.
+- It is a common practice to wrap labels and their widgets inside `<li>`, `<div>` and `<p>` elements. 
+- Sectioning different groupings within the same form is done with the `<fieldtest>` and also with the `<section>` element. `<h1>` and `<h2>` and other titles can be used with sections to provide structure to complex long forms. 
+- You are free to use structures you like to make great forms.
+- Again, again CSS is one of the hard topics when it comes to forms.
 
 ## Native Form Widgets:
 -
