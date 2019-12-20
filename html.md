@@ -642,10 +642,55 @@ body {
 - Again, again CSS is one of the hard topics when it comes to forms.
 
 ## Native Form Widgets:
--
+- This section is a near exhaustive treatment of the available native form controls and their different options to collect data.
+- This section covers form controls available for all browsers. Other ones will be discussed later. For custom controls and how to create them refer to this [section](#building-custom-form-widgets).
+
+### Common Attributes:
+- All form widgets have the following attributes:
+	+ **`autofocus`** (false by default)a boolean signaling that an element should automatically have input focus when the page loads. Only one form associated element in a document can have this attribute specified.
+	+ **`disabled`** (false by default). Signals that the user can't interact with the field. If this attribute is not specified, it inherits the setting of the element containing it.
+	+ **`form`** If a form control is outside the form it's associated with, or even in a different form in the same document, this attribute binds it to that form.
+	+ **`name`** The name of the element. The server associated the data with the name.
+	+ **`value`** is the element initial value.
+
+### Text Input Fields:
+- These are the most basic and essential form controls. Their only shortcoming is that they only allow plaintext input. for richer input with bold and italics, design your own custom widgets
+- Some of the attributes that all text input can have:
+	+ It can be marked as `readonly` (it has an input value you can't modify but is sent with the rest of the form data) or `disabled` (you can't change it and the data doesn't get sent).
+	+ It can have a `placeholder`, text that describes the purpose of the field. This is not data and doesn't get sent to the server.
+	+ They can be limited in `size` (physical size) and `maxlength` (the maximum number of characters that can be entered into the box).
+	+ They can benefit from `spellcheck` if it's available.
+- **Single line text fields** are the default input type. If you don't specify a type for the `<input>` element, it defaults to a single-line text input type.
+- The **`password` field** type is similar to text field with some exceptions. The value entered is obscured and can't be seen. It supported such attributes as `pattern`, `minlength` and `maxlength`. This is only a user interface feature. Unless you submit your form securely, it gets sent in plaintext. The best way to fix handle this issue is through encryption (e.g. https).
+- **`hidden`** input is invisible and cannot be interacted with by the user. This input type requires a name and value attribites and the value attribute can be set dynamically.
+
+### Checkable Items, `<checkbox>` and `<radio>`:
+- Both have the `checked` attribute to indicate if they are checked or not.
+- All other input types get sent the server. Checkable items only get sent if they are checked. 
+- From a UI/accessibility standpoint, you are advised to:
+	+ surround checkable items by a fieldset and use a legend.
+	+ Put them in a list and each input field be put with its label in the same list item.
+	+ Labels are placed immediately after the input fields and the descsription/instructions are part of the legend.
+
+### Actual Buttons:
+
+```xml
+<button type="submit">
+    This is a <br><strong>submit button</strong>
+</button>
+
+<input type="submit" value="This is a submit button">
+```
+<button type="submit">
+    This is a <br><strong>submit button</strong>
+</button>
+
+<input type="submit" value="This is a submit button">
+
+### File Picker:
 
 ## Sending Form Data:
--
+- 
 
 ## Form Validation:
 -
