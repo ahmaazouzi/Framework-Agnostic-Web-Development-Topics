@@ -670,10 +670,10 @@ body {
 - From a UI/accessibility standpoint, you are advised to:
 	+ surround checkable items by a fieldset and use a legend.
 	+ Put them in a list and each input field be put with its label in the same list item.
-	+ Labels are placed immediately after the input fields and the descsription/instructions are part of the legend.
+	+ Labels are placed immediately after the input fields and the description/instructions are part of the legend.
 
 ### Actual Buttons:
-
+- You can create a button with either the input or button elements. The only difference is that you can style the button element anyway you like, unlike the input element as in the following example:
 ```xml
 <button type="submit">
     This is a <br><strong>submit button</strong>
@@ -681,16 +681,47 @@ body {
 
 <input type="submit" value="This is a submit button">
 ```
-<button type="submit">
-    This is a <br><strong>submit button</strong>
-</button>
-
-<input type="submit" value="This is a submit button">
+- The type attribute is essential for a button (both in button and input elements) and it has the following values:
+	+ **submit** sends the form data to the server. If the type attribute is not set, the button becomes a submit button by default.
+	+ **reset** resets all data to their default values.
+	+ **anonymous** doesn't do anything, but can be customized with javascript. This is specified with the type "button".
 
 ### File Picker:
+- This widget allows the user to pick and send files to the server. this is done with the input field and its type attribute set to `file`. You can constrain the type of file with teh `accept` attribute. The `multiple` attribute allows for selecting and sending multiple files.
+```xml
+<input type="file" name="file" id="file" accept="image/*" multiple>
+```
+- There many other input types, but I'm tired of listing them.
 
 ## Sending Form Data:
-- 
+### Where does the data go?
+- You, the client, send an HTTP request and the server answers with an HTTP response.
+- The form element specifies how data gets sent to the server. The different attributes of the form configure how the data get sent. The most important attributes are:
+	1. **`action`**: defines where the data will be sent. If this attribute is not provided, the data will be sent to the url of the current page containing the form. Before HTML5, it was required that a form has an application
+	1. **`action`**: defines where the data will be sent. If this attribute is not provided, the data will be sent to the url of the current page containing the form. Before HTML5, it was required that a form has an action attribute, that's why even though data was supposed to be sent to the current page url, it was customary to use a notation like this `<form action="#">`. Even if the form is in an insecure page using http, the URL specified in action can be of a secure type (https) and the data will be encrypted. The names and values entered in non-file form widgets are sent to the server as `name=value` pairs separated by ampersands `&`. The value of `action` is usually a file in the server that can handle the incoming data and validate it. The server responds by handling the data and loading the page defined in `action` leading to a new page load .. etc. 
+	2. **`method`**: defines how data is sent to the server. The most common HTTP methods to do this are `POST` and `GET`.
+		+ The **`GET`** method asks the server to send a resource back. The body of the get method is empty, that's why it gets appended to the url, *but why?*
+		+ The **`POST`** method is used to send data to the server. When a form is sent using the post method, the data is appended to the HTTP method's body, not to the url as in the get method. 
+- HTTP requests can be examined using the Firefox Network Monitor or the Chrome Developer tools under the Network tab. Here you can see data added to the url while in a post request you don't.
+- While you can send data in both the get and post method, it's preferred to send it in a post method for two reasons:
+	+ In a get method, data is added to the url which risque leaking displaying sensitive data to malicious agents.
+	+ URL size is limited by some browsers and many servers limit the sizes of URLs they can accept, which is not the case for the post request bodies.
+
+### Retrieving Data on the Server Side:
+- Whatever the method used to send the data, the server receives it as a string that it parses into a list of key/value pairs that. Accessing this list and the handling of duplicate keys is done differently based on platform used. Usually the most recently received duplicate key is the one taken into consideration.
+
+### Sending a File:
+- HTTP is a text protocol but files are binary data, that's why you need to take special care when sending files to the server. These 3 steps need to be followed sending data to the server:
+	1. The method should be set to POST since a file cannot be appended to the url.
+	2. Set the value of `enctype` to `multipart/form-data`, because data will be split into multiple parts, one for each file and one for the text data included in the form body if text is also entered.
+	3. Include a filepicker widget for allowing users to upload files.
+
+### Security Concerns:
+- Every time data is sent to the server, there is a chance the server comes under attack. Forms are the most common attack vectors. Forms don't cause vulnerabilities, though; it is how the server handles the received data. Some of the most common security issues are:
+	+ **XSS and CSRF** happen when you display data sent by user back to the sending user or another user. Cross-site scripting 
+	+ **SQL Injections**
+	+ **HTTP header injections**
+	+ ****
 
 ## Form Validation:
 -
