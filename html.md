@@ -729,19 +729,55 @@ body {
 - Following the above 3 rules will spare you most attacks. You still need to get security checks performed by experts.
 
 ## Form Validation:
--
+- Client side form validation is not a replacement of server validation, but it is necessary from a UX point of view. You don't want the user to wait for seconds or minutes only to be told their data is invalid. You to maximize the likelihood that all data entered is valid before the data is sent.
+- **Form validation** refers to the fact that the user agent or web application allows data to be submitted if it's correctly formatted and rejects it otherwise, showing an error message prompting the user to submit correct format data. Examples include malformatted emails or telephone numbers, required data that's missing ..etc. 
+- There are **3 main reasons** for form validation:
+	1. **Getting the right data in the right format.** 
+	2. **Protecting the user** through the use of secure psswords, for example.
+	3. **Protecting the web application:**
+- Form validation is done in two ways, both of which are required:
+	1. **Client-side validation** is more user-friendly and is done before the data is submited. It's done in two ways:
+		+ **Javascript** and is completely customizable.
+		+ **Built-in form validation** is not customizable but has better performance than javascript.
+	2. **Server-side validation** is the last line of defense and is absolutely required. Most frameworks have features for accomodating valdiation and sanitization. Failing to do server from validation compromizes your applications or makes it unusable at worst.
+
+### Built-in Form Validation:
+- HTML5 allows the validation of most user data without reliance on scripts. It is done through the use of [validation attributes](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation#Validation-related_attributes). Such attributes include:
+	+ **`required`** for whether the data must be entered.
+	+ **`minlength`** and **`maxlength`** for text size.
+	+ **`min`** and **`max`** for maximum and minimum values allowed.
+	+ **`pattern`** for a regex that the data must match.
+- The entered data must match all constraints to be consisred valid. When the data are valid, the element matches the CSS pseudo class `:valid` for styling valid elements. The data is also ready to be submitted. When the data is invalid it matches the `:invalid` css pseudo-class. The form will also block the data and show an error message.
+Make sure to make use of the CSS psudo-classes related to form validation. Examples include:
+```css
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+input:valid {
+  border: 2px solid black;
+}
+```
+- HTML5 allows you to change error messages using javascript through the constraint validation API. It allows you to change the text of error messages produced by native widgets but you can't change its styling. The `setCustomValidity` is pariticularly useful for such a purpose.
+
+### Validation with Javascript:
+- This advanced stuff. Will come back.
 
 ## Building Custom Form Widgets:
--
+- Will come back.
 
 ## Sending Forms Through Javascript:
--
+- Might come back to this in the javascript part.
 
 ## HTML Forms in Legacy Browsers:
 -
 
 ## Styling HTML Forms:
--
+- Check [here](css.md/#styling-forms).
 
 ## Advanced Styling for HTML Forms:
 -
