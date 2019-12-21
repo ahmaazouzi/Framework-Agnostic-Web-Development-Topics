@@ -1,4 +1,4 @@
-[Learning HTML: Guides and tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML) by Mozilla Contributors is licensed under CC-BY-SA 2.5.
+k[Learning HTML: Guides and tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML) by Mozilla Contributors is licensed under CC-BY-SA 2.5.
 
 # Introduction:
 ## Basics:
@@ -718,10 +718,15 @@ body {
 
 ### Security Concerns:
 - Every time data is sent to the server, there is a chance the server comes under attack. Forms are the most common attack vectors. Forms don't cause vulnerabilities, though; it is how the server handles the received data. Some of the most common security issues are:
-	+ **XSS and CSRF** happen when you display data sent by user back to the sending user or another user. Cross-site scripting 
-	+ **SQL Injections**
+	+ **XSS and CSRF** happen when you display data sent by user back to the sending user or another user. **Cross-site scripting** vulnerabilities allow attackers to inject client-side scripts into webpages. This allows them to bypass access controls such as same origin policy. **Cross-site request forgery** refers to a type of attack that starts by injecting a client side script into a web page and then escalate privileges to those of high-privileged users such a system admins. "*XSS attacks exploit the trust a user has for a web site, while CSRF attacks exploit the trust a web site has for its users.*" To avoid such attacks you need to sanitize user input that consists of html tags .. etc. Some of this is already done by most web frameworks.
+	+ **SQL Injections** are done by sending SQL scripts that might get executed in the database resulting in damaging data or stealing user data. Through privilege escalation, an attacker might take over a whole system. Sanitize the input and use such practices as prepared statements and stored procedures.
 	+ **HTTP header injections**
-	+ ****
+	+ **HTTP header injection and email injection** "*can occur when your application builds HTTP headers or emails based on the data input by a user on a form.*"
+- To fight these attacks, keep one point in mind. Never ever trust users, not even yourself. Follow these practices when designing your system:
+	1. Escape potentially dangerous characters.
+	2. Limit the incoming amount of data allowing only what's absolutely necessary.
+	3. Sandbox incoming files. Store them in a different server and allow access to them through a different subdomain or a totally different domain name.
+- Following the above 3 rules will spare you most attacks. You still need to get security checks performed by experts.
 
 ## Form Validation:
 -
