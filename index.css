@@ -1,0 +1,34 @@
+body {
+  font-family: Helvetica, Arial, Sans-Serif;
+}
+
+a {
+	text-decoration: none;
+	color:red;
+	text-orientation: upright;
+}
+
+div {
+	padding: 20px;
+	width: 500px;
+	margin: 0 auto;
+	border: solid 1px;
+	border-radius: 1em;
+	background-color: snow;
+}
+
+.special {
+	color: red;
+}
+
+li.special, p.special {
+	color:blue;
+}
+
+li {
+	list-style: amharic-abegede;
+}
+
+h1:lala {
+	font-size: 5em;
+}

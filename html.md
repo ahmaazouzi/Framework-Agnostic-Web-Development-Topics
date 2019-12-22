@@ -1,4 +1,4 @@
-k[Learning HTML: Guides and tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML) by Mozilla Contributors is licensed under CC-BY-SA 2.5.
+Content mostly comes from [Learning HTML: Guides and tutorials](https://developer.mozilla.org/en-US/docs/Learn/HTML) by Mozilla Contributors which is licensed under CC-BY-SA 2.5.
 
 # Introduction:
 ## Basics:
