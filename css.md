@@ -47,8 +47,62 @@ li.special {
 	color: red;
 }
 ```
+- If you want to give the same styling to another particular element, you'd add it to the list of elements with the class appended to them as in:
+```css
+li.special, h1.special {
+	color: red;
+}
+```
+- Obviously, the general class `special` will still apply to other elements, meaning that their color stays blue.
+- It is not recommended to tie classes to specific elements.
 
-# CSS Bulding Blocks:
+### Styling Things Based on their Location in a Document:
+```css
+li em {
+  color: rebeccapurple;
+}
+```
+- In the example above, a **descendant combinator** which is a space between two selectors,  allows us to target all elements of type `<em>` that are nested inside elements of type `li`.
+- Another cool example of location based selector targeting is the so-called **adjacent sibling combinator**. This one targets an element that directly follows another type of element. In the following example, we are targeting only paragraphs that come exactly after elements of type `<h1>`:
+```css
+h1 + p {
+	color: red;
+}
+```
+
+### Styling Based on State:
+- Some elements have different states based on different criteria. An anchor link `<a>` for example has different states based on user interaction. Visited, unvisited, hovered over... etc. are some of these states, and they can be accessed with the element name and its state separated with a column as in: 
+```css
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: red;
+}
+
+a:hover {
+	color: red;
+}
+```
+
+### Combining selectors and combinators:
+- Nesting selectors and using multiple combinators together with other selectors can get confusing, but the rules are consistent. The following examples are explained in the associated comments:
+```css
+/* Apply style to em that is inside a span that is inside a paragraph*/
+p span em { ... }
+/* Select em elements which are inside paragraphs and which immediately follow h1 elements. */
+h1 + p em { ... }
+
+/* select elements of class special that are inside paragraphs which immediately follow h1 elements. */
+body h1 + p .special {
+  color: yellow;
+  background-color: black;
+  padding: 5px;
+}
+```
+
+# CSS Building Blocks:
 ## Styling Tables:
 ## Styling Forms and Advanced Styling from HTML forms section:
 # Styling Text:

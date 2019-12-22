@@ -2,6 +2,15 @@ body {
   font-family: Helvetica, Arial, Sans-Serif;
 }
 
+.box {
+	/*margin: 30px;*/
+	background-color: red;
+	width: 100px;
+	height: 100px;
+	border-radius: 5em;
+	border-color: red;
+}
+
 a {
 	text-decoration: none;
 	color:red;
@@ -17,12 +26,11 @@ div {
 	background-color: snow;
 }
 
-.special {
-	color: red;
-}
 
-li.special, p.special {
-	color:blue;
+body h1 + p .special {
+  color: yellow;
+  background-color: black;
+  padding: 5px;
 }
 
 li {
@@ -31,4 +39,20 @@ li {
 
 h1:lala {
 	font-size: 5em;
+}
+
+h1 + p {
+	color: green;
+}
+
+a:link {
+  color: pink;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+	color: yellow;
 }
