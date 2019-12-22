@@ -102,7 +102,52 @@ body h1 + p .special {
 }
 ```
 
+## How CSS Is Structured:
+### Applying CSS to HTML:
+- There are 3 ways you can apply css to HTML:
+	1. **External stylesheets** where an external stylesheet file is linked and can be applied to a whole website. Changes to this file would apply to the whole website. This is easiest to maintain and most efficient way to use css. A cs sheet can be linked with the link attribute which is inserted in a document's head as in : `<link rel="stylesheet" href="index.css">`.
+	2. **Internal stylesheet** where a style element is inserted into a document's head. This element has an attribute type whose value is usually "text/css". This not as good as the previous way, but you might have to do it when, for example, using a CMS that doesn't allow you to change external stylesheet easily. This is hard to maintain as changes would appear in some places and not others.
+	3. **Inline styling** where you embed styling into elements with the style attribute whose value is a declarations separated by semi-colons. This is extremely BAD and should be avoided at all costs.
+
+### Selectors:
+- Valid selectors include:
+```css
+h1 { ... }
+a:link { ... }
+.manythings { ... }
+#onething { ... }
+* { ... }
+.box p { ... }
+.box p:first-child { ... }
+h1, h2, .intro { ... }
+```
+- If two selectors target the same element, the one defined last overrides the earlier one. CSS is said to **cascade**. In the following example, `<p>` will be colored blue:
+```css
+p {
+	color: red;
+}
+
+p {
+	color: blue;
+}
+```
+- Cascading works when the two selectors are of the same time type. If they are different element types with different **specificities**, the elements with higher specificity override those with less specificity regardless of which ones appear first. Classes for example have a higher specificities than element selectors. The rules of cascading and specificity are discussed in more detail [here](#cascade-and-inheritance).
+
+### CSS Functions:
+- CSS also has **functions** that do calculations and nifty things. An example is the `calc()` function which would calculate different values based on needs as in `.box {width: calc(90% - 20px)}`. This function calculates the width of an element using 90 % of the parent element and subtract 20 pixels from that. Other
+
+### @rules:
+- Pronounced as "at-rules", `@rules` are special rules for how css should behave.
+- `@import 'somestylesheet.css';`, for example, is used to import an additional stylesheet into the main stylesheet.
+- Another improtant @rule is `@media` which allows you to use **media queries** (a topic for a later discussion). With media queries, you can apply CSS only when certain conditions are true.
+
+### Shorthands:
+- 
+
+
+
 # CSS Building Blocks:
+- 
 ## Styling Tables:
 ## Styling Forms and Advanced Styling from HTML forms section:
 # Styling Text:

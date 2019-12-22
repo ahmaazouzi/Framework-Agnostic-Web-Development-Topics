@@ -1,58 +1,17 @@
-body {
-  font-family: Helvetica, Arial, Sans-Serif;
+.outer {
+	width: 400px;
+	margin: 0 auto;
+	border-style: solid;
+	border-width: 1;
+	border-color: red;
+	height: 400px;
 }
 
 .box {
-	/*margin: 30px;*/
-	background-color: red;
-	width: 100px;
-	height: 100px;
-	border-radius: 5em;
+	border-style: solid;
+	border-width: 1;
 	border-color: red;
-}
-
-a {
-	text-decoration: none;
-	color:red;
-	text-orientation: upright;
-}
-
-div {
-	padding: 20px;
-	width: 500px;
-	margin: 0 auto;
-	border: solid 1px;
-	border-radius: 1em;
-	background-color: snow;
-}
-
-
-body h1 + p .special {
-  color: yellow;
-  background-color: black;
-  padding: 5px;
-}
-
-li {
-	list-style: amharic-abegede;
-}
-
-h1:lala {
-	font-size: 5em;
-}
-
-h1 + p {
-	color: green;
-}
-
-a:link {
-  color: pink;
-}
-
-a:visited {
-  color: green;
-}
-
-a:hover {
-	color: yellow;
+	margin: 25% auto;
+	width: calc(90% - 120px);
+	height: 50%;
 }
