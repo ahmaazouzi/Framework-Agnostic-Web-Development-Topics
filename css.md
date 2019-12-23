@@ -142,7 +142,46 @@ p {
 - Another improtant @rule is `@media` which allows you to use **media queries** (a topic for a later discussion). With media queries, you can apply CSS only when certain conditions are true.
 
 ### Shorthands:
-- 
+- Some properties like font, border, background, padding, margin ..etc. allow for the use of shorthand properties. Instead of specifying several seprate properties, they can all be lumped together in one precise on as in the following two examples:
+```css
+padding: 10px 15px 15px 5px;
+/* is is more into the brevity thing than */
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 15px;
+padding-left: 5px;
+```
+- If the shorthand involves the sides of an element, you'd move clockwise starting at the top as in the example above.
+- The following example is more complicated:
+```css
+background: red url(bg-graphic.png) 10px 10px repeat-x fixed;
+```
+is the terse version of:
+```css
+background-color: red;
+background-image: url(bg-graphic.png);
+background-position: 10px 10px;
+background-repeat: repeat-x;
+background-scroll: fixed;
+```
+- Learning these shorthands is a matter of practice.
+
+### Comments and Whitespace:
+- Comments are obviously useful. One recommandation MDN gives is separating the code into sections with comment lines as in :
+```css
+/* Basic elements Section--------------------------------------------*/
+body { ... }
+h1 { ... }
+p { ... }
+/* Classes -------------------------------------------------------------------*/
+.box { ... }
+.bags { ... }
+.other { ... }
+
+```
+- White space is essential for code readability. It includes spaces, tabs and newlines. Be careful about white spaces in properties and their values. `margin: 0auto;` is not the same as `margin: 0 auto;`
+
+
 
 
 
