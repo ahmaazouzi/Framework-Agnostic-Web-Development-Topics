@@ -181,12 +181,34 @@ p { ... }
 ```
 - White space is essential for code readability. It includes spaces, tabs and newlines. Be careful about white spaces in properties and their values. `margin: 0auto;` is not the same as `margin: 0 auto;`
 
+## How CSS Works:
+- This section investigates how CSS and HTML are parsed by the browser and how the latter acts when it encounters CSS it doesn't understand.
 
-
-
+### How Does it Actually Work?
+- Before a document is displayed by the browser, it is processed through multiple stages. The following is a rough list of happens to a document inside a browser:
+	1. The browser loads the HTML document.
+	2. It converts the HTML into a DOM (which is a representation of the document in memory).
+	3. It then fetches the linked resources such as images, videos and CSS sheets. Javascript is handed later.
+	4. CSS is parsed and sorted by the different selectors (elements, ids, classes) into buckets. It attaches different styles to different DOM nodes as required in a process called **render tree**.
+	5. The display is show on the screen in the **painting** process.
+- Every element, piece of text and attribute becomes a DOM node which is defined by its relationship to other nodes. It can be a parent, a child or a sibling of another node. Understanding the dom is a prerequisite 
+- When the browser encounters a wrong property or value, it doesn't understand, it simply ignores the whole declaration and if a rogue selector is encountered, the whole rule is ignored and the rest of CSS gets parsed as normal. No error is produced. This is useful as features which are not supported by all browsers wouldn't have a negative effect and the the errors would stay localized.
 
 # CSS Building Blocks:
-- 
+- This module is focused on an in-depth dive into the theory and general rules of CSS. This is the meat of styling. Topics such as inheritance, cascading, selectors, the box model, overflowing, units and values, sizing items ..etc. are all discussed here in depth.
+
+## Cascade and Inheritance:
+- Spending time trying to understand these rules might sound like a cringy academic luxury, but it is crucial. I had first hand experience of *existential doubts about life* caused by such conflicts between cascade and specificity.
+
+### Conflicting Rules:
+- CSS problems usually arise because of clashes between multiple rules applied to a single element. Three fundamental concepts can help us clear the waters on such conflicts:
+	+ **The cascade** refers to the fact that the order of CSS rules matters. If two styles are applied to the one element, the style defined last holds and overrides the one used earlier.
+	+ **Specificity** applies when multiple rules have different selectors, but could apply to the same element. It is a score of how specific a selector is. An element selector is less specific because it selects all individual elements in a page. A class is less specific since it only selects elements that belong to a certain class. Specificity is stronger than cascade.
+	+ **Inheritance** refers to the fact that some properties are inherited from parent elements unless specific values are applied to the children. Some properties are not inherited such as width and border (That would result in some interesting messes).
+
+### How the Concepts Work Together:
+
+
 ## Styling Tables:
 ## Styling Forms and Advanced Styling from HTML forms section:
 # Styling Text:
