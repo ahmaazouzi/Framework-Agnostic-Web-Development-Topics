@@ -206,7 +206,18 @@ p { ... }
 	+ **Specificity** applies when multiple rules have different selectors, but could apply to the same element. It is a score of how specific a selector is. An element selector is less specific because it selects all individual elements in a page. A class is less specific since it only selects elements that belong to a certain class. Specificity is stronger than cascade.
 	+ **Inheritance** refers to the fact that some properties are inherited from parent elements unless specific values are applied to the children. Some properties are not inherited such as width and border (That would result in some interesting messes).
 
-### How the Concepts Work Together:
+### Understanding Inheritance:
+- Certain properties are inherited by default such as color. Others like margins, borders and padding don't. What gets inherited and what doesn't all come down to common sense.
+- You can even **control how inheritance** works through the following property values:
+<dl>
+	<dt>`inherit`</dt>
+	<dd>Turns inheritance on. The default of every property is to be inherited from parent.</dd>
+	<dt>`initial`</dt>
+	<dd>Sets the default browser styling</dd>
+	<dt>`unset`</dt>
+	<dd>Resets property to its natural property. If naturally inherited, it acts as `inherit`, otherwise, it acts as `unset`.</dd>
+</dl>
+
 
 
 ## Styling Tables:
