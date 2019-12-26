@@ -300,20 +300,21 @@ article > p { ... }
 ```
 
 ### Summary Table:
-- The following is a summary table of selectors with short explanations of how they work:
+- The following is a summary table of selectors:
+
 | Selector | Example | Explanation 
 | --- | --- | --- |
-| Type selector  | ` { ... }` |
-| Universal selector | ` { ... }` |
-| Class selector | ` { ... }` |
-| Id selector  | ` { ... }` |
-| Attribute selector  | ` { ... }` |
-| Pseudo-classes selector  | ` { ... }` |
-| Pseudo-element selector  | ` { ... }` |
-| Descendant combinator | ` { ... }` |
-| Child combinator | ` { ... }` |
-| adjacent sibling combinator | ` { ... }` |
-| general sibling | `k` |
+| Type selector  | `p { ... }`
+| Universal selector | `* { ... }`
+| Class selector | `.box { ... }`
+| Id selector  | `#unique { ... }`
+| Attribute selector  | `a[title] { ... }`
+| Pseudo-classes selector  | `p:first-child { ... }`
+| Pseudo-element selector  | `p::first-line { ... }`
+| Descendant combinator | `article p { ... }`
+| Child combinator | `article > p { ... }`
+| adjacent sibling combinator | `h1 + p { ... }`
+| general sibling | `h1 ~ p`
 
 
 ## Styling Tables:
