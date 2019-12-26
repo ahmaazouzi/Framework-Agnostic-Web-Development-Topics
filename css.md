@@ -302,20 +302,122 @@ article > p { ... }
 ### Summary Table:
 - The following is a summary table of selectors:
 
-| Selector | Example | Explanation 
-| --- | --- | --- |
-| Type selector  | `p { ... }`
+| Selector | Example
+| --- | --- |
+| Type selector | `p { ... }`
 | Universal selector | `* { ... }`
 | Class selector | `.box { ... }`
 | Id selector  | `#unique { ... }`
-| Attribute selector  | `a[title] { ... }`
-| Pseudo-classes selector  | `p:first-child { ... }`
-| Pseudo-element selector  | `p::first-line { ... }`
+| Attribute selector | `a[title] { ... }`
+| Pseudo-classes selector | `p:first-child { ... }`
+| Pseudo-element selector | `p::first-line { ... }`
 | Descendant combinator | `article p { ... }`
 | Child combinator | `article > p { ... }`
 | adjacent sibling combinator | `h1 + p { ... }`
 | general sibling | `h1 ~ p`
 
+### More on Pseudos:
+- **Pseudo-classes** select elements based on their state. They are the first of their kind, or being hovered over. Some pseudo-classes target a part of your document like first or last line of a paragraph and act if you added a new class to style that portion. These include pseudo-classes like `:last-child` and `:only-child`. Other pseudo-classes react to the user's interaction with the document. They act as if a class were added to the document when the user interacts with it. These include `:hover` and `:focus`.
+- **Pseudo-elements** act a little similar to pseudo-classes, but they act as if a whole new element were added to the document rather than applying a new class to an existing element. An interesting example of pseudo-elements is the `::first-line`. It's aware of the viewport while a span element can't style it differently and keep that across different screen widths.
+- **Pseudo-elements and pseudo-classes can be combined** to do some crazy stuff like making the first line of the first paragraph of an article bold as in:
+```css
+article p:first-child::first-line { 
+  font-size: 120%; 
+  font-weight: bold; 
+}
+```
+- There are two special pseudo-classes that act as if they insert new content into a document. These are **`::before`** and **`::after`**. They are used with the content property to insert content into a document before or after the content of the element they target. Basically, `::before` and `::after` have a spatial rather than temporal meaning.
+
+### A Combinators Primer:
+- **Descendant selectors** select elements that descend from other elements. They don't have to be direct children and the selection goes all the way to the bottom of the descent line.
+- **Child combinators** select only elements that are direct children.
+- **adjacent sibling** select something if it is right next to another element at the same level of the hierarchy. If you insert an element between the two elements in `h1 + p`, the selection is lost.
+- **General sibling** select siblings of an element even if they are not directly adjacent.
+
+## The Box Model:
+- Everything in CSS has a box around it. Aligning items together depends on understanding the box model and how it works. 
+
+### Block and Inline Boxes:
+- CSS has two types of boxes, **block boxes** and **inline boxes**.
+- A **block box** has the following characteristics:
+	+ The box will extend in the inline direction to fill up 100% of its container.
+	+ It breaks onto a new line.
+	+ `width` and `height` properties are respected.
+	+ Padding, margin and border causes other elements to be pushed away from the box.
+- Elements like headers (e.g. `<h1>`) and `<p>` are block elements by default, unless you change that.
+- An **inline box** has the following traits:
+	+ The box will not break into a new line.
+	+ `width` and `height` properties will npt apply.
+	+ Padding, margins and border apply but don't cause other inline boxes to move away from the box.
+- Examples of inline elements include `<a>`, `<span>`, `<em>` and`<strong>`.
+- The `display` property defines the box type of an element withe values `inline` and `block`.
+
+### Inner and Outer Display Types:	
+- **Outer** display types are those define whether an element in block or inline. That's what we've just seen.
+- **Inner** display types define how elements inside a box are arranged. Elements are laid out in normal flow by default which depends on weather its a block box or inline box.
+- To change the inner display type, you use the `flex` value for the `display` property.
+ When you set this value, the outer display become a block box, and its inner display becomes flex; all the direct children of the box are arranged in a flex manner (we'll see what a flex is later).
+ - Block and inline are the still the default of how the web works and flexbox and the grid specifications were added later and might be described as incidental.
+
+### What is the CSS Box Model?
+- The box model applies fully to the block box type but only applies partially to the inline box. The model defines how the parts of a box work together to create a box, margin, border, padding and content.
+- A css box is made of the following nested boxes from innermost to outermost:
+	+ **Content box** where your content goes and can be resized with the `height` and `width` properties.
+	+ **Padding box** is white space surrounding the content but is below the border.
+	+ **Border box** wraps the content and its padding.
+	+ **Margin box** is the layer that wraps everything inside the box. It acts as a buffer or barrier between the element and other elements.
+- In a **standard CSS box**, the `width` and `height` properties apply to the content box. Any padding or border is added on top of that content to get the total size of the box. Margins are not counted as part of the box size even though they take up space from the total page size.
+- CSS also has an **alternative CSS box** model, where the width and height of a box are the total area of the visible box. The browser use the standard css box by default. 
+- To turn the alternative model on for an element, you can set the `box-sizing: border-box` property on it. If you want all the elements to have the alternative box sizing you set it to the `<html>` element and make everything inherit from it as in:
+```css
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+```
+
+### Margins, Padding and Borders:
+- Shorthand properties have been seen so far for padding, margins and borders. There are longhands alternative that allow for more granular control over box styling.
+
+#### Margins:
+- They are invisible space around a box. They push other element away from an element. They can also be negative, in which case they cause elements to overlap. In both the cases of standard and alternative box models, margins are added after the box area is calculated.
+- Margins are usually all controlled once with the `margin` property. They can also be controlled piecemeal with `margin-top`, `margin-right`, `margin-bottom` and `margin-left`.
+- You can also use the following super-handy shortcut. Just remember that that these start on top and move clockwise:
+```css
+margin: 2px 50px -100px 0px;
+```
+- **Margin collapsing** refers to the fact that the margins of two boxes become one when they touch that they touch. basically if an element **A** has a bottom margin of 100px and an element **B**under it has a 50px top margin, the distance separating their borders is only 100px. The margins collapsed. It only happens to top and bottom margins and happens mainly to adjacent siblings. There are some complex rules on when it happens and we will not discuss such rules here but it is good to be aware that margin collapsing exists.
+
+#### Borders:
+- If using the standard box model, the border size is added to the box size. If alternative, the border size is taken away from the content box.
+- Just like margins, borders can be controlled with four properties for top, right, left ..etc. Borders do also have a large number of properties, most important of which are `border-width`, `border-style`, `border-color`. Setting each one of these for each side of a box results in 12 properties. You can also use the super-handy `border` shorthand which does a lot in a single line (order of values doesn't matter):
+```css
+border: red solid 13px;
+```
+
+#### Padding:
+- Padding is the area sitting between the content and the border. You can't have negative values for padding. Any background applied to the an element will appear behind the padding. Padding pushes content away from the border.
+
+### The Box Model and Inline Boxes:
+- All the properties listed in the previous section apply to the block box but only some of them apply to inline boxes:
+	+ Width and height are ignored in in inline elements.
+	+ Padding and border only push the line to the left and right from the element while they overlap with the top and bottom. The margin only pushes the line away in a horizontal direction and is ignored in a vertical direction, I think.
+
+### Using Display: `inline-block`:
+- This is a middle ground between the block and inline display. You can use it when you don't want to line to break onto a new line, but still respect the height and width properties and push other elements away both horizontally and vertically.
+- This is mainly used to give some inline elements a greater hit area, mainly anchor elements. `inline-block` allows the use of padding around the link. Navigation bars make frequent use of such a feature. 
+
+### Styling backgrounds and Borders:
+### backgrounds:
+- The following is a shorthand `background` property, provided by MDN, that seems extremely complicated (for me, at least). Hopefully, by the end of this section I should understand what this means:
+```css
+.box { 
+  background: linear-gradient(105deg, rgba(255,255,255,.2) 39%, rgba(51,56,57,1) 96%) center center / 400px 200px no-repeat, 
+  url(big-star.png) center no-repeat, rebeccapurple; 
+}
+```
 
 ## Styling Tables:
 ## Styling Forms and Advanced Styling from HTML forms section:
