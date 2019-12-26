@@ -210,14 +210,110 @@ p { ... }
 - Certain properties are inherited by default such as color. Others like margins, borders and padding don't. What gets inherited and what doesn't all come down to common sense.
 - You can even **control how inheritance** works through the following property values:
 <dl>
-	<dt>`inherit`</dt>
+	<dt>`inherit`:</dt>
 	<dd>Turns inheritance on. The default of every property is to be inherited from parent.</dd>
-	<dt>`initial`</dt>
+	<dt>`initial`:</dt>
 	<dd>Sets the default browser styling</dd>
-	<dt>`unset`</dt>
+	<dt>`unset`:</dt>
 	<dd>Resets property to its natural property. If naturally inherited, it acts as `inherit`, otherwise, it acts as `unset`.</dd>
 </dl>
+- The property `all` can reset the values of all the properties of a selector to one of these values (`inherit`, `unset` or `initial`). "It's a convenient way to undo changes made to styles so that you can get back to a known starting point before beginning new changes." See [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance).
 
+### Understanding the Cascade:
+- Three factors affect how the cascade behaves. They are in order of decreasing importance: **importance**, **specificity**, **source order**.
+- **Source order**: What comes last wins. Elements that are closer to the element override old ones that were encountered earlier.
+- **Specificity** beats source order. Even if a higher specificity rules comes after another one with lower specificity, it wins. For example, class selectors have higher specificity than element selectors.
+	+ When a selector overrides another due to specificity, not the whole rule is overridden. Only the properties that are the same get overridden.
+	+Specificity helps avoid repetition. You define a rule that applies to all instances of an element. For those you need specific rules, you define a class or classes for them.
+	+ The browser calculates the specificity of selector through the use of a point system. Different points are awarded to a selector based on their type. These points are added to reach its final value. There are four different values for measuring specificity:
+		- **Thousands**: used for any declaration that is defined in-line inside a style attribute. It simply gets a score of a 1000.
+		- **Hundreds**: for each ID selector inside the overall selector.
+		- **Tens**: for each class selector, attribute selector or a pseudo-class contained in the overall selector.
+		- **Ones**: for each element or pseudo-element contained in the overall selector.
+- **`!important`** is a keyword you can use to override all other factors and rules. The following example from MDN shows its syntax:
+```css
+.better {
+    background-color: gray;
+    border: none !important; /* It is appended to the property's value.*/
+}
+```
+- `!important` overrides everything else and the only way to overrides it is to use it in a declaration with a higher specificity or including it in a declaration with the same specificity but later in a file.
+- `!important` is bad and hacky. Avoid it like the plague!
+- There are situation when using it is essential, such as when working with CMS where you can't overrides styles provided to you.
+
+### The effect of CSS location:
+- It is important to consider in what stylesheet a CSS declaration  is defined in.
+
+## CSS Selectors:
+- It's all about selectors, mate!
+
+### What's a Selector?
+- The first part of a CSS rule, a selector is a pattern of elements and other things that tell the browser which HTML elements to apply some styling to. Elements selected by a selector are the subject of a selector.
+
+
+### Selector Lists:
+- If you have more than one thing that use the same CSS, you can apply the same CSS with a shorthand list as in:
+```css
+h1, h3, .heading {
+	color: red;
+}
+```
+- For better readability, this can also be written as:
+```css
+h1,
+h3,
+.heading {
+	color: red;
+}
+```
+- Be careful about selector lists. If one selector is invalid, the whole rule is ignored for all the selectors present in the list.
+
+### Types of Selectors:
+- Selectors can be grouped together into types that share certain characteristics. These groupings are as follows:
+
+#### Type, Class and ID Selectors:
+- These include selectors that target elements as in `h1 { ... }`, selectors that target classes as in `.someClass { ... }`, and selectors that target ID's as in `#someID { ... }`.
+
+#### attribute Selectors:
+- These can be used to select elements based on the presence of certain attributes as in:
+```css
+a[title] { ... }
+```
+- They also allow you to select elements based on the presence of certain value properties as in:
+```css
+a[href="https://example.com"] { ... }
+```
+
+#### Pseudo-classes and Pseudo-elements:
+- **Pseudo-classes** select certain states of an element, such as the `:hover` pseudo-class.
+- **Pseudo-elements** select parts of elements rather than whole elements. The `::first-line` for example selects the first line a paragraph (as shown in the viewport) as in:
+```css
+p::first-line{
+	color: red;
+}
+```
+
+### Combinators:
+-  Refers to combinations of selectors. The following targets all paragraphs that are direct children of the article element:
+```css
+article > p { ... }
+```
+
+### Summary Table:
+- The following is a summary table of selectors with short explanations of how they work:
+| Selector | Example | Explanation 
+| --- | --- | --- |
+| Type selector  | ` { ... }` |
+| Universal selector | ` { ... }` |
+| Class selector | ` { ... }` |
+| Id selector  | ` { ... }` |
+| Attribute selector  | ` { ... }` |
+| Pseudo-classes selector  | ` { ... }` |
+| Pseudo-element selector  | ` { ... }` |
+| Descendant combinator | ` { ... }` |
+| Child combinator | ` { ... }` |
+| adjacent sibling combinator | ` { ... }` |
+| general sibling | `k` |
 
 
 ## Styling Tables:
