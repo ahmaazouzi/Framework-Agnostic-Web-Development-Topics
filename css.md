@@ -409,15 +409,89 @@ border: red solid 13px;
 - This is a middle ground between the block and inline display. You can use it when you don't want to line to break onto a new line, but still respect the height and width properties and push other elements away both horizontally and vertically.
 - This is mainly used to give some inline elements a greater hit area, mainly anchor elements. `inline-block` allows the use of padding around the link. Navigation bars make frequent use of such a feature. 
 
-### Styling backgrounds and Borders:
-### backgrounds:
-- The following is a shorthand `background` property, provided by MDN, that seems extremely complicated (for me, at least). Hopefully, by the end of this section I should understand what this means:
+## Backgrounds:
+### `background-color`:
+- this property allows you set background color of an element. The color goes under the content and the padding of an element. 
+
+### background images:
+-  Adding a background image is done with the following syntax;
 ```css
-.box { 
-  background: linear-gradient(105deg, rgba(255,255,255,.2) 39%, rgba(51,56,57,1) 96%) center center / 400px 200px no-repeat, 
-  url(big-star.png) center no-repeat, rebeccapurple; 
+body {
+	background-image: url("star.png");
 }
 ```
+- By default, when the image is too large for an element, only a part of it becomes a background and it doesn't scale down. If it is too small, it gets tiled to fill up the box.
+- If you specify a background color to a background image, the image appears on top of the color.
+- **Controlling the `background-repeat`** property is done through setting its to value to one of 4 options: `no-repeat`, `x-repeat`, `y-repeat` and `repeat`. Value names are self explanatory.
+- The **`background-size`** property allows you to resize an image to fit inside a box. With the `contain` values, the image will be completely contained inside the background while cover will cover the background completely from side to side. Part of the image might end up outside the background if the image and background don't have the same aspect ratio.
+- The background image can also be resized using units like pixels or `em` as in `background-size: 100px 2em`.
+- **`background-position`** allows you to position the background inside the box. This positioning is based on a coordinate system where the top left corner of the box is (0,0). The positioning can be done with the following syntax:
+```css
+.box {
+	background-position: top center; 
+}
+```
+- You can also use units to position the image. If you just specify one of the two dimensions, the other is assumed to be the center. If you leave the property altogether or don't specify values, you get the default position which is the top left corner of the box.
+- You can also mix keywords such as top and bottom with percentages and pixels. You can also have four values where you specify two distances from two edges as in `background-position: top 10x right 30px;`.
+
+### Gradient Backgrounds:
+- When used as a background, a gradient acts like an image. MDN suggests using css gradient generators such as this [one](https://cssgradient.io/).
+
+## Overflowing Content:
+- Overflow issues arize when there is too much content to fit into a box.
+- CSS tries to avoid **data loss**, that's why it makes data overflow out of boxes where height and width that are too small were specified. This problem can be managed with the **`overflow`** property.
+
+### The `overflow` Property:
+- The overflow property gives you total control on overflow through the following values:
+	+ **`visible`** is the default.
+	+ **`hidden`** hides any excess text outside the box.
+	+ **`scroll`** hides excess text but allows you to scroll on any direction to see hidden content. Shows scroll bars on both sides of a box even if no content is overflowing.
+	+ **`auto`** doesn't show scrollbars untill there is too much content that overflows.
+- `overflow-x` and `overflows-y` do the same thing but only one one direction. They, too, show scrollbars in certain situation but only in one direction.
+
+## Values and Units:
+- CSS values are also called data types.
+
+### Numbers, lengths, and percentages:
+- Numeric data types in CSS include:
+	- **`<integer>`** is a whole number.
+	- **`<number>`** is a decimal number.
+	- **`<dimension>`** is a `<number>` with a unit attached to it such 5px, 4em, 44s. It is an umbrella term that includes `<length>`, `<angle>`, `<time>` and `<resolution>`.
+	- **`<percentage>`** is a fraction of some other values (such as the width of a parent element).
+
+#### Length Values:
+- They are divided into two types:
+	+ **Absolute values** which are supposed to be the same everywhere. They are largely used for printing. The most common one in css is `px`.
+	+ **Relative values** are relative to something else like a parent element or the viewport. 
+
+
+| Unit | Relative to
+| --- | ---	|
+| em |	Font size of the parent element.
+| ex |	x-height of the element's font.
+| ch |	The advance measure (width) of the glyph "0" of the element's font.
+| rem |	Font size of the root element.
+| lh |	Line height of the element.
+| vw |	1% of the viewport's width.
+| vh |1% of the viewport's height.
+| vmin |1% of the viewport's smaller dimension.
+| vmax | 1% of the viewport's larger dimension.
+
+
+
+## Element Sizing:
+-
+
+## Styling CSS:
+-
+
+## Debugging CSS:
+-
+
+## Organizing CSS:
+-
+
+
 
 ## Styling Tables:
 ## Styling Forms and Advanced Styling from HTML forms section:
