@@ -462,8 +462,7 @@ body {
 #### Length Values:
 - They are divided into two types:
 	+ **Absolute values** which are supposed to be the same everywhere. They are largely used for printing. The most common one in css is `px`.
-	+ **Relative values** are relative to something else like a parent element or the viewport. 
-
+	+ **Relative values** are relative to something else like a parent element or the viewport. These are more useful as they help scale things relative to other things. The following table was ripped wholesale from [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units) and it shows such units:
 
 | Unit | Relative to
 | --- | ---	|
@@ -476,6 +475,23 @@ body {
 | vh |1% of the viewport's height.
 | vmin |1% of the viewport's smaller dimension.
 | vmax | 1% of the viewport's larger dimension.
+
+- **`em`** and **`rem`** are essential units for length and very frequently used for both text and boxes. 
+- With `em` each successive level of nesting gets progressively larger.
+- With `rem` each successive level of nesting does NOT get progressively larger.
+- If you change the style of the top element, everything under it changes following it.
+
+#### Percentages:
+- These act like lengths. They are always set relative to another value. If you set the value of a font-size or a width, it will be the percentage of the font-size or width of the parent,
+- Percentages act like `em`'s in that each successive level of nesting gets progressively larger or smaller. 
+- While many values accept either lengths or percentages, some only accept lengths.
+
+#### Numbers:
+- Some values accept numbers only with no units added to them. A prime example is the **`opacity`**property which accepts a number between 0 (fully transparent) and 1 (totally opaque).
+
+### Colors:
+- There are many ways to specify color in CSS and they all work the same whether they get attached to backgrounds, text fonts or whatever.
+- The modern color system is 24 bit allowing the display of 16.7 million colors. It is a combination of three red, green and blue channels, each channel with 256 values resulting in (256<sup>3</sup> = 16,777,216).
 
 
 
