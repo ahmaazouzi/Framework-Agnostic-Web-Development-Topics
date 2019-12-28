@@ -638,6 +638,17 @@ article.main p.box {
 
 ### Other Tools for Organizing CSS:
 #### CSS Methodologies:
+- These are structured CSS coding guides that are used for writing and organizing CSS. These methodologies might be verbose, but they have more structure.
+- **OOCSS (Object Oriented CSS)** is the more common one of these methodologies. OOCSS is based on separating CSS into reusable object which can be applied to any elements. A typical example is the media object. It is a fixed image or video on one side with flexible text on the other side. The text can be a description, comments .. etc. Nicole Sullivan is a key figure in the *OOCSS movement*. OOCSS is similar to composition is OO programming. Instead of creating to different style classes for two different components, you'd create two granular but still generic classes and then apply both of them to an element as in `class="class1 class2"`. 
+- **BEM** stands for block element model. It is recognizable by its extensive use of many dashes. It has strict naming conventions and maybe similar to OOCSS . MDN doesn't say much about this.
+- There are other systems that I don't give a pixel about at the moment. 
+
+#### Build Systems for CSS:
+- CSS **pre-processors** and **post-processors** have become a thing and it is important to be aware of their existence. Pre-processors take files and turn them into stylesheets, while post-processors take finished stylesheets and change them (mostly to make them load faster).
+- An important pre-processor nowadays is Sass. This beast allows you to define variables which can be changed only once if need be, instead of tracking it all over the project. It looks like CSS has a new feature (custom properties) which makes this feature of Sass obsolete. Sass does also allow you to break your CSS into very small files, even down to a component. This would be easier for maintainability. Sass can compile these small files into one large file or a few large stylesheets.
+- MDN suggests using CodePen to try Sass out.
+- Post-Processors like cssnano are mainly used for optimizing/minifying CSS. They remove comments, excess white space and unnecessary definitions. They also compress identifiers, resulting in much smaller file sizes good for bandwidth usage and network traffic.
+
 
 # Styling Text:
 # CSS Layout:
