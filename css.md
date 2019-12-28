@@ -489,27 +489,155 @@ body {
 #### Numbers:
 - Some values accept numbers only with no units added to them. A prime example is the **`opacity`**property which accepts a number between 0 (fully transparent) and 1 (totally opaque).
 
-### Colors:
+### Color Primer:
 - There are many ways to specify color in CSS and they all work the same whether they get attached to backgrounds, text fonts or whatever.
 - The modern color system is 24 bit allowing the display of 16.7 million colors. It is a combination of three red, green and blue channels, each channel with 256 values resulting in (256<sup>3</sup> = 16,777,216).
 
+#### Hexadecimal RGB:
+- These are made of hash symbols each followed with 6 hex numbers. Each pair of the these hexes represents one of the three color channels (red, blue or green). They are not easy to understand but they are terse and easy to type and copy.
 
+#### RGB and RGBA:
+- An **RGB** Value is a function which takes three parameters which represent the three colors. Each one of the parameter is a decimal integer between 0 and 255 (MDN claims this is easier to understand). 
+- **RGBA** scheme is similar but has the added alpha channel which control the opacity of the color. It has a value between 0 (full transparency) and 1 (full opacity).
+- The difference between the `opacity` property and the alpha channel is that the letter makes only the color transparent while opacity makes the whole element transparent.
+
+#### HSL and HSLA:
+- `hsl()` and `hsla()` are less supported by designers love them. HSL accepts these values:
+	+ **Hue** represents the color itself and takes a value between 0 and 360 degrees in the color wheel.
+	+ **Saturation** The sturation and greyness of a color. A value between 0% (fully grey/ total absence of color) and 100% (fully saturated) 
+	+ **Lightness** refers to how much light there is in a color. 0% is total absence of light while 100% is completely white.
+- A in HSLA obviously stands for the alpha channel for controlling the color's opacity.
+- It is preferred that an entire project sticks to a single color scheme.
+
+### Strings and Identifiers:
+- **Identifiers** refer to values not enclosed in quote marks such as `black`, `top`. They are keywords that CSS understands.
+- **Strings** are used for values CSS doesn't understands such as generated content with the `content` property with the pseudo-elements, for example or the parameter of the url() function with the background-image.
 
 ## Element Sizing:
--
+### Intrinsic Size of Things:
+- Intrinsic size refers to the size of an element before any CSS is applied to it. An example is an image size as it is defined it its image file. 
+- An empty div stretches horizontally across a page but it has not size in the block direction. When you add content to a div, its height grows. Its size is defined by its content. This is also considered as intrinsic size, even though it is defined by a non-intrinsic factor (the content).
 
-## Styling CSS:
--
+### Setting a Specific Size:
+- When you give a div or any other element a specific width and  height, you are giving it an extrinsic size. When setting an extrinsic size for an element, some of the natural behavior of the element is eliminated. A div, for example, ceases to dynamically resizes with more or less content, and you get the overflow thing. That's why one should be careful about resizing.
 
-## Debugging CSS:
--
+### Using Percentages:
+- A percentage controls the size of a block in relation to the containing box. If not percentage is give, the inner div will take 100% of the size of the containing element.
+- Setting the padding and margin size using a percentage yiesld a weird behavior that should be remembered. These percentage values follow the width of the element. If the element is a rectangle, all the padding and margins on top and bottom equal those on the left and right.
 
-## Organizing CSS:
--
+### Minimum and Maximum Sizes:
+- When you have a box that might have a variable amount of content, you might find it useful to set a minimum and/or maximum size. A div for example, will always have such and such minimum size, but it will stretch to accommodate more content if needed.
+- A useful application of `max-size` is to scale down large images. This is a technique used to make images responsive.
 
-
+### Viewport Units:
+- `vw` and `vh` are used to size an element relative to the viewport (the area of a page displayed on the browser). 1vh is 1% of the viewport height and 1vw is 1% of its width.
+- Viewport units are very useful as when you want a hero section in your page.
 
 ## Styling Tables:
-## Styling Forms and Advanced Styling from HTML forms section:
+- Styling a table presents special challenges to designers.
+
+### Spacing and Layout:
+- **`table-layout`** should usually be set to `fixed`. This will spare you the unpredictable results produced by the automatic resizing tables undergo based on the content they have. Along with Sizing column headings through the the selector `thead th:nth-child(n)`, you create fixed column widths that cater to your needs. Sizing the column heads sizes the whole columns. A fixed layout is especially useful when dealing with dynamic tables where data is inserted and deleted live. 
+- Setting the table's **`width`** to 100% of its containing element makes it responsive enough.
+- **`border-collapse`** fixes the weird looking default double table cell borders.
+- Just add some padding to your table cells by setting them to `td`, `th`.
+
+### Zebra Scripting:
+- An extremely useful technique that makes tables both visually appealing and tremendously accessible and usable is zebra scripting which allows alternating styles between columns or rows. This is not specific to tables, but is especially useful in tables. It is mainly based on the `:nth-child()` pseudo-selector and works nicely with the `odd` and `even` values. The following example should be self explanatory:
+```css
+tbody tr:nth-child(odd) {
+  background-color: #ff33cc;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e495e4;
+}
+```
+
+## Debugging CSS:
+- Inspect in Chrome and its equivalent in Mozilla are amazing tools that can help you debug your css effectively.
+
+### Debugging through Dev Tools:
+- The following is a list of tips on CSS debugging through the use of browser dev tools:
+	+ The **Elements** view shows you the rendered DOM which has undergone changes and corrections done by the browser. It is similar to the HTML source but not exactly. To see the HTML source, you use the **Sources** view. **DON'T CONFUSE THE TWO**.
+	+ Shorthand properties can be expanded by clicking the triangle next to a shorthand in the styles pan.
+	+ properties can also be toggled to do A/B testing.
+	+ You can add new properties.
+	+ You can change properties.
+	+ Make use of the layout section and the colored box model it shows.
+
+### Specificity Issues:
+- One of the main culprits in CSS headaches is specificity. Failing to change or apply a style to an element is more often than not caused by specificity factor. A selector with higher specificity is causing you the headache.
+- Dev tools are great at pinpointing such problems. When you inspect an element, you'd see if a class is applied to the element. It will also show you the element selector crossed out. 
+
+### Suggested CSS Debugging Workflow:
+- **Use a rubber duck** when you find yourself in existential crisis caused by CSS.
+-  Invalid code results in some very subtle errors that are very hard to debug. **Run your code through a CSS and an HTML validator**. The [W3C CSS Validation](https://jigsaw.w3.org/css-validator/) Service and [Markup Validation Service](https://validator.w3.org/) do a great job at this.
+- **Check browser support** for properties you want to use.
+- **Is something overriding you CSS?** This the specificity thing mentioned earlier.
+- **Make a reduced test case of the problem**. "A reduced test case is a code example that demonstrates the problem in the simplest possible way, with unrelated surrounding content and styling removed". Isolating a specific problem can help you find exactly where the issue is.
+
+## Organizing CSS:
+- As CSS files and projects get bigger, they become a maintainability nightmare. This section shows you how to organize large CSS projects and keep them maintainable.
+
+### Tips to Keep CSS Tidy:
+#### Stick to a Style Guide:
+- if you work as a part of a team, use their style guide. If you make your own, stick to it and be consistent, or better yet, use [the MDN style guide.](https://developer.mozilla.org/en-US/docs/MDN/Contribute/Guidelines/Code_guidelines/CSS)
+
+#### Stay Consistent:
+- Make sure you stay consistent even if you are not using a pre-defined style guide. Consistency should be maintained in all sorts of ways, including naming cnventions for classes, color models, or formatting (tabs vs. spaces) .. etc.
+
+#### Format Readable CSS:
+- Avoid cramming multiple rules in one line. 
+
+#### Comment Generously:
+- In addition, to their explanatory role, comments can also be used to separate the file's logical sections that can be easily scammed through as in:
+```css
+/* ==== General styles */
+
+...
+
+/* ==== Typography */
+
+...
+
+/* ==== Header and Main Navigtion */
+
+...
+
+```
+- You can add an identifiable symbol to quickly find a section through the find function in an editor. The example above uses `====`.
+- You can link a tutorial that helped you solve a problem.
+- You can explain the reason why you made a certain decision that might sound weird.
+
+#### Divide a Stylesheet ingo Logical Sections:
+- This will make searching a property or a selector easy. 
+You would section your stylesheet into the following sections:
+	+ General styling should be on the top of your document. It is concerned with the styling of such elements as the body, the different header levels (h1, h1 .. etc.), ul, li, table .. etc. Here you are setting default styles for element types.
+	+ A sitewide typography section.
+	+ A gneral utility section for doing all kinds of things such as unbulleting lists. These utilities can be applied where needed and might not necessarily be the default style for all general types.
+	+ A section for sitewide elements such as basic page layout, nav bars, the footer, the header ... etc.
+	+ CSS for specific stuff like individual pages or components. 
+
+#### Avoid Overly-specific Selectors:
+- The following code has an extremely specific selector:
+```css
+article.main p.box {
+  border: 1px solid #ccc;
+}
+```
+- The problem here is that you will repeat a lot of styling when your selectors are too specific.
+- A box class selector would've done the same job as above without risking too much meaningless repetitions.
+- Keep specific selectors to a minimum. These should be the exception, while general resusable selectors should be the norm.
+- You might have a store page or any other specific purpose page with its own special CSS. This CSS sheet can only be linked where needed and should not be loaded all the time when not needed.
+- Breaking a large sheet into smaller ones also minimizes source control conflicts, as there will be less situations where two people work on the same stylesheet at once.
+
+#### Break Large Stylesheets into Multiple Smaller Ones:
+- You can break it into a stylesheet that has all the global rules and other stylesheets that have the different groups of particular stylings.
+- Multiple stylesheets can be linked from one page and the cascade rules hold where files linked last override earlier ones when applicable.
+
+### Other Tools for Organizing CSS:
+#### CSS Methodologies:
+
 # Styling Text:
 # CSS Layout:
