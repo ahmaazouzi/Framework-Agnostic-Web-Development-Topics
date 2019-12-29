@@ -679,9 +679,36 @@ p {
 	+ **`px`** is the absolute pixel size. It's the same across displays.
 	+ **`em`** "1 em is equal to the font size set on the parent element of the current element". This can be tricky if there are a lot of nested elements.
 	+ **`rem`** This is similar to `em` but elements are sized in relation to the root element `<html>`. The size doesn't change with how many levels of nesting an element has. These are less tricky than `em`s but have limited support in older browsers.
-- The default root size in standard
+- The default root size in standard browsers is 16px. Elements like paragraphs inherit that exact size, `16px` or `1em` by default, while `<h1>` elements are `2em` or `32px` by default.
+- With multiple levels of nesting, things can get messy quickly. It's better to stick tpo `rem`s as much as possible, or at least avoid styling container elements.
+- We have two important tips for keeping font sizes manageable:
+	+ Change the root element size from 16px to 10px, so that the font sizes for inherited elements can be easily calculated.
+	+ You can and should put font-size rulesets in a designated area, it would be easy to find them and compare them against each other.
+
+#### Font Style, Font Weight, Text Transform, and Text Decoration:
+- CSS has these three properties to alter the visual emphasis of text:
+ + **`font-style`** is used to turn italics on and off. It can have one of three values: `normal`, *`italic`* or *`oblique`* (this one is similar to italics).
+ + **`font-weight`** takes many values but the main ones are normal and **bold**. You can also use the value range 100-900 which provides plenty of granularity.
+ + **`text-transform`** transforms text case and has the values: none, uppercase, lowercase, capitalize and full width (this one transform texts to something similar to monospace).
+ + **`text-decoration`** sets decorations like underline. It is mainly used to remove underlines on links. Values are: none, underline, overline, and line-through.
+
+#### Text Shadows:
+- These are done with the `text-shadow` property and can be done as follows:
+```css
+text-shadow: 4px 4px 5px red;
+
+/* The following applies multiple text shadows: */
+text-shadow: 1px 1px 1px red,
+             2px 2px 1px red;
+```
 
 ### Text Layout:
+#### Text Alignment:
+- `text-align`
+
+#### Line Height:
+#### Letter and Word Spacing:
+#### Other Properties:
 -
 ### Font Shorthand:
 
