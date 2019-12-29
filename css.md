@@ -647,8 +647,45 @@ article.main p.box {
 - CSS **pre-processors** and **post-processors** have become a thing and it is important to be aware of their existence. Pre-processors take files and turn them into stylesheets, while post-processors take finished stylesheets and change them (mostly to make them load faster).
 - An important pre-processor nowadays is Sass. This beast allows you to define variables which can be changed only once if need be, instead of tracking it all over the project. It looks like CSS has a new feature (custom properties) which makes this feature of Sass obsolete. Sass does also allow you to break your CSS into very small files, even down to a component. This would be easier for maintainability. Sass can compile these small files into one large file or a few large stylesheets.
 - MDN suggests using CodePen to try Sass out.
-- Post-Processors like cssnano are mainly used for optimizing/minifying CSS. They remove comments, excess white space and unnecessary definitions. They also compress identifiers, resulting in much smaller file sizes good for bandwidth usage and network traffic.
-
+- Post-Processors like [cssnano](https://cssnano.co/) are mainly used for optimizing/minifying CSS. They remove comments, excess white space and unnecessary definitions. They also compress identifiers, resulting in much smaller file sizes good for bandwidth usage and network traffic.
 
 # Styling Text:
+### How is Text Styled?
+- Text is placed inside the content area of a CSS box. It effectively acts like an inline element, even when it is inside a block element. 
+- Styling text falls into two categories:
+	+ **Font styles** affect the text itself, its size, color, font, boldness, whether its italic or not, etc. 
+	+ **Text layout styles** affect things such as spacing between letters and lines, text alignment within the content box, etc.
+- All text inside an element is styled uniformly, unless it is wrapped inside an element or use a text-specific pseudo-element.
+
+### Fonts:
+#### Color:
+- The `color` property is used to color content, which is mostly text. It doesn't change text color only, but also all text decoration, be it underline or overline. 
+
+#### Font Families:
+- The `font-family` property allows you to specify a font or a list of fonts to display your content. The fonts you specify will only be displayed if they are available in the machine where the browser sits, otherwise it will to a browser's default font.
+- **Web safe fonts** are ones that are guaranteed to be found in most machines running the top most popular operating systems. These include the monospace *Courier New*, the sans-serif *Ariel, Trebuchet MS, Verdana* and the serif *Georgia* and *Times New Roman.*
+- [**Web fonts**](#web-fonts) are fonts downloaded with the webpage. 
+- There are five CSS **generic fonts** that can be considered as worst scenarios to fall back to when no appropriate fonts are found. These are `serif`, `sans-serif`, `monospace`, `cursive` and  `fantasy`. The first 3 are widely available but the last too should be used with great care as they are unpredictable.
+- To minimize the likelihood of a fonts fail, you should provide a font stack to your `font-family` property. It's a list of fonts with the most generic one or the most widely available one at the end. The browser will look for the fonts it has, if not found, it looks for the next one and so on as the following example shows:
+```css
+p {
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+```
+- If a font is composed of multiple words, put it inside quotes.
+
+#### Font Size:
+- Most units, seen in the previous section, can be used to size text, but the most effective units for texts are:
+	+ **`px`** is the absolute pixel size. It's the same across displays.
+	+ **`em`** "1 em is equal to the font size set on the parent element of the current element". This can be tricky if there are a lot of nested elements.
+	+ **`rem`** This is similar to `em` but elements are sized in relation to the root element `<html>`. The size doesn't change with how many levels of nesting an element has. These are less tricky than `em`s but have limited support in older browsers.
+- The default root size in standard
+
+### Text Layout:
+-
+### Font Shorthand:
+
+
+
 # CSS Layout:
+#Custom Properties
