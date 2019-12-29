@@ -704,15 +704,74 @@ text-shadow: 1px 1px 1px red,
 
 ### Text Layout:
 #### Text Alignment:
-- `text-align`
+- `text-align` controls text alignment withing the content box and has the following four values: `left`, `right`, `center` and `justify`. `justify` spreads text out, varying the gaps between words so that all lines are of the same width. This can result in bad text especially when there are many long words. It's better to use this style with the `hyphens` to break long words at the edge of the line. The `hyphens` property specifies the behavior of hyphens at line breaks. They can be controlled manually, automatically or omitted altogether with the values: `auto`, `manual` and `none`.
 
 #### Line Height:
+- `line-height` is for line height :smiley:. This can take any CSS unit, but unitless values are preferred. They act as multipliers (they are multiplied by text size). Preferred values range between 1.5 and 2.
+
 #### Letter and Word Spacing:
-#### Other Properties:
--
+- `letter-spacing` and `word-spacing` are not used very frequently, however, they can be useful when using dense fonts. Their values can be used with any type of units. Example:
+```css
+p::first-line {
+  letter-spacing: 4px;
+  word-spacing: 4px;
+}
+```
+
 ### Font Shorthand:
+- The shorthand property `font` is a terse way to define most of what you really need conerning text styling. Its values are stacked in the following order: `font-style`, `font-variant`, `font-weight`, `font-stretch`, `font-size`, `line-height`, and `font-family`. 
+- `font-style` and `font-size` are the two required properties and a forward slash should be used to separate `font-size` and `line-height`.
+- Example:
+```css
+font: italic normal bold normal 3em/1.5 Helvetica, Arial, sans-serif;
+```
 
+## Styling Lists:
+- Lists are similar to the rest of HTML, but they have their own special styling best practices.
 
+### List Spacing:
+- Preserve **vertical rythm** which refers to making lists keep the same vertical spacing as surrounding elements such as paragraphs.
+- Horizontal spacing should also be paid attention to.
+- Make sure fonts are also similar to the rest of the page.
+- `<dt>` elements in description lists should be made bold.
+- Generally, try to keep things consistent. 
+
+### List Specific Properties:
+- Some properties are specific to lists. These include:
+	+ `list-style-type` allows you to change the list bullets to squares or circles for uls, or numbers, roman numerals or letters for ols.
+	+ `list-style-position` allows you to let the bullet appear inside the list item or outside it. The default is inside. An important list style type is `none` where you'd have no list styling. This is useful where lists are used to create such tools as todo lists or shopping carts.
+	+ `list-style-image` allows you to substitute an image for the bullet. This gives you limited control over the size and position of the image. A background image is more useful and configurable as in:
+```css
+ul li {
+  padding-left: 2rem;
+  background-image: url(checkmark.svg);
+  background-position: 0 0;
+  background-size: 1.6rem 1.6rem;
+  background-repeat: no-repeat;
+}
+```
+
+### `list-style` Shorthand:
+- This shorthand allows for terseness and the properties need not be in any particular order:
+```css
+ul {
+  list-style: square url(example.png) inside;
+}
+```
+
+### Controlling List Counting:
+- HTML and CSS give you tools to control how the counting is done on ordered lits. You can start at a custom number rather than 1, you reverse the counting or have intervals other than 1. 
+- The `start` atribute on an `<ol>` allows you start at any number as in `<ol start="55"> ...`.
+- `reverse` reverses the counting as in `<ol start="55" reversed> ...`.
+- The attribute `value` allows you to set list items using custom numbers as in:
+```css
+<ol>
+  <li value="2">Sausage</li>
+  <li value="4">Harissa</li>
+  <li value="6">Potato</li>
+  <li value="8">Cheese</li>
+</ol>
+```
 
 # CSS Layout:
 #Custom Properties
