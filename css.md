@@ -773,5 +773,86 @@ ul {
 </ol>
 ```
 
+## Styling Links:
+- Links are fundamental and styling them and their different states effectively can result in great UX. 
+
+### The Basics of Link Styling:
+#### Link States:
+- Links have states that differ based on user interaction. HTML provides different pseudo-classes that allow for the effective styling of links based on such states:
+	+ **Link (unvisited)** is the default state the link is in when it is not in any other state. The pseudo class **`:link`** is meant for it.
+	+ **Visited** is a link that has been already visited. The pseudo-class **`:visited`** is used to style it
+	+ **Hover** its pseudo-class is **`:hover`**.
+	+ **Focus** its pseudo-class is **`:focus`** and means the link is in focus, e.g. moved to with the TAB keyboard.
+	+ **Active** its pseudo-class is **`:active`** and means the link is being activated (clicked on).
+
+#### Default Styles:
+- Generally speaking, unCSSed links are styled as follows:
+	+ Links are underlined.
+	+ Unvisited Links are blue.
+	+ Visited links are purple.
+	+ Hovering over a link turn the mouse cursor into a little hand.
+	+ Focused links are surrounded by a line.
+	+ Active links are red.
+- These default styles didn't change much since the invention of the web in the 1990's. Users expect such styling and if you alter it, try not to stray away too much from it.
+- When styling links, try to do the following:
+	+ Underline links but not other elements. If you don't underlining, make sure you highlight links in some special way.
+	+ Make them react when hovered or focused and make them react a little differently when activated.
+- Custom styling links can be done with the `color`, `outline`, `cursor` and other properties. Try to avoid changing the cursor link behavior unless absolutely necessary.
+
+#### Styling Links:
+- When styling links, make sure to following this example:
+```css
+a {
+
+}
+
+
+a:link {
+
+}
+
+a:visited {
+
+}
+
+a:focus {
+
+}
+
+a:hover {
+
+}
+
+a:active {
+
+}
+```
+- These styles build on each other, following the cascading constraints. If you don't follow this patterns, things won't work very properly. You can remember this order with the mnemonic **L**o**V**e **F**ears **HA**te.
+- Generally speaking, you can:
+	+ remove underlining, but return the underline (preferably using a border-bottom property as you can have more control over this one).
+	+ Give links a different vibrant color.
+	+ Allow for a background color of a link that appears when the link is hovered over, visited, focused or activated.
+	+ On Activation, it is a clever act to invert color, and background color to signify that something is important is happening. 
+
+
+## Web Fonts:
+- Web fonts are a CSS feature that allows you to specify font files that get downloaded with your website, assuring your website is displayed the way you want. This is done with the `@font-face` selector as in the following example:
+```css
+@font-face {
+  font-family: "myFont";
+  src: url("myFont.woff");
+}
+```
+- Then the specified font can be used as one of the values of font-family as in:
+```css
+html {
+  font-family: "myFont", "Times New Roman", serif;
+}
+```
+- Two problems plague web font use:
+	1. Browsers support different web font formats, so you might need more formats. The major ones are WOFF/WOFF2 (web open font format version 1 and 2), abd EOT (embedded open type).
+	2. Fonts are generally not free. You either have to pay to use them or go through some licensing aerobics.
+- There are other steps involved in using web fonts. I don't need this at the moment. 
+
 # CSS Layout:
 #Custom Properties
