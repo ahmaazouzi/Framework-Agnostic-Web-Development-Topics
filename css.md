@@ -855,4 +855,88 @@ html {
 - There are other steps involved in using web fonts. I don't need this at the moment. 
 
 # CSS Layout:
+## Intro:
+- CSS page layout basically refers to the ability to control the positions of elements in a page relative to their normal flow layout.
+- The different layout techniques, from grids, flex box, floats to floats, positioning and others have cons and pros are not meant to be used in isolation.
+
+### Normal Flow:
+- This is how html elements are arranged in a page by default before any layout techniques are applied to it.
+- In normal flow, blocks appear stacked one on top of the other, while inline elements appear beside each other.
+- By altering the layout with CSS, you're moving away from the normal flow. However, much of the desired layout is already done for you in the normal flow and you don't need to change it. It is extremely important to design your HTML well so you can take advantage of bits of the normal flow that match your needs. Don't fight the HTML structure, make it work for you.
+- The methods that change the layout in CSS are:
+	+ **The `display` property**: standard value of this method `inline`, `block` and `inline-block` change the normal flow behavior of elements. Other values of display set the important CSS Grid and Flexbox methods.
+	+ **Floats**: `float` elements allow block level elements to wrap along one side of an element
+	+ **The `position` property** allows you to precisely control the position of an element
+	+ **Table layout**: `display: table` allow non-table elements to have table properties.
+	+ **Multi-column layout** allows the content of a block to be sliced into columns like in a newspaper. 
+
+### The display Property:
+- The `display` property is fundamental in controlling layouts. Each element has this method by default with a default value set to it, so a paragraph is a block and a link is an inline element. You can change the display method to turn a span into a block and a paragraph into an inline element. The flex and grid styles are also invoked with the display property. 
+
+### Flexbox:
+### Grid Layout:
+### Floats:
+### Positioning Techniques:
+### Table Layout:
+### Multi-column Layout:
+
+## Normal Flow:
+-
+###
+###
+###
+## Flexbox:
+-
+###
+###
+###
+## Grids:
+-
+###
+###
+###
+## Floats:
+-
+###
+###
+###
+## Positioning:
+-
+###
+###
+###
+## Multiple-
+###
+###
+###Column Layout:
+-
+###
+###
+###
+## Responsive Design:
+-
+###
+###
+###
+## Intro to Media Queries:
+-
+###
+###
+###
+## Legacy Layout Methods:
+-
+###
+###
+###
+## Supporting Older Browsers:
+-
+###
+###
+###
+## Fundamental Layout Comprehensions:
+-
+###
+###
+###
+
 #Custom Properties
