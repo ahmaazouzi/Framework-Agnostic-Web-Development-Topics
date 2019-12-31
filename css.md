@@ -874,69 +874,105 @@ html {
 - The `display` property is fundamental in controlling layouts. Each element has this method by default with a default value set to it, so a paragraph is a block and a link is an inline element. You can change the display method to turn a span into a block and a paragraph into an inline element. The flex and grid styles are also invoked with the display property. 
 
 ### Flexbox:
+- Or the **Flexible Box Layout** Module makes laying things out in one dimension an easy business, bother horizontally and vertically. This is done with the `display: flex` property. When this property is applied to an element, all its direct children become flex items.
+- You can easily show paragraphs beside each other or a series of spans stacked on top of each other with the flex property. The following example shows you can easily turn an unordered list into a navbar
+```xml:
+<!-- This obviously needs much much more styling to be usable -->
+<ul style="display: flex;">
+	<li>MAIN</li>
+	<li>CONTACT</li>
+	<li>ABOUT</li>
+</ul>
+``` 
+- The layout of the the flexed items come with some default values that can be changed based on needs. The default value for `flex-direction`,for example, is `row`. This arrange blocks in an in-line fashion. If you change its value to `column`, you can stack inline items like spans on top of each other as if they are block elements.
+- Other flex properties can also be applied to flex items themselves to control how they expand or contract to fill available space.
+- If you apply the `flex` property to the flex items and give them the value `1`, they stretch to fill up the available space. The navbar will will fill up the page from right to left. If the space grows, the items width grows and if it's small they contract. If you add more items, they get squeezed in and the sizes of all items adjust to accommodate the new items. It flexes in and out.
+
 ### Grid Layout:
+- While flexbox is unidimensional, **Grid Layout** is bi-dimensional. It is designed for lining things up in rows and columns. It can be switched on simply with `display: grid`.
+- With `grid-template-columns: 1fr 1fr 2fr`, you create three columns, the last one to the right is twice the width of the other two.
+- With `grid-template-rows 100px 100px` you make two rows each with 100px height.
+- You can introduce a grid gap using the the `grid-gap` property.
+- Grid Layout is really cool, although it might sound a little confusing at the start.
+- You can customize the column and row dimensions and override the automatic dimensions. The Grid Layout chapter goes into unlocking the power of the grid.
+
 ### Floats:
+- By making an element `float`, the behavior of that element changes and the block elements that follow it. The element is moved to the left or right and the surrounding block elements float around it.
+- As far as layout goes, floats feature largely as a legacy method, but floats still have their normal modern usage in certain situations. Consider article first letter initials.
+
 ### Positioning Techniques:
+- Positioning refers to moving specific elements from where they are placed in normal flow to another location. Positioning is not used to lay a page out, is used to specofiy the positions of specific items in a page. Position, might however, be used to enhance the general layout and improve it.
+- There are 5 types of positioning:
+	+ **Static** is the default normal position of an element in a page.
+	+ **Relative** causes a change in an element's position relative to its position in normal flow.
+	+ **Absolute** positioning moves an element completely out of the normal flow, as its sitting on its own layer. It can be fixed relative to the `<html>` element or *nearest positioned ancestor* (whatever this means). When absolutely fixed, an element is completely plucked out of normal flow without leaving a trace. Its sibling elements get close to each other as if the element doesn't exist at all. 
+	+ **Fixed** is very similar to absolute with the exception that the element is fixed relative to the viewport and not to any other element. An example of this is the navigation bar that sticks to the top of the page even if you scroll all the way to the bottom of the page.
+	+ **Static** is a newer method. It acts *static* until it hits a certain offset from the viewport and becomes a *fixed* element.
+
 ### Table Layout:
+- This is a legacy techniques that's not used anymore and is generally discouraged. Layouts were based on tables.
+
 ### Multi-column Layout:
+- This allows you to divide a page into columns as if it were a newspaper, duh!!
 
 ## Normal Flow:
 -
-###
-###
-###
+
+### q
+###q
+###q
 ## Flexbox:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Grids:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Floats:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Positioning:
 -
-###
-###
-###
+###q
+###q
+###qq
 ## Multiple-
-###
-###
+###q
+###q
 ###Column Layout:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Responsive Design:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Intro to Media Queries:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Legacy Layout Methods:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Supporting Older Browsers:
 -
-###
-###
-###
+###q
+###q
+###q
 ## Fundamental Layout Comprehensions:
 -
-###
-###
-###
+###q
+###q
+###q
 
 #Custom Properties
