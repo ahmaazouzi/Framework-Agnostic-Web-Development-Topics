@@ -1112,8 +1112,69 @@ button:first-child {
 ```
 
 ## Line Based Placement:
-- 
+- We place things in grids based on lines. Grids always have lines and these lines start at 1 and relate to the writing mode. English goes left to right and top to bottom, so column 1 is on the left and row 1 is on the top.
+- Things can be placed on the grid in relation to these lines using these properties: `grid-column-start`, `grid-column-end`,`grid-row-start`,`grid-row-end`. These properties can have a line number as the value.
+- Handy shorthands of the above properties are : `grid-column` and `grid-row`. With these you can specify the start and end lines of an element at once separated by a slash `/` as in: 
+```css
+header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+```
+- In the example above, `1 / 3` means the first and second lines. This is similar to slicing a list in a list. The first index is included in the slice, while the second one is not.
 
+#### Positioning with `grid-template-areas`:
+- An even much much cooler, more experessive and visually intuitive method is the ability to place elements with the `grid-template-areas` property. The following example, ripped wholesale from MDN, is an example of how it's done:
+```css
+.container {
+  display: grid;
+  grid-template-areas: 
+      "header header"
+      "sidebar content"
+      "footer footer";
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 20px;
+}
+
+header {
+  grid-area: header;
+}
+
+article {
+  grid-area: content;
+}
+
+aside {
+  grid-area: sidebar;
+}
+
+footer {
+  grid-area: footer;
+}
+```
+- The rules of grid areas are as follows:
+	+ Every cell of the grid must be filled.
+	+ To span across two cells repeat the element name.
+	+ To leave an empty cell, use a dot `.`.
+	+ Areas must be rectangular. An **L** shape, for example, is not allowed.
+	+ Areas can't be repeated in different locations in the same grid.
+
+### A Built-in Grid Framework:
+- You don't need grid "frameworks" as you have one right in hand. If you want a 16 column grid, you can create one with the following snippet: 
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(16, minmax(0,1fr));
+    grid-gap: 10px;
+}
+```
+
+## Floats:
+## Positioning:
+## Responsive Design:
+## Media Queries:
+## Supporting Older Browsers:
+## Layout Wrap Up:
 
 
 
