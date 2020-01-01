@@ -1170,6 +1170,14 @@ footer {
 ```
 
 ## Floats:
+- Floats were originally conceived to place floating images inside blocks of text. Designers soon started using to create multiple column layouts. With the advent of Flex Box and the Grid Layout, the use of floats as layout techniques is largely obsolete, but they can still be used for their proper purpose, which is floating text around images and other embedded elements.
+
+### Simple Floating:
+- When a left float is applied to an element, it is taken out of the normal flow and stuck to the left side of its container. Any content that follows it, will wrap around it. It will fill up all the available space all the way to the right and continues down.
+- Adding a margin to a floating element can push other elements away from it, but adding a margin to other elements can't push the floated elements, because the floating box is taken out of the normal flow and other elements run behind it.
+
+<img src="floats.png" alt="floats" width="300" height="200" />
+
 ## Positioning:
 ## Responsive Design:
 ## Media Queries:
