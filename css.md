@@ -857,7 +857,7 @@ html {
 # CSS Layout:
 ## Intro:
 - CSS page layout basically refers to the ability to control the positions of elements in a page relative to their normal flow layout.
-- The different layout techniques, from grids, flex box, floats to floats, positioning and others have cons and pros are not meant to be used in isolation.
+- The different layout techniques, from grids, flexbox, floats to floats, positioning and others have cons and pros are not meant to be used in isolation.
 
 ### Normal Flow:
 - This is how html elements are arranged in a page by default before any layout techniques are applied to it.
@@ -1018,14 +1018,63 @@ button:first-child {
 - If you want something to appear first, you can set its order to a negative number such as -1.
 
 ### Nested Flex Boxes:
-- You can have flex boxes inside other flex boxes, obviously!
+- You can have flexboxes inside other flexboxes, obviously!
 
 ### Cross Browser Compatibility:
 - Older browsers don't support flexbox and this can result in a totally unusable website. See if you can use flexbox while still providing usable experience to those who refuse to update their browsers. 
 
 ## Grid Layout:
--
-###q
+### What Is a Grid?
+- a grid is collection of horizontal and vertical lines dividing a page into **columns** and **rows** which are separated by gaps called **gutters**.
+
+### Creating a CSS grid:
+- What follows in this section is a step by step construction of a grid along with details about the Grid Layout and its features and how they can be used to create rich and complex layouts.
+
+#### Defining a Grid:
+
+```css
+	<style type="text/css">
+		.container div {
+			background-color: cyan;
+			border: #1164B4 solid 1px;
+		}  
+
+		.container {
+			width: 400px;
+		}
+	</style>
+	<div class="container">
+		<div class="a">A</div>
+		<div class="b">B</div>
+		<div class="c">C</div>
+		<div class="d">D</div>
+		<div class="e">E</div>
+		<div class="f">F</div>
+		<div class="g">G</div>
+	</div>
+```
+<style type="text/css">
+	.container div {
+		background-color: cyan;
+		border: #1164B4 solid 1px;
+	}  
+
+	.container {
+		width: 400px;
+	}
+</style>
+<div class="container">
+	<div class="a">A</div>
+	<div class="b">B</div>
+	<div class="c">C</div>
+	<div class="d">D</div>
+	<div class="e">E</div>
+	<div class="f">F</div>
+	<div class="g">G</div>
+</div>
+
+
+
 ###q
 ###q
 ## Floats:
