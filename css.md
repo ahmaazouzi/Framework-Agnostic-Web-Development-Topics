@@ -1028,31 +1028,93 @@ button:first-child {
 - a grid is collection of horizontal and vertical lines dividing a page into **columns** and **rows** which are separated by gaps called **gutters**.
 
 ### Creating a CSS grid:
-- What follows in this section is a step by step construction of a grid along with details about the Grid Layout and its features and how they can be used to create rich and complex layouts.
-
-#### Defining a Grid:
-
+- What follows in this section is a step by step construction of a grid along with details about the Grid Layout and its features and how they can be used to create rich and complex layouts. However, to actually get a grid layout to take effect, you need to specify how the elements are to be laid out into either columns or rows as in:
 ```css
-	<style type="text/css">
-		.container div {
-			background-color: cyan;
-			border: #1164B4 solid 1px;
-		}  
-
-		.container {
-			width: 400px;
-		}
-	</style>
-	<div class="container">
-		<div class="a">A</div>
-		<div class="b">B</div>
-		<div class="c">C</div>
-		<div class="d">D</div>
-		<div class="e">E</div>
-		<div class="f">F</div>
-		<div class="g">G</div>
-	</div>
+.container {
+	display: grid;
+	grid-template-columns: 100px 100px 100px;
+}
 ```
-![No grid](https://github.com/ahmaazouzi/getting-started-with-html/blob/master/images/ungridded.png "ungridded")
+- The snippet above specifies that the display be divided into 3 columns, each a 100 pixels wide.
+
+#### Flexible Grids with The `fr` Unit:
+- Lengths and percentages can be used in deciding column and row heights and widths, but there is a special unit that works like magic for the grid layoud. The `fr` allows you to specify the proportion a column/width can take of the available space. It's flexible and this proportion is preserved regardless of how big or small the display is.
+```css
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+```
+- Fixed lengths and `fr` can be mixed. The fixed lengths then are allocated first, and the space left is divided among other tracks.
+
+#### Gaps Between Tracks:
+- To create visually apealing gaps between elments, you'd use `grid-row-gap` for gaps between rows and `grid-column-gap` for gaps between columns. You can also use `grid-gap`, which great bidirectional gaps between elements. You'd provide these properties any unit except `fr` as in:
+```css
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 20px;
+}
+```
+- The above example creates a 20-pixel gap between the elements inside the grid.
+- The `grid-` prefix in `grid-gap`, `grid-column-gap`, etc. is an old usage, but some browsers still use it. It is sufficient to use `gap` or `column-gap` or `row-gap`. To be on the safe side, MDN suggest using both as in:
+```css
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 20px;
+  gap: 20px;
+}
+```
+
+#### Repeating Track Listing:
+- With the **repeat** notation, you can elegantly define multiple tracks with one hit so that `grid-template-columns: repeat(3, 1fr);` is the exact same thing as `grid-template-columns: 1fr 1fr 1fr;`. You can add more columns to whatever space is taken by `repeat(3,1fr)` as in:
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 3fr;
+    grid-gap: 20px;
+}
+```
+
+#### The Implicit and Explicit Grid:
+- Similar to the main and cross axis in flex box, the Grid has an explicit grid which is the one created by `grid-template-columns` or `grid-template-rows`. The implicit grid, is where content is placed when it is outside the explicit grid.
+- By default, tracks created in the implicit grid are auto sized. You can specify the auto size using the `grid-auto-rows` or `grid-auto-columns`.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
+  grid-gap: 20px;
+}
+```
+
+#### The `minmax()` Function:
+- Specifying a fixed size for `grid-auto-rows` is not a cool idea. If the content is too big, it would overflow. The `minmax(<min>, <max>)`  function allows you to specify a minimum and maximum size. In the following snippet we are asking that a row be no less than 100px in height and at the same time be as large as the content it holds (`auto`).
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 20px;
+}
+```
+
+#### As Many Columns as Will Fit:
+- The `auto-fill` value can be passed into the `repeat` function instead of a fixed numer specifying the number of columns. This alone creates an out of the box fully responsive layout. Who needs Bootstrap?
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 20px;
+}
+```
+
+## Line Based Placement:
+- 
+
+
+
 
 #Custom Properties
