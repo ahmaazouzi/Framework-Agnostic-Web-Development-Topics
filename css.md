@@ -1174,9 +1174,37 @@ footer {
 
 ### Simple Floating:
 - When a left float is applied to an element, it is taken out of the normal flow and stuck to the left side of its container. Any content that follows it, will wrap around it. It will fill up all the available space all the way to the right and continues down.
-- Adding a margin to a floating element can push other elements away from it, but adding a margin to other elements can't push the floated elements, because the floating box is taken out of the normal flow and other elements run behind it.
+- Adding a margin to a floating element can push other elements away from it, but adding a margin to other elements can't push the floated elements, because the floating box is taken out of the normal flow and other elements run behind it. As the following image shows, the boxes following the floated element sit behind it, Only the content is pushed aside by the floated element.
+<img src="floats.png" alt="floats" width="450" height="300" style="text-align: center;"/>
 
-<img src="floats.png" alt="floats" width="300" height="200" />
+### Clearing Floats:
+- You can prevent an element from warapping around a floated element with the `clear` property. You can be selective and allow only some elements following the float to wrap around it. These should be the first n elements. If you clear the first element, then nothing wraps around the float. The `clear` property accepts 3 values: `right`, `left` and `both`.
+
+### Clearing Boxes Wrapped Around a Float:
+- How to clear a wrapper block that surrounds a floating element and and the following elment to one its sides, where the float has a bigger height?
+- because a float is taken out of the normal flow, the container box just doesn't get affected by its existence, its height doesn't depend on the height of a float sitting inside it. It's however affected by the height of its following non-float elements.
+- There are two hacky ways to fix this problem and a third proper method.
+- **The clearfix hack**: This can be done with the following snippet:
+```css
+.wrapper::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+```
+- You generate empty content (`""`) with the `::after` pseudo-element that is appended to the wrapper class. This content is cleared on both sides, which means it will move down to the bottom. It is empty content so, no unwanted content will appear, and its display is set to `block`.
+- **The overflow hack** simply add the `overflow` property and set it to `auto`. This creates a so-called **block-formatting context** which is a mini-layout inside the page that contains everything inside it, including floating elements. Because it uses `overflow`, this results in unwanted scrollbars and undesired aesthetics. 
+- **`display: flow-root`** is identical to the overflow hack minus the unwanted scollbars and hackiness. This was devised specifically to handle this problem and is simply done by adding the display property and setting it to `flow-root` as in:
+```css
+.wrapper {
+  background-color: rgb(79,185,227);
+  padding: 10px;
+  color: #fff;
+  display: flow-root; 
+}
+```
+
+
 
 ## Positioning:
 ## Responsive Design:
