@@ -916,17 +916,114 @@ html {
 - This allows you to divide a page into columns as if it were a newspaper, duh!!
 
 ## Normal Flow:
--
+- The main characteristics of the normal flow are tighly linked to and based on the box model and are as follows:
+	+ Block model boxes fill 100% of the width of their containers by default and are as high as their content, while inline elements are as high and wide as their content. You can't change their width or height, unless you first change them into block elements.
+	+ Block elements are laid out in the block flow. Each new element is placed in a new line.
+	+ Inline elements don't break into new lines.
+	+ Margin Collapse applies when conditions allow it.
 
-### q
-###q
-###q
 ## Flexbox:
--
-###q
-###q
-###q
-## Grids:
+- Two features define flexbox. It is a "one-dimensional layout method for laying out items in rows or columns. Items flex to fill additional space and shrink to fit into smaller spaces."
+
+### Why Flexbox:
+- The traditional layout tools such as floats and positioning were frustrating and made extremely hard to achieve such simple layout results as:
+	+ Vertically centering an element inside its parent.
+	+ Making the children element share the width/size of the parent element equally, regardless of the actual size of that element.
+	+ Making multiple columns have the same height regardless of how much content they have. 
+
+### Basic Terminology:
+- When flexed out, elements are laid out along two axes:
+	+ The **main axis** runs in the direction flex items are laid out, as columns across the page or as rows down the page. It has a **main start** and **main end**.
+	+ The **cross axis** runs perpendicular to the main axis and has a cross start and a cross end.
+	+ The parent container that has the `display: flex` property is the **flex container**.
+	+ The items being flexed are the **flex items**.
+
+### Columns or Rows:
+- The `flex-direction` property, set on the flex container, gives you the option to set the main axis, or what direction the flexed items are to be laid out. The `row` is assigned to this property by default. The `column` lays items on top of each other down the screen.
+- Flex items can also be laid out in reverse in both the column and row directions with these two values respectively: `column-reverse` and `row-reverse`.
+
+### Wrapping:
+- If the flex items have fixed widths/heights, they can break overflow the container and break the layout. This can be remedied withe the `flex-wrap` property given the value `wrap` as in:
+```css
+flex-wrap: wrap;
+```
+- If there are too many fixed-width columns that cannot be fit inside a row, wrapping these items prevents them from breaking out of the flex container. Instead The row is filled with what it can hold, and the rest of the columns are moved to the next row. Rows are filled one after the other until there are no more columns.
+
+### Flex-flow Shorthand:
+- The **`flex-flow`** shorthand allows you to combine `flex-direction` and `flex-wrap` in one terse declaration as in:
+```css
+flex-flow: row wrap;
+```
+
+### Flexible Sizing of Flex Items:
+- You can control the sizes of different flex items, give them minimum flex sizes and resize them individually.
+- You can start with a general size for all flex items as in:
+```css
+article {
+	flex: 1;
+}
+```
+- You can also specify a minimum width (height?!) for each flex item as in:
+```css
+article {
+	flex 1 200px;
+}
+```
+- You can also pick one or more flex items and give them cusom widths that differ from the rest of items as in:
+```css
+article:nth-of-type(3) {
+  flex: 3 200px;
+}
+```
+- The above rule allows the 3rd flex item to take up 3 times the width a regular flex item takes of the available space.
+- Flexible sizing is the real magic of flexbox.
+
+### `flex` Shorthand vs. Longhand:
+- The `flex` property is a shorthand takes up to 3 values of the following properties:
+	+ **`flex-grow`** a unitless proportion that specify how much an item takes of the available space relative to other elements.
+	+ **`flex-shrink`** refers to size taken away from flex items to prevent them from overflowing. This is advanced stuff and MDN doesn't want to talk more about it in this article.
+	+ **`flex-basis`** is the minimum size an item can take when things are shrunk too far.
+- The longhand `flex` properties are not recommended and are confusing.
+
+### Horizontal and Vertical Alignment:
+- Flexbox gives you the ability to effectively align flex items along the main or cross axis.
+- The following snippet does the trick:
+```css
+div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+```
+- As the example above, demonstrates, flexbox alignment is done through two properties, `align-items` and `justify-content`.
+- **`align-items`** controls how flex items are laid across the the cross axis. By default, `align-items`'s value is `stretch` which stretches the flex item across the cross the axis. This is how multiple columns get an equal wdith inside a flex row. You can change the value of `align-items` to `center`, thus allowing the items to keep their intrinsic dimensions, but be centered along the cross axis. With `flex-start` and `flex-end` values, this property also allows you to align items at the start or end of cross axis. It is even possible.
+- With `align-self` which you can apply to individual flex items, you can change the cross axis alignment behavior on individual items. `align-self` takes the same values as `align-items`. 
+- **`justify-content`** controls how items sit on the main axis. It takes the following values:
+	+ `flex-start` puts items at the start of the main axis.
+	+ `flex-end` .. at the end of the main axis.
+	+ `center` centers the items.
+	+ `space-around` is the coolest and it lays items centered evenly with space around and some space around the edges.
+	+ `space-between` similar to `space-around` but doesn't add space around both ends.
+
+### Ordering Flex Items:
+- I don't know what the exact value of such a feature is, but let's cover it anyways. Maybe dynamically, changing the order of items might be useful, who knows!?
+- Flexbox allows you to change the order of items, without changing the source order.
+- Changing the order of items is simple. You can simply set it on a flex item as in:
+```css
+button:first-child {
+  order: 1;
+}
+```
+- Flex order is intuitive. By default, all flex items have an `order` value of 0. Items with higher order values appear later in the display. Items with the same flex order appear as they are in their source order.
+- If you want something to appear first, you can set its order to a negative number such as -1.
+
+### Nested Flex Boxes:
+- You can have flex boxes inside other flex boxes, obviously!
+
+### Cross Browser Compatibility:
+- Older browsers don't support flexbox and this can result in a totally unusable website. See if you can use flexbox while still providing usable experience to those who refuse to update their browsers. 
+
+## Grid Layout:
 -
 ###q
 ###q
