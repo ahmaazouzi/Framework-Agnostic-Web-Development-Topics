@@ -185,12 +185,12 @@ p { ... }
 - This section investigates how CSS and HTML are parsed by the browser and how the latter acts when it encounters CSS it doesn't understand.
 
 ### How Does it Actually Work?
-- Before a document is displayed by the browser, it is processed through multiple stages. The following is a rough list of happens to a document inside a browser:
+- Before a document is displayed by the browser, it is processed through multiple stages. The following is a rough list of what happens to a document inside a browser:
 	1. The browser loads the HTML document.
 	2. It converts the HTML into a DOM (which is a representation of the document in memory).
-	3. It then fetches the linked resources such as images, videos and CSS sheets. Javascript is handed later.
+	3. It then fetches the linked resources such as images, videos and CSS sheets. Javascript is handled later.
 	4. CSS is parsed and sorted by the different selectors (elements, ids, classes) into buckets. It attaches different styles to different DOM nodes as required in a process called **render tree**.
-	5. The display is show on the screen in the **painting** process.
+	5. The display is shown on the screen in the **painting** process.
 - Every element, piece of text and attribute becomes a DOM node which is defined by its relationship to other nodes. It can be a parent, a child or a sibling of another node. Understanding the dom is a prerequisite 
 - When the browser encounters a wrong property or value, it doesn't understand, it simply ignores the whole declaration and if a rogue selector is encountered, the whole rule is ignored and the rest of CSS gets parsed as normal. No error is produced. This is useful as features which are not supported by all browsers wouldn't have a negative effect and the the errors would stay localized.
 
@@ -1204,10 +1204,62 @@ footer {
 }
 ```
 
-
-
 ## Positioning:
+###Introducing Positioning:
+- Positioning allows you to change normal flow, by, for example, changing elements default positions in a page. You can make elements float, or sit in a fixed position in the viewport regardless of much you scroll up or down, etc. 
+- There are different types of positioning and are affected with the different values that the **`position`** property can take.
+
+### Static Positioning (`position: static`):
+- Static position refers to placing an item in its normal default position in a page.
+- While this seems kinda useless, I guess the in a dynamic interactive situation, a user might toggle between different positioning states. The user might even have a choice to turn off a distracting or annoying positioning style and restore the default option.
+
+### Relative Positioning:
+- A little similar to static positioning. Once an element takes its default position, you can shift it by a given amount of pixels or whatever unit both horizontally and vertically.
+- Relative positioning is done with the setting the `position` property go `relative` along with using one or more of the four values: `top`, `bottom`, `right`, and `left`.
+- The following script pushes the top of an element 30 pixels down away from its static position and 30 pixels away to the right of its static horizontal position:
+```css
+.box {
+	position: relative;
+	top: 30px;
+	left: 30px;
+}
+ ``` 
+- This might sound contradictory, but just remember it's in reverse. The explanation provided by MDN is not convincing. A force that falls on the element from the top pushes it down, and one that comes from the left pushes it to the right.
+- notice that when an element's position is shifted, it leaves a gap in its default position.
+
+### Absolute Positioning:
+- If you apply this snippet, you'd see a similar effect to that created with relative positioning, but with major differences:
+```css
+.box {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+```
+- The first thing to notice is that the gap marking the original position of the moved element disappears as if the element doesn't exist or it lives in a separate layer. The element is completely removed from the normal flow.
+- An absolutely positioned layer sits on its own layer, preventing it from interfering with other UI elements. This is how we create popup information boxes, control menus, modals, etc. 
+
+### The `z-index`:
+- When elements are absolutely positioned and start overlapping, what determines which elements sit on top of the other? When you are dealing with only one positioned element, the positioned element sits on top of others since positioned elements win. But what if you have more than one positioned element? 
+- When multiple elements are positioned, the ones positioned later win over the other. However, you can control the stacking order with the `z-index` property. It takes values where positive numbers are higher in the stack and negative values are lower. Positioned elements have the value `auto` which is equivalent to 0. `z-index` accepts unitless values that simply dictate their order. 
+
+### Fixed Positioning:
+- Absolute positioning allows you to position elements relative to another html element, but fixed positioning allows you to place them relative the viewport. This allows you to create useful UIs like persistent navbars. 
+
+### Position: Sticky:
+- A sticky element acts like it is relatively positioned and scrolls up and down with scrolling the page until it hits a certain threshold such as the top of the viewport and then it sticks to the top of the viewport.
+- Creating a scrolling index page is a neat use of `position: sticky`. It's made with  a description list and it's just cool. Don't ask me for more details.
+
 ## Responsive Design:
+- Nowadays, a design just must be responsive. There are even those who swear by the mobile first mantra. Responsive Web Design (RWD) has become the norm and you have no choice but incorporate into your toolbox as a developer.
+
+### Historic Website Layout:
+- In the beginning, there were to ways to lay out a website:
+	+ You could either make a *liquid site*, which stretched to fill the available space, or
+	+ Made a *fixed width* site with a fixed size in pixels. 
+- None of these philosophies accommodated the increasing variety of screen sizes and shapes. Liquid sites resulted in squashed layout on small screens and very long lines in wide screens. Fixed designs gave us a lot of white space in large screens and you had to scroll horizontally on small screens.
+- With the advent and popularization of mobile phones, both feature and smart, companies started shipping specialized websites for phones (with urls like *m.youtube.com*).
+
 ## Media Queries:
 ## Supporting Older Browsers:
 ## Layout Wrap Up:
