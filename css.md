@@ -1258,7 +1258,52 @@ footer {
 	+ You could either make a *liquid site*, which stretched to fill the available space, or
 	+ Made a *fixed width* site with a fixed size in pixels. 
 - None of these philosophies accommodated the increasing variety of screen sizes and shapes. Liquid sites resulted in squashed layout on small screens and very long lines in wide screens. Fixed designs gave us a lot of white space in large screens and you had to scroll horizontally on small screens.
-- With the advent and popularization of mobile phones, both feature and smart, companies started shipping specialized websites for phones (with urls like *m.youtube.com*).
+- With the advent and popularization of mobile phones, both feature and smart, companies started shipping specialized websites for phones (with urls like *m.youtube.com*). This resulted into two separate websites that needed to be maintained and updated separately. Think of the early and even current days of facebook. Mobile sites also offered a cut down experience which became scandalously frustrating as mobiles became as fast as desktops. Why would a user be content of such a reduced experience on a blazingly fast mobile device?
+
+### Flexible Layout Before Responsive Design:
+- As far back as 2004 AD, Cameron Adam suggested a resolution dependent layout that would detect screen resolutions using javascript and then load the correct CSS. Zoe M. Gillenwater formalized ways that sought to find a sweet spot between the liquid flexibility and fixed stability.
+
+### Responsive Design:
+- *Responsive design* was coined by E. Marcott in 2010 AD. It was based on the following techniques:
+	1. The use of **fluit grids**
+	2. **Fluid images** are based on setting the `max-width` property to `100%`. Images could scale down if the containing column is smaller than the image's intrinsic size. The image, howver, will not scale up above their intrinsic size in bigger columns.
+	3. **Media queries** allow the altering of the layout and the repositioning of different elements based on screen sizes using CSS only (no need for javascript).
+- Responsive design is not a new separate technology. It's is only a philosophy or a a guideline for responding to different screen sizes.
+
+### Media queries:
+- Media queries allow us to test the user's screen width and resolution and deliver appropriate CSS based on the results of the test.
+- The following example instructs the browser to r
+```css
+@media screen and (max-width: 800px) { 
+  .container { 
+    margin: 0px; 
+  } 
+} 
+```
+- You can use multiple media queries to change the whole layout based on the different screen size.
+- Planning ahead is instrumental in making best use of media queries. The **mobile first** philosophy suggests that you start with building a one column layout for narrow screen mobile phones, and modifying that layout for larger and larger screens.
+
+### Flexible Grids:
+- It is impossible to accommodate all screen sizes, that's why we have flexible designs that shrink and expand to accommodate appropriate ranges of screen sizes. instead of targeting a screen width of 699, you might target a range between 600 pixels and 799 pixels, where the flexible grid does the rest of the work of resizing the layout on all the possible sizes in this range.
+- In the olden days, floats were used to create columns. Columns width was also made through a percentage created by dividing the desired column width a screen's width. Percentages are flexible while pixels are rigidly fixed.
+
+### Modern Layout Technologies:
+- As seen in a previous section, Flex Box and the Grid Layout are responsive out of the box. There is no need for repetitions here.
+
+### Responsive Images:
+- The responsive images section in the [html notes](/html.notes#responsive-images). Pay special attention to the `max-width: 100%` property, and make sure you have multiple versions of an image targeting different screen sizes. Also pay attention to details like delivering images with different aspect ratios to different screen sizes, etc. 
+
+### Responsive Typography:
+- Responsive typography hasn't been touch upon yet. How can you keep your content readable across different screen sizes and resolutions. This is done largely with media queries and this section deals with that. Basically, you can resize fonts for different sizes using media queries and proportional units like `em` and `rem`.
+- An even much more interesting unit type to use to create responsive typography is the viewport unit `vw` where `1vw` means 1 percent of the viewport's width. The problem with this unit is that you cannot zoom to it. It's a fixed percentage of the view port and there is no way of zooming it in or out.
+- The solution to the above problem is done using the `calc()` function which takes a `vw` value along with another type of unit (basically `rem` or `em`). This way, you control typography based on viewport dimensions while making the font zoomable. The following example illustrates such usage
+- **IMPORTANT: Using vw along with ems or rems allows you to define font size only once and it would be resized based on viewport with. There is no need to change it with at every breakpoint.**
+
+### The Viewport Meta Tag:
+- The following meta tag can save you headaches. Because of some historical events, websites might not display correctly on some narrow screens. That is why we include this tag to avoid such headaches and don't ask me about the details:
+```xml
+<meta name="viewport" content="width=device-width,initial-scale=1">
+```
 
 ## Media Queries:
 ## Supporting Older Browsers:
