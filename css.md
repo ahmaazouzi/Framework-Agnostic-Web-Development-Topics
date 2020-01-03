@@ -1371,7 +1371,7 @@ rule is BAU CSS.
 - A plain well structured HTML is your absolute fallback where browser support is absent.
 - You can create CSS fallback methods such as putting items in a grid also making them floats. If the browser doesn't support the grid layout, they can still be usable as they are floats.
 - Legacy layout methods can be used as fallbacks for flex and grid. Float and clear, `display: inline-block`, `display: table`, multi-column layout can all be used as fallback methods to Flex Box and the Grid Layout. Flex Box itself can be a fallback to the Grid Layout.
-- While modern techniques do override old ones, when something is both flexed and gridded, the flexing is phased out, and if floats are inside a grid, they cease to float, there are times when collisions betewen these methods occur, that's why we have **feature queries**. These are done as the following example shows:
+- While modern techniques do override old ones, when something is both flexed and gridded, the flexing is phased out, and if floats are inside a grid, they cease to float, there are times when collisions between these methods occur, that's why we have **feature queries**. These are done as the following example shows:
 ```css
 @supports (display: grid) {
   .item {
