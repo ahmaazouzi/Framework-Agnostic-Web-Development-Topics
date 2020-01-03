@@ -1272,7 +1272,7 @@ footer {
 
 ### Media queries:
 - Media queries allow us to test the user's screen width and resolution and deliver appropriate CSS based on the results of the test.
-- The following example instructs the browser to r
+- The following example instructs the browser to r**:
 ```css
 @media screen and (max-width: 800px) { 
   .container { 
@@ -1280,6 +1280,7 @@ footer {
   } 
 } 
 ```
+**
 - You can use multiple media queries to change the whole layout based on the different screen size.
 - Planning ahead is instrumental in making best use of media queries. The **mobile first** philosophy suggests that you start with building a one column layout for narrow screen mobile phones, and modifying that layout for larger and larger screens.
 
@@ -1307,6 +1308,8 @@ footer {
 
 ## Media Queries:
 ## Supporting Older Browsers:
+- You should or even must prioritize modern layout methods, namely Flex Box and the Grid Layout. However, you don't want to lock out users of browsers that don't support these methods. Flex and Grid can result in a totally broken layout in such browsers and you should handle such lack of support properly.
+
 ## Layout Wrap Up:
 
 
