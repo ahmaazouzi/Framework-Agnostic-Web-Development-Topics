@@ -1272,7 +1272,7 @@ footer {
 
 ### Media queries:
 - Media queries allow us to test the user's screen width and resolution and deliver appropriate CSS based on the results of the test.
-- The following example instructs the browser to r**:
+- The following example instructs the browser to set margins to 0 pixels if the screen width is 800 pixels or greater:
 ```css
 @media screen and (max-width: 800px) { 
   .container { 
@@ -1280,7 +1280,6 @@ footer {
   } 
 } 
 ```
-**
 - You can use multiple media queries to change the whole layout based on the different screen size.
 - Planning ahead is instrumental in making best use of media queries. The **mobile first** philosophy suggests that you start with building a one column layout for narrow screen mobile phones, and modifying that layout for larger and larger screens.
 
@@ -1307,11 +1306,79 @@ footer {
 ```
 
 ## Media Queries:
+- Media queries allow you to specify rules whereby CSS is applied only when browser and device environments match such rules. You might have the impression that media queries are only used to detect viewport size to make responsive websites, but they are indeed much more versatile. They can also, for example detect, if a device is using a touchscreen or a mouse, etc.
+
+### Media Queries Basics:
+- Media queries follow this basic syntax (ripped from [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries)):
+```css
+@media media-type and (media-feature-rule) {
+/* CSS rules go here */
+}
+ ```
+- The **media type** is the type of targeted media, such screen or print. The **media feature rule**
+is the test that must be passed for the css to be applied, such as a screen's width. The body of the
+rule is BAU CSS.
+
+#### Media Types:
+- A media type can take one of four values `all`, `print`, `screen`, and `speech`. This is optional and if you don't specify a media type, it defaults to  `all` media types.
+
+#### Media Feature Rules:
+- Different media features can be targeted with different rules as follows:
+	+ **Width and height:** Width is the most commonly targeted media feature and is heavily used to
+	achieve a responsive layout. It can be set to a below (`max-width`), above (`min-width`) a certain width or equal to an exact width (`width`). The following example shows how you can set text color to green if the viewport width is 400px:
+```css
+@media screen and (width: 400px){
+	body {
+		color: red;
+	}
+}
+```
+	It is better to stick to ranges and avoid exact values, as there are many different viewport sizes.
+	+ **Orientation** tests for portrait or landscape mode. This is done with the `orientation` media feature and can take one of two values: `portrait` and `landscape`. This is important in responsive design as things that look great in portrait mode might look terrible in landscape mode.
+	+ **The use of pointing devices** relates to the type of pointing device used such as a mouse or a touchscreen. `hover` is used to test if a user has the ability to hover (with a mouse as you can't hover over a touch screen). The `pointer` feature is another useful one. It takes three values: `fine` (for a mouse or trackpad),`coarse` (for a finger on a touchscreen), and `none` (where there is no pointing device such as when navigating with a keyboard or voice commands). Your UIs can accommodate different types of interaction. E.g. A larger hit area can be used for the less accurate touchscreens.  
+
+### More Complex Media Queries:
+- You can use logical operators to combine or create lists of queries. These operators are:
+	+ **`and`** 
+	+ **`or`**
+	+ **`not`**
+- In the following example text will be turned red only if the screen is larger than 800px and is in landscape mode:
+```css
+@media screen and (min-width: 800px) and (orientation: landscape){
+	body {
+		color: red;
+	}
+}
+```
+
+### How to Choose Breakpoints:
+- In old days of responsive design, some designers targeted specific screen sizes and lists of such sizes were published. There are many screens sizes now, that is why you choose ranges of sizes instead of targeting specific sizes. How do you choose your breakpoints depends on detecting where the layout starts braking out. If lines become too long, and hard to follow, it's probably time to divide the layout into columns. If the content gets squashed with smaller displays, it's time to keep just one column  and maybe do something about the margins and padding.
+- One way to make life easier is to adopt the **mobile first** approach. You start with the small mobile layout and move up to the desktop version. You can start with the simple one column design which doesn't divert much from the normal flow. If you order your source well, you are mostly done as the mobile version goes. As you move toward the larger screens designs, you can do all the layout acrobatics.
+- I agree with this philosophy as I think it is easier to start simple and add more complexity to the simple starting point. Reducing complexity is itself a hard thing to do and :sleeping:.
+
+### Do You Really Need Media Queries?
+- Modern layout methods such as Flex Box and Grid Layout can make media queries almost obsolete. With an effective use of one of these layout methods, you can achieve a highly responsive design. We've seen before how we can have columns that are at least 200px in width and have as many of these columns fill up the available space.
+
 ## Supporting Older Browsers:
 - You should or even must prioritize modern layout methods, namely Flex Box and the Grid Layout. However, you don't want to lock out users of browsers that don't support these methods. Flex and Grid can result in a totally broken layout in such browsers and you should handle such lack of support properly.
-
-## Layout Wrap Up:
-
-
-
-#Custom Properties
+- It's good to have a general idea about which browsers are used to view your website through analytics. 
+- Are these browsers mobile or desktop? How many people use assistive technologies? 
+- Don't get bogged down by the 1 percent who still use some pre-historical version of IE, but pay more attention to the 25% percent of users with accessibility issues. 
+- A good knowledge of the browsers that use your site most allows you to plan the CSS that you can use. Do most browsers support Flex Box? How many of those only support an archaic version of FLex?
+- MDN does an excellent job documenting browser support for every CSS feature they cover. The [Can I Use](https://caniuse.com/) website is another great resource that allows you to check browser support for a given feature.
+- Browser support does not mean the site looks exactly the same in every browser. You should strive to make it look great in modern browsers while offering basic usable layout to older browsers.
+- A well structured HTML/content is the key to not leaving limited browser support out. If you strip all the CSS out, would the website still be usable?
+- A plain well structured HTML is your absolute fallback where browser support is absent.
+- You can create CSS fallback methods such as putting items in a grid also making them floats. If the browser doesn't support the grid layout, they can still be usable as they are floats.
+- Legacy layout methods can be used as fallbacks for flex and grid. Float and clear, `display: inline-block`, `display: table`, multi-column layout can all be used as fallback methods to Flex Box and the Grid Layout. Flex Box itself can be a fallback to the Grid Layout.
+- While modern techniques do override old ones, when something is both flexed and gridded, the flexing is phased out, and if floats are inside a grid, they cease to float, there are times when collisions betewen these methods occur, that's why we have **feature queries**. These are done as the following example shows:
+```css
+@supports (display: grid) {
+  .item {
+      width: auto;
+  }
+}
+```
+- This checks if a browser supports the grid layout. If it does, it uses, otherwise, it uses older methods.
+- Feature queries are themselves not supported in older browsers, but you can also get around this. You design your website around older browsers with no support for newer features. Browsers which don't support feature queries will ignore them because they ignore CSS rules they don't understand.
+- **To sum up:** Structure your HTML well and make sure it's still usable even without any CSS. Then add older CSS that's supported by even older browsers. Combine that with feature queries, and top the whole thing with newer layout methods.
