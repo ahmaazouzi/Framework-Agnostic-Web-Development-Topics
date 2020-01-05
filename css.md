@@ -85,7 +85,7 @@ Content mostly comes from [Learn to style HTML using CSS](https://developer.mozi
 			* [CSS Methodologies](#css-methodologies)
 			* [Build Systems for CSS](#build-systems-for-css)
 - [Styling Text](#styling-text)
-		+ [How is Text Styled](#how-is-text-styled?)
+		+ [How is Text Styled](#how-is-text-styled)
 		+ [Fonts](#fonts)
 			* [Color](#color)
 			* [Font Families](#font-families)
