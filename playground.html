@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css"></head>
+    </head>
+    <body>
+    	<button>Nanana</button>
+        <script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+
+  const buttons = document.querySelectorAll('button');
+
+  for(let i = 0; i < buttons.length ; i++) {
+    buttons[i].addEventListener('click',   function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+  });
+  }
+})
+        </script>
+        <script src="index.js"></script>
+    </body>
+</html>
