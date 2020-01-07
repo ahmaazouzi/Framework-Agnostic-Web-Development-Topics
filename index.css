@@ -1,14 +1,30 @@
-p {
+html {
     font-family: 'helvetica neue', helvetica, sans-serif;
     letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-    border: 2px solid rgba(0,0,200,0.6);
-    background: rgba(0,0,200,0.3);
-    color: rgba(0,0,200,0.6);
-    box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
-    border-radius: 10px;
-    padding: 3px 10px;
-    display: inline-block;
-    cursor: pointer;
   }
+
+.app {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.div {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.wrong {
+    color: #ffff;
+    padding: 3px;
+    background-color: red;
+    display: none;
+}
+
+.correct {
+    color: #ffff;
+    padding: 3px;
+    background-color: green;
+    display: none;
+}
