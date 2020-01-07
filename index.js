@@ -1,6 +1,7 @@
 
 const button = document.querySelector('.submito');
 texto = document.querySelector('.texto');
+texto.focus();
 
 const prev = "Previous guesses:";
 
@@ -63,6 +64,8 @@ button.addEventListener('click', () => {
 		if (num === answer){
 			correct.style.display = 'block';
 			wrong.style.display = 'none';
+			low.style.display = 'none';
+      		low.style.display = 'none';
 		} else {
 			correct.style.display = 'none';
 			wrong.style.display = 'block';
@@ -81,6 +84,7 @@ button.addEventListener('click', () => {
 
 		wrong.textContent = '!!!GAME OVER!!!';
 		wrong.style.display = 'block';
+		correct.style.display = 'none';
 		texto.disabled = true;
 		button.disabled = true;
 		high.style.display = 'none';
@@ -99,6 +103,7 @@ resetButton.addEventListener('click', () => {
 	div.style.display = 'none';
 	button.disabled = false;
 	texto.disabled = false;
+	texto.focus();
 	tries = 0;
 
 })

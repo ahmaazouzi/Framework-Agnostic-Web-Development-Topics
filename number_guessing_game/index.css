@@ -1,0 +1,30 @@
+html {
+    font-family: 'helvetica neue', helvetica, sans-serif;
+    letter-spacing: 1px;
+  }
+
+.app {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.div {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.wrong {
+    color: #ffff;
+    padding: 3px;
+    background-color: red;
+    display: none;
+}
+
+.correct {
+    color: #ffff;
+    padding: 3px;
+    background-color: green;
+    display: none;
+}
