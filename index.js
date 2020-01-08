@@ -111,3 +111,4 @@ resetButton.addEventListener('click', () => {
 appendResult = (answer) => {
 	return ' ' + answer;
 }
+

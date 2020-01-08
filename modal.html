@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>modal</title>
+	<style type="text/css">
+		html {
+    font-family: 'helvetica neue', helvetica, sans-serif;
+    letter-spacing: 1px;
+  }
+		body{
+			margin: 0px;
+		}
+		.modal-container {
+			opacity: 1;
+			padding-top: 100px;
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+			background-color: rgba(0,0,0,0.4);
+			display: none;
+		}
+		.modal {
+			opacity: 1;
+			width: 40vw;
+			height: 50vh;
+			margin: 0 auto;
+			background-color: #efefef;
+			border-radius: 5px;
+			text-align: right;
+		}
+		.modal-title {
+			text-align: center;
+			height: 15%;
+		}
+		.modal-body {
+			height: 55%;
+			padding: 10px;
+			line-height: 2em;
+			text-align: left
+		}
+		.modal-footer {
+			background-color: #00FF00;
+			height: 15%;
+			text-align: center;
+		}
+		.modal-head {
+
+		}
+		.sub{
+			vertical-align: center;
+			padding-top: 3px;
+			color: black;
+		}
+
+		.zaza {
+			text-align: center;
+			padding-top: 24vh;
+		}
+
+		p{
+			margin: 4px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="modal-container">
+		<div class="modal">
+			<div class="modal-head">
+				<button class='del' style="padding: 3px; border-radius: 5px;">
+					X
+				</button>
+			</div>
+
+			<div class="modal-title">
+				<h1>Important Info!!</h1>
+			</div>
+			<div class="modal-body">
+				<p >orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+				
+			</div>
+			<div class="modal-footer">
+				<h1 class="sub">Submit</h1>
+				
+			</div>
+		</div>
+	</div>
+	<div class="zaza">
+		<button class="sasa"><h1>Show modal</h1></button>
+	</div>
+			<script type="text/javascript">
+		const op = document.querySelector('.sasa');
+		const mod = document.querySelector('.modal-container')
+		const modal = document.querySelector('.modal');
+		const del = document.querySelector('.del');
+		const sub = document.querySelector('.sub');
+		togglemoddel = () => {
+			const display = window.getComputedStyle(mod).getPropertyValue('display');
+			if (display === 'none')
+				mod.style.display = 'block';
+			else
+				mod.style.display = 'none';
+		}
+
+		op.addEventListener('click', togglemoddel);
+		del.addEventListener('click', togglemoddel);
+		modal.addEventListener('click', (e) => {
+			e.stopPropagation();
+		});
+		sub.addEventListener('click', togglemoddel);
+		mod.addEventListener('click', togglemoddel);
+
+
+	</script>
+
+</body>
+</html>
