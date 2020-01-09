@@ -50,3 +50,24 @@ String.prototype.replace('moz','illa');
 Array.prototype.shift() // pop at the beginning of the array
 Array.prototype.unshift() // push at the beginning of the array
 ```
+
+## Falsy:
+- **`null`**
+- **`undefined`**
+- **`""`**
+- **`0`**
+- **`NaN`**
+
+## `continue` and `break`:
+- **`break`** allows you to break out of a loop, while **`continute`** allows you to skip an iteration while staying in the loop.
+
+## Functions Attached to Events:
+```javascript
+someElement.onclick = someFunction;
+someElement.onclick = someFunction();
+```
+- The difference between these two statements is the first one waits until the button is clicked, while the second one is called immediately after the page is loaded.
+
+
+
+
