@@ -76,16 +76,17 @@
 			padding-top: 3vh;
 		}
 
-		p{
+		p (){
 			margin: 4px;
 		}
 		.del{
 			width: 10px;
-			padding: 10px;
+			/*padding: 10px;*/
 			text-align: right;
 		}
 		.del:hover{
 			color: grey;
+			cursor: default;
 		}
 		.sasa {
 			width: 15vw;
@@ -105,7 +106,9 @@
 	<div class="modal-container">
 		<div class="modal">
 			<div class="modal-head">
-					<span style="padding-top: 5px; padding-right: 5px;" class="del">X</span>
+				<div style="height: 20px; padding: 5px;">
+					<span style="padding-right: 5px; float: right;" class="del">X</span>
+				</div>
 			</div>
 
 			<div class="modal-title">
