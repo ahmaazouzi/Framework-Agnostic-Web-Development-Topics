@@ -3,6 +3,22 @@ Credits go to [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Bu
 # Events:
 - "Events are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way if desired."
 
+## Table of Contents:
+* [Intro](#intro)
+	+ [An Event Example](#an-event-example)
+	+ [Node.js Use of Events](#nodejs-use-of-events)
+* [Ways of Using Web Events](#ways-of-using-web-events)
+	+ [Event Handler Properties](#event-handler-properties)
+	+ [Inline Event Handlers Are Bad](#inline-event-handlers-are-bad)
+	+ [`addEventListener()` and `removeEventListener()`](#addeventlistener()-and-removeeventlistener())
+	+ [Which Event Listening Mechanism Method to Use?](#which-event-listening-mechanism-method-to-use)
+* [Event Object](#event-object)
+* [Preventing Default Behavior](#preventing-default-behavior)
+* [Event Bubbling and Capture](#event-bubbling-and-capture)
+	+ [Bubbling and Capturing Defined](#bubbling-and-capturing-defined)
+	+ [The `stopPropagation()` Function](#the-stoppropagation()-function)
+	+ [Event Delegation](#event-delegation)
+
 ## Intro:
 -  The system fires a signal when an event occurs. The system also allows an action to occur automatically when an event takes place. E.g. When a pilot receives a signal that the runway is clear, the pilot starts taking off.
 - In the Web, an event is fired inside the window and is attached to a specific item that is inside the window. The item the event is attached to can be a single element, a group of elements, the whole html document in the current window or even the whole window itself.
