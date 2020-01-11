@@ -67,7 +67,3 @@ someElement.onclick = someFunction;
 someElement.onclick = someFunction();
 ```
 - The difference between these two statements is the first one waits until the button is clicked, while the second one is called immediately after the page is loaded.
-
-
-
-
