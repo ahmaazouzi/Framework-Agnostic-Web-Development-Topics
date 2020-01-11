@@ -103,6 +103,47 @@ let saluki = Object.create(chihuahua);
 - There will be more about this method in later sections.
 
 # Object Prototypes:
+- Prototypes are the primary way inheritance is done in JavaScript. This chapter will dive deep into in prototypes and prototype chains.
+
+## A Prototype-based Language:
+- JavaScript, is a **prototype-based** language, meaning that relies on **prototype** to provide inheritance. A *prototype object* acts as a template object from which methods and properties are inherited from.
+- The prototype object of some object also has a prototype object from which it inherits methods and properties and so on. This is called the **prototype chain**.
+- "In JavaScript, a link is made between the object instance and its prototype (its **`__proto__`** property, which is derived from the **`prototype`** property on the constructor), and the properties and methods are found by walking up the chain of prototypes."
+- There two types of prototype. The object's `prototype` which can be obtained with the  **`Object.getPrototypeOf(obj)`** method (or with the deprecated `__proto__` property) and the the constructor function's `prototype` which can be accessed with either the `Foobar.prototype` or `getPrototypeOf(new Foobar)`.
+- If you inspect the `obj.__proto__` property or `getPrototypeOf(obj)`, you will see properties it inherits from its instructors, and when inspecting the constructor's prototype, you will see the `Object` object and its properties. You are looking at the prototype chain.
+
+## The Prototype Property where Inherited Members Are Defined:
+- Properties to be inherited, in the `Object` object for example are defined inside the `prototype` property. The prototype property itself is an object or a sub-namespace. 
+- Other Important objects in JavaScript such as `String`, `Date` and `Array` have many properties and methods defined in their prototypes.
+
+## `Object.create()` Revisited:
+```javascript
+let saluki = Object.create(chihuahua);
+```
+- When you use the `Object.create()` method as in the example just listed, the newly created object `saluki` is created using `chihuahua` as a prototype object. If you inspect `saluki.__proto__`, you will find it equals `chihuahua`.
+
+## Modifying a Prototype:
+- Constructor functions contain a property called `prototype`. This `prototype` property becomes available to all objects created by this constructor function.
+- If you modify the properties inside the `prototype` object of a constructor function, this modification becomes available to all objects created by this constructor. 
+- When you modify the `prototype` in the constructor, the whole prototype chain inheriting from it is dynamically updated allowing for so much power and flexibility.
+- However, it is rare to define new properties in the prototype. It's more common and useful to define methods inside the prototype.
+- A common pattern is to create a constructor with all the properties defined inside it, while methods can be added to the constructor's prototype outside the constructor as in:
+```javascript
+// Constructor with property definitions
+function Dog(name, preferredFood, breed, weight) {
+  // property definitions
+}
+
+// First method definition
+
+Test.prototype.greeting = function() { ... };
+
+// Second method definition
+
+Test.prototype.bio = function() { ... };
+// etc.
+```
+
 # Inheritance in Javascript:
 # JSON Data:
 # Object Building Practice:
