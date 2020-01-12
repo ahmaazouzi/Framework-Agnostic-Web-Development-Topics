@@ -127,6 +127,7 @@ let saluki = Object.create(chihuahua);
 - If you modify the properties inside the `prototype` object of a constructor function, this modification becomes available to all objects created by this constructor. 
 - When you modify the `prototype` in the constructor, the whole prototype chain inheriting from it is dynamically updated allowing for so much power and flexibility.
 - However, it is rare to define new properties in the prototype. It's more common and useful to define methods inside the prototype.
+- There is no point of creating many copies of the same function for every object that uses the same function. Each object has its own special data, but a family of similar objects can share the same function which does the same thing. This is a boon for memory and makes a lot of sense.
 - A common pattern is to create a constructor with all the properties defined inside it, while methods can be added to the constructor's prototype outside the constructor as in:
 ```javascript
 // Constructor with property definitions
@@ -145,5 +146,103 @@ Test.prototype.bio = function() { ... };
 ```
 
 # Inheritance in Javascript:
+- As there different ways an object can be created, there are also multiple ways inheritance can take place in this crazy language.
+- We will start with defining a a constructor function for a dog object from which other constructor functions will inherit. The following code defines such an object and one of its methods which was attached to its prototype property:
+```javascript
+function Dog(name, breed, weight, size){
+	this.name = name;
+	this.breed = breed;
+	this.weight = weight;
+	this.sound = 'Howhow!!!';
+}
+
+Dog.prototype.bark = function(){
+	console.log(this.sound);
+}
+```
+
+## The `call()` method:
+- One way to implement inheritance is through the `call()` method. "This function basically allows you to call a function defined somewhere else, but in the current context". It takes the `this` parameter which references the current object/context to which we want to attach the function. It also takes all the parameters that the function we want to call takes.
+```javascript
+function Saluki(name, breed, weight, size, speed){
+	Dog.call(this, name, breed, weight, size, speed);
+	this.speed = speed;
+}
+```
+- In the code above the `Saluki` constructor function also takes one extra parameter `speed`.
+- In a case where a constructor function doesn't take parameters, using call is simple, it only takes the current context, referenced by `this` as a parameter as in:
+```javascript
+function Polygon() {
+  this.dimensions = 2;
+  this.border = 'solid';
+  this.borderColor = 'black';
+}
+
+function SolidPolygon() {
+  Polygon.call(this);
+
+  this.fill = true
+  this.fillColor = 'red';
+}
+```
+- There is a problem, though! The `bark()` method was not inherited by the **Saluki** constructor from the **Dog** constructor. The **Saluki** constructor contains a prototype property but it only refers to the **Dog**'s constructor. This can be fixed eith the use of `Object.create()` as in:
+```javascript
+Saluki.prototype = Object.create(Dog.prototype);
+```
+- The command above makes the `Dog.prototype` the prototype of the **Saluki**'s prototype. Now the `bark()` method is available to the Saluki object.
+- One more problem is that if you check the constructor of the newly created object `Saluki` with the logging **`Saluki.prototype.constructor`**, you will find that it is `Dog`. The constructor property still refers to the parent constructor. This can be fixed with the following:
+```javascript
+Object.defineProperty(Teacher.prototype, 'constructor', { 
+    value: Saluki, 
+    enumerable: false, // so that it does not appear in 'for in' loop
+    writable: true });
+```
+- To override an inherited method you just redefine it in the current constructor prototype as in:
+```javascript
+Saluki.prototype.bark = function(){
+	console.log('Hooooooooooooooooo!');
+}
+```
+
+## ES6 Classes:
+- ES6 provides the very clean and straightforward class syntax that is almost identical to that of java for creating classes and objects:
+```javascript
+// Define a Dog class
+class Dog {
+	constructor(name, breed, weight, size){
+		this.name = name;
+		this.breed = breed;
+		this.weight = weight;
+		this.sound = 'Howhow!!!';
+	}
+
+	bark(){
+		console.log(this.sound);
+	}
+}
+
+// Instantiate a dog object
+let dog = new Dog('z', 'labrador', 33, 5);
+```
+- Inheritance is equally straightforward. Creating a `Saluki` that inherits `Dog` is done as follows:
+```javascript
+class Saluki extends Dog {
+	constructor(name, breed, weight, size, speed) {
+	  	super(name, breed, weight, size);
+	    this.speed = speed;
+  	}
+
+	bragging (){
+		console.log(`I run at an incredible speed of ${this.sound} miles per hours`);
+	}
+}
+```
+
+
+- As you can see, there is none of the acrobatics seen earlier, however, this method suffers from limited support in old browsers and it is in fact just syntactic sugar that gets compiled down to the good old prototypical inheritance.
+
+
+
+
 # JSON Data:
 # Object Building Practice:
