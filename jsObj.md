@@ -240,9 +240,3 @@ class Saluki extends Dog {
 
 
 - As you can see, there is none of the acrobatics seen earlier, however, this method suffers from limited support in old browsers and it is in fact just syntactic sugar that gets compiled down to the good old prototypical inheritance.
-
-
-
-
-# JSON Data:
-# Object Building Practice:
