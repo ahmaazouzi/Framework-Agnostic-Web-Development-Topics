@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		let promise = fetch('coffee.jpg');
+		let promise = promise.then(response => {console.log("Successfully blobbed!!!"); response.blob()});
+
+	</script>
+</body>
+</html>
