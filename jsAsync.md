@@ -12,13 +12,41 @@ The asynchronous nature of Javascript is a source of immense power . This module
 
 ## Asynchronous Code:
 - Web workers have their limitations. They can't access the DOM and update the UI. They are mostly used to do calculations. 
-- Another problem with web workers is that even if 
-
-
-
+- Another problem with web workers is that even if the existence of multiple threads results in non-blocking code, the code is essentially synchronous. If process **C** depends on the results of process **A** and process **B** which run on multiple threads, there would be problems if the results of both threads are not available for use by process **C**. If **C** tries to run when one of its inputs is not available, this would produce an error.
+- Javascript has functionaly such as **Promises** that allows you start running a function that might take a long time (while, for example doing and I/O operation), and then wait until this function returns results before running another function that uses these results.
 
 # Introduction to Asynchronous Javascript:
+- This is an overview of the different asynchronous techniques JavaScript uses to address the shortcomings of an otherwise synchronous world.
+
+## Asynchronous Javascript:
+- Asynchronous code is used frequently in operations that fetch resources from a network or a database. You don't know how long it would take for such a resource to be available for use. A process following the resource fetching function would result in an error if the fetching takes too long or fails to return that resource. You need to make the code wait until said resource is available. Asynchronicity is performed using two different styles, the good old **callback functions** and the newer **promises**.
+
+## Async Callbacks:
+- "Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. When the background code finishes running, it calls the callback function to let you know the work is done, or to let you know that something of interest has happened".
+- An example of a callback function is the event handler you pass into `addEventListener()` as in:
+```javascript
+btn.addEventListener('click', () => {
+  alert('You clicked me!');
+```
+- Here we are passing a reference to a function, which can be either a anonymous function or a function named somewhere else. The callback is not invoked immediately. When `addEventListener()` or any other function containing a callback is done doing its thing, it then calls back the callback function. An async callback ensures that 
+
+
 # Cooperative Asynchronicity, Timeouts and Intervals:
+- This section deals with "running code asynchronously after a set time period has elapsed, or at a regular interval". These are:
+<dl>
+	<dt>setTimeout();</dt>
+	<dd>Executes code after a specified period of time has passed</dd>
+	<dt>setInterval();</dt>
+	<dd>Execute code repeatedly in equal time intervals</dd>
+	<dt>requestAnimationFrame()</dt>
+	<dd>A modern version of `setTimeout()`. Allows animation to be run at a specified framerate.</dd>
+</dl>
+
+## `setTimeout`:
+- This function takes 3 parameters:
+	1. An anonymous function or a reference to a function defined elsewhere.
+	2. A number representing the minimum milliseconds after which the function can run. If you give it zero or no argument, the function runs immediately. We say minimum because  
+
 # Graceful Async with Promises:
 # `async` and `await` Asynch Mechanisms:
 # Choosing the right approach:

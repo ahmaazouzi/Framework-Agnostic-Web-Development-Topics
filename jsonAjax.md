@@ -20,3 +20,8 @@ Credit goes to [JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/
 	}
 }
 ```
+
+```javascript
+JSON.stringify(obj);
+JAON.parse(json);
+```
