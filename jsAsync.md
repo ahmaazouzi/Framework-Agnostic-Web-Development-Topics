@@ -34,18 +34,43 @@ btn.addEventListener('click', () => {
 # Cooperative Asynchronicity, Timeouts and Intervals:
 - This section deals with "running code asynchronously after a set time period has elapsed, or at a regular interval". These are:
 <dl>
-	<dt>setTimeout();</dt>
+	<dt>`setTimeout()`</dt>
 	<dd>Executes code after a specified period of time has passed</dd>
-	<dt>setInterval();</dt>
+	<dt>`setInterval()`</dt>
 	<dd>Execute code repeatedly in equal time intervals</dd>
-	<dt>requestAnimationFrame()</dt>
+	<dt>`requestAnimationFrame()`</dt>
 	<dd>A modern version of `setTimeout()`. Allows animation to be run at a specified framerate.</dd>
 </dl>
 
 ## `setTimeout`:
 - This function takes 3 parameters:
 	1. An anonymous function or a reference to a function defined elsewhere.
-	2. A number representing the minimum milliseconds after which the function can run. If you give it zero or no argument, the function runs immediately. We say minimum because  
+	2. A number representing the minimum milliseconds after which the function can run. If you give it zero or no argument, the function runs immediately. We say minimum because, it's not guaranteed that resources are immediately available for such a function to be executed.
+	3. zero or more parameters to be passed to the function.
+- `setTimeout` can take the function parameter as an anonymous function, a named function and a function reference as the following example shows.:
+```javascript
+// anonymous function
+let guaranting = setTimeout(() => console.log("Hello, Antarctica!"), 2000);
+
+// named function
+let guaranting = setTimeout(function helloAntarctica() => console.log("Hello, Antarctica!"), 2000);
+
+// function reference
+function helloAntarctica(){
+	console.log("Hello, Antarctica!");
+}
+let guaranting = setTimeout(helloAntarctica, 2000)
+```
+-`setTimeout` returns a value for referring to the timeout later such as during **clearing a timeout**.
+- Be careful about the parameters of a function reference passed to `setTimeout`. These can be passed to `setTimeout` as additional parameters as in:
+```javascript
+function helloSomewhere(somwhere){
+	console.log(`Hello, ${somwhere}!`);
+}
+setTimeout(helloSomewhere, 2000, "AFRICA");
+```
+- 
+
 
 # Graceful Async with Promises:
 # `async` and `await` Asynch Mechanisms:
