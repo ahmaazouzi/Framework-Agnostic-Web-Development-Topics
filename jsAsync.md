@@ -143,7 +143,7 @@ chooseToppings(function(toppings) {
 }, failureCallback);
 ```
 - This code is hard to read and follow because of the multi-level nesting that can easily turn into a cryptic mess. This is a classic example of the so-called ***callback hell***. It also requires handling errors with `failureCallback` multiple times.
-- 
+- Another crucial drawback of callbacks is the so called *inversion of control.* Once the callback is sucked into the api you're trying to use, you stop having control over it. THe third party api now can control and choose what data to pass into it or if would even run it.
 ```javascript
 chooseToppings()
 .then(function(toppings) {
@@ -199,6 +199,46 @@ let promise3 = promise2.then(myBlob => {
 	+ We can create a chain where each `.then()` returns a new promise after the previous promise is fulfilled
 	+ After obtaining the blob object, we create a URL that points to it, we create an URL that points to it and then create an image where the source is the blob's URL. We append that image element to our document and that's IT.
 - This was a contrived example but it did the job in illustrating how to use simple promises. 
+
+### Responding to Failure:
+- Handling failures (**rejects** in promise lingo) is done with the **`.catch()`** block. `.catch()` takes a callback in which you specify how to handle a promise reject as in:
+```javascript
+let errorCase = promise3.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+- The `.catch()` block is optional, but it is necessary. You can control how the error is handled by for example trying to fetch the resource a second time or showing a default image. 
+
+### Chaining Blocks together:
+- Instead of creating multiple variables to tackle the same chain of `.then()` blocks, you can chain them together in a neater and equally easy to understand manner as in: 
+```javascript
+fetch('soc.jpg')
+.then(response => response.blob())
+.then(myBlob => {
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+})
+.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+- In the example above, the value returned by every fulfilled promise is a parameter to the next promise (`.then()` block).
+- `.then()` / `.block()` blocks are the async equivalents of `try ... catch` blocks. `try ... catch` don't work in async code.
+
+## Promises Terminology, a Summary:
+- When a Promise is created, it is **pending**.
+- When a Promise returns, it is **resolved**.
+- A successfully resolved promise is **fulfilled**. 
+- The value returned by a fulfilled promise can be accessed by a **`.then()`** block. Inside it is an **executor** function. Multiple `.then()` can be chained to the promise.
+- An unsuccessfully resolved promise is **rejected**. It returns a **reason**, which is a message explaining why the promise was rejected. The reason can be accessed with a single **`.catch()`** block which appended at the end of the promise chain.
+
+## Responding to Multiple Promises Fulfilling:
+
+## Final Cleanup after Promise Fullfills/Rejects:
+## Building Custom Promises:
+
 
 # `async` and `await` Asynch Mechanisms:
 # Choosing the right approach:)

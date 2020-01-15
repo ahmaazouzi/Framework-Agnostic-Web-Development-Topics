@@ -2,13 +2,26 @@
 <html>
 <head>
 	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 </head>
 <body>
-
+	<button id='btn'>Clikco mi</button>
+	<dl></dl>
 	<script type="text/javascript">
-		let promise = fetch('coffee.jpg');
-		let promise = promise.then(response => {console.log("Successfully blobbed!!!"); response.blob()});
-
+		fetch('somethinganything.jpg')
+.then(response => response.blob())
+.then(myBlob => {
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+})
+.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
 	</script>
 </body>
 </html>
