@@ -300,6 +300,136 @@ timeoutPromise('Hello there!', 1000)
 });
 ```
 
-
 # `async` and `await` Asynchronous Mechanisms:
+- **`async`** and **`await`** are syntactic sugar built on top of Promises to make them easy to read and write. These two mechanisms make asynchronous code as easy to read and write as the more familiar synchronous code.
+
+## The Basics:
+### The `async` Keyword:
+- When placed before a function, the **`async`** keyword turns that function into an **async function**. An asyn function "is a function which knows how to expect the possibility of the `await` keyword being used to invoke asynchronous code." Okay!!!
+- Let's look at the example MDN provides. Here is a regular synchronous function that returns the string `"Hello"`:
+```javascript
+function hello() { return "Hello" };
+hello();
+```
+- When you precede the `hello()` function with the `async` keyword as in the following example, it instead returns a Promise:
+```javascript
+async function hello() { return "Hello" };
+hello();
+```
+- Function expressions and arrow function can also become `async` functions:
+```javascript
+let hello = async function() { return "Hello" };
+let hello2 = async () => { return "Hello" };
+```
+- To consume the value returned can be done with the `.then()` block since an async function returns a promise as the follow example shows:
+```javascript
+hello().then((value) => console.log(value));
+// This can be alternatively written as:
+hello().then(console.log);
+```
+
+### The `await` Keyword:
+- The usefulness of async functions becomes clear when they are combined with the **`await`** keyword. "This can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value."
+- `await` can be used when calling any function that returns a Promise.
+```javascript
+async function hello() {
+  return greeting = await Promise.resolve("Hello");
+};
+
+hello().then(alert);
+```
+
+## Rewriting Promises into async/await:
+- We have seen code similar to this one in the Promises section:
+```javascript
+fetch('coffee.jpg')
+.then(response => response.blob())
+.then(myBlob => {
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+})
+.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+- These can be rewritten into:
+```javascript
+async function myFetch() {
+  let response = await fetch('coffee.jpg');
+  let myBlob = await response.blob();
+
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+}
+
+myFetch()
+```
+- Or can also be written into a hybrid as in:
+```javascript
+async function myFetch() {
+  let response = await fetch('coffee.jpg');
+  return await response.blob();
+}
+
+myFetch().then((blob) => {
+  let objectURL = URL.createObjectURL(blob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+})
+```
+- Basically the `async` keyword makes the function asynchronous and inside the function's body, the `await` keyword makes for `.then()` blocks and their clumsy syntax.
+- To handle errors, you have can wrap your asynchronous async function body with the good good old synchronous `try....catch ` block as in:
+```javascript
+async function myFetch() {
+  try {
+    let response = await fetch('coffee.jpg');
+    let myBlob = await response.blob();
+
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+myFetch();
+```
+
+## The Downsides of async/await:
+- async/await code looks synchronous and somehow also acts synchronous. If you have 3 Promise calls preceded by `await`, each one has to wait until the previous one fulfills. This can result in slowing you application done. There is a little workaround, though. Instead of making the 3 function await from the get go, you can set off first by assigning them to variables, and use `await` with the calls. This time, each promises will start at almost the same time and none has to wait for the other way to long. The following snippet is converted to the faster version in the snippet that follows it:
+```javascript
+async function timeTest() {
+  await timeoutPromise(3000);
+  await timeoutPromise(3000);
+  await timeoutPromise(3000);
+}
+```
+```javascript
+async function timeTest() {
+  const timeoutPromise1 = timeoutPromise(3000);
+  const timeoutPromise2 = timeoutPromise(3000);
+  const timeoutPromise3 = timeoutPromise(3000);
+
+  await timeoutPromise1;
+  await timeoutPromise2;
+  await timeoutPromise3;
+}
+```
+
+## Async Class Methods:
+- Class and object methods can also be made asynch in almost the exact same way as other functions.
+
 # Choosing the right approach:)
+
+
+
+
+
+
