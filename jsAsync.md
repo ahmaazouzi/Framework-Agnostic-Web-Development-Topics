@@ -235,10 +235,71 @@ fetch('soc.jpg')
 - An unsuccessfully resolved promise is **rejected**. It returns a **reason**, which is a message explaining why the promise was rejected. The reason can be accessed with a single **`.catch()`** block which appended at the end of the promise chain.
 
 ## Responding to Multiple Promises Fulfilling:
+- The static method **`Promise.all()`** allows you to specify that some code will run only after a whole bunch of promises have all fulfilled. If one promise fail, the code won't run.
+```javascript
+Promise.all([a, b, c]).then(values => {
+  ...
+});
+```
+- This would be useful in a case where you wanna fetch data to dynamically populate some UI. You want all the data to be present before rendering the UI instead of displaying partial content.
 
-## Final Cleanup after Promise Fullfills/Rejects:
+## Final Code after Promise Fullfills/Rejects:
+- You might need to run some final code after a promise is resolved (fulfilled or rejected). Previously, you had to run the final code both in the `.then()` and `.catch()` blocks	as the following example shows:
+```javascript
+myPromise
+.then(response => {
+  doSomething(response);
+  runFinalCode();
+})
+.catch(e => {
+  returnError(e);
+  runFinalCode();
+});
+```
+- In recent versions of promises, you have the convenient `finally()` method which allows you to call the final code juts once as in:
+```javascript
+myPromise
+.then(response => {
+  doSomething(response);
+})
+.catch(e => {
+  returnError(e);
+})
+.finally(() => {
+  runFinalCode();
+});
+```
+
 ## Building Custom Promises:
+- Chaining multiple Promises together with `Promise.all()` is, in a way, a form of building custom Promises, but that's not what we are after in this section.
+- The main reason you want to build your own Promises is to take non-Promise based old asynchronous code and APIs and Promisi-fy them. 
+- Creating a custom Promise is done with the **`Promise()`** constructor. The promise constructor uses the **`resolve()`** function to fulfill the promise and the **`reject()`** function to reject it. The following example shows how to create a custom Promise:
+```javascript
+function timeoutPromise(message, interval) {
+  return new Promise((resolve, reject) => {
+    if (message === '' || typeof message !== 'string') {
+      reject('Message is empty or not a string');
+    } else if (interval < 0 || typeof interval !== 'number') {
+      reject('Interval is negative or not a number');
+    } else {
+      setTimeout(function(){
+        resolve(message);
+      }, interval);
+    }
+  });
+};
+```
+- Using this promise can be done with the following call to `timeoutPromise`:
+```javascript
+timeoutPromise('Hello there!', 1000)
+.then(message => {
+   alert(message);
+})
+.catch(e => {
+  console.log('Error: ' + e);
+});
+```
 
 
-# `async` and `await` Asynch Mechanisms:
+# `async` and `await` Asynchronous Mechanisms:
 # Choosing the right approach:)

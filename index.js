@@ -1,11 +1,8 @@
-p = new Promise((resolve, regect) => {
-	let a = 1 + 1;
-	if (a == 2)
-		resolve('Success')
-	else
-		regect('Boohoo')
-}).then((message) => {
-	console.log(message)
-}).catch((message) => {
-	console.log(`${message}You failed mate`)
-})
+function timeoutPromise(message, interval){
+	return new Promise((resolve, reject) =>{
+		if (interval < 0 || typeof interval !== Number) 
+			reject('!');
+		else
+			resolve('Congrats, dude!!');
+	})
+}
