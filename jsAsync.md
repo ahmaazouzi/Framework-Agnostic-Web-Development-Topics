@@ -2,6 +2,37 @@ Credits go to [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/As
 
 The asynchronous nature of Javascript is a source of immense power . This module covers asynchronous Javascript and how it can be used effectively.
 
+# Table of Contents:
+- [General Asynchronous Programming Concepts](#general-asynchronous-programming-concepts)
+	* [Asynchronicity and Blocking Code](#asynchronicity-and-blocking-code)
+	* [Asynchronous Code](#asynchronous-code)
+- [Introduction to Asynchronous Javascript](#introduction-to-asynchronous-javascript)
+	* [Asynchronous Javascript](#asynchronous-javascript)
+	* [Async Callbacks](#async-callbacks)
+- [Cooperative Asynchronicity, Timeouts and Intervals](#cooperative-asynchronicity-timeouts-and-intervals)
+	* [`setTimeout`](#settimeout)
+	* [`setInterval`](#setinterval)
+	* [Recursive `setTimeout` and how It Relates to `setInterval`](#recursive-settimeout-and-how-it-relates-to-setinterval)
+	* [`requestAnimationFrame()`](#requestanimationframe())
+- [Graceful Async with Promises](#graceful-async-with-promises)
+	* [What is a Promise?](#what-is-a-promise)
+	* [The Trouble with Async Callbacks](#the-trouble-with-async-callbacks)
+	* [Promises Basic Syntax](#promises-basic-syntax)
+		+ [Responding to Failure](#responding-to-failure)
+		+ [Chaining Blocks together](#chaining-blocks-together)
+	* [Promises Terminology, a Summary](#promises-terminology-a-summary)
+	* [Responding to Multiple Promises Fulfilling](#responding-to-multiple-promises-fulfilling)
+	* [Final Code after Promise Fullfills/Rejects](#final-code-after-promise-fullfills/rejects)
+	* [Building Custom Promises](#building-custom-promises)
+- [`async` and `await` Asynchronous Mechanisms](#async-and-await-asynchronous-mechanisms)
+	* [The Basics](#the-basics)
+		+ [The `async` Keyword](#the-async-keyword)
+		+ [The `await` Keyword](#the-await-keyword)
+	* [Rewriting Promises into async/await](#rewriting-promises-into-async/await)
+	* [The Downsides of async/await](#the-downsides-of-async/await)
+	* [Async Class Methods](#async-class-methods)
+- [Choosing the right approach)](#choosing-the-right-approach))
+
 # General Asynchronous Programming Concepts:
 - Concepts first. Before diving into asynchronous Javascript, let's first try to understand the general Concepts relating to asynchronocity.
 
@@ -425,11 +456,3 @@ async function timeTest() {
 
 ## Async Class Methods:
 - Class and object methods can also be made asynch in almost the exact same way as other functions.
-
-# Choosing the right approach:)
-
-
-
-
-
-
