@@ -31,7 +31,6 @@ The asynchronous nature of Javascript is a source of immense power . This module
 	* [Rewriting Promises into async/await](#rewriting-promises-into-async/await)
 	* [The Downsides of async/await](#the-downsides-of-async/await)
 	* [Async Class Methods](#async-class-methods)
-- [Choosing the right approach)](#choosing-the-right-approach))
 
 # General Asynchronous Programming Concepts:
 - Concepts first. Before diving into asynchronous Javascript, let's first try to understand the general Concepts relating to asynchronocity.
@@ -64,11 +63,11 @@ btn.addEventListener('click', () => {
 # Cooperative Asynchronicity, Timeouts and Intervals:
 - This section deals with "running code asynchronously after a set time period has elapsed, or at a regular interval". These are:
 <dl>
-	<dt>`setTimeout()`</dt>
+	<dt>setTimeout()</dt>
 	<dd>Executes code after a specified period of time has passed</dd>
-	<dt>`setInterval()`</dt>
+	<dt>setInterval()</dt>
 	<dd>Execute code repeatedly in equal time intervals</dd>
-	<dt>`requestAnimationFrame()`</dt>
+	<dt>requestAnimationFrame()</dt>
 	<dd>A modern version of `setTimeout()`. Allows animation to be run at a specified framerate.</dd>
 </dl>
 
