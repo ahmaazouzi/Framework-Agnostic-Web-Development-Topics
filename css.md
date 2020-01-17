@@ -1332,7 +1332,7 @@ footer {
 ### Simple Floating:
 - When a left float is applied to an element, it is taken out of the normal flow and stuck to the left side of its container. Any content that follows it, will wrap around it. It will fill up all the available space all the way to the right and continues down.
 - Adding a margin to a floating element can push other elements away from it, but adding a margin to other elements can't push the floated elements, because the floating box is taken out of the normal flow and other elements run behind it. As the following image shows, the boxes following the floated element sit behind it, Only the content is pushed aside by the floated element.
-<img src="floats.png" alt="floats" width="450" height="300" style="text-align: center;"/>
+<img src="practice/floats.png" alt="floats" width="450" height="300" style="text-align: center;"/>
 
 ### Clearing Floats:
 - You can prevent an element from warapping around a floated element with the `clear` property. You can be selective and allow only some elements following the float to wrap around it. These should be the first n elements. If you clear the first element, then nothing wraps around the float. The `clear` property accepts 3 values: `right`, `left` and `both`.

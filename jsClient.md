@@ -33,6 +33,40 @@ Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Le
 + **They might have additional security mechanisms.** Some APIs only work through HTTPS because they might include sensitive data such as the **Push API** and **Service Workers**. Some APIs ask for user permission such as the **Notifications API**.
 
 # Manipulating Documents:
+- The **DOM (Document Object Model)** is a set of APIs for controlling HTML and styling information that makes heavy use of the **Document** object. 
+
+## The Important Parts of a Web Browser:
+- Browsers are complicated mechanisms with many moving parts. Many such parts can't be directly manipulated using JavaScript, for security reasons and other reasons.
+- Web APIs, however, give us access to a lot of functionality while abstracting away much of the internal complexity of a browser.
+- A browser has 3 parts that are directly involved in viewing web pages:
+	+ The **window** is basically a tab where the page is loaded. The JavaScript object **`Window`** is used to manipulate the window. Examples of things you can do with this object include getting the window's size with `Window.innerWidth` and `Window.innerHeight`, manipulating the document loaded into the window, storing client-side data in local storage, attaching an event handler to the current window, etc.
+	+ The **navigator** represents the state and identity of the browser and is represented in JavaScript by the **`Navigator`** object. You can use it to retrieve thing such as the user's preferred language and streams from a webcam. 
+	+ The **document** is the actual page loaded into the window (in JS it is **`Document`**). It allows you to manipulate the HTML and CSS in the page. You can create, add, remove elements. You can manipulate their content and styling, etc. 
+- This article is focused mainly on manipulating the document.
+
+## The Document Object Model:
+- When a document is loaded in a tab, it is represented by a DOM. It is a "tree structure" that allows for easy access and manipulation of the HTML structure using a programming language.
+- To get a  better idea of how the DOM works let's visualize it.
+```xml
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM</title>
+</head>
+<body>
+	<main>
+		<h1>
+			DOM is the real deal
+		</h1>
+		<p>
+			The DOM is everything <a href="#">Yes Yes Yes</a>
+		</p>
+	</main>
+</body>
+</html>
+```
+- Passing the code above through Ian Hickson's Live DOM viewer, yields the following nice break up of the DOM tree:
+<img src="practice/domStructure.png" alt="DOM Tree"/>
 
 # Fetching Data from the Server:
 # Third Party APIs
