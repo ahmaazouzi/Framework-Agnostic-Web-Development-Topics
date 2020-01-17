@@ -65,8 +65,95 @@ Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Le
 </body>
 </html>
 ```
-- Passing the code above through Ian Hickson's Live DOM viewer, yields the following nice break up of the DOM tree:
-<img src="practice/domStructure.png" alt="DOM Tree"/>
+- Passing the code above through Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/), yields the following nice break up of the DOM tree:
+<img src="practice/domStructure.png" alt="DOM Tree" width="500" height="350" />
+- We can see that each **element** or bit of **text** has its own entry in the tree. Each one of these is called a **node**. Node can be described in terms of their type and their position in the tree in relation to other nodes:
+	+ **Element node** is an element as it exists in the DOM.
+	+ **Root node** the top node of the tree, which is the `HTML` node in HTML. XML and SVG have their own root nodes.
+	+ **Child node** is a direct descendant of another node.
+	+ **Descendant node** A node anywhere inside a node.
+	+ **Parent node** Any node that has another node inside it.
+	+ **Sibling nodes** are nodes that sit on the same level inside the DOM tree.
+	+ **Text node** is a node containing a text string.
+
+## Basic DOM Manipulation:
+- We have seen DOM manipulation methods all over the place. 
+
+### Selecting Elements to Be Manipulated:
+- To manipulate an element, you need to first select it and store a reference to it inside a variable as in the following example:
+```javascript
+let link = document.document.querySelector('a');
+```
+- Once stored in a variable, you can start manipulating it using the methods and properties available to it. These methods are defined in interfaces like `HTMLAnchorElement` for the `<a>` element. Thid interface inherits the `HTMLElement` interface which also inherits from the `Node` interface which represents any kind of Node in the DOM. You can readily see these properties and methods suggested by developer console in Firefox or Chrome. Our link element, for example, has such properties as `href` and `textContent`. 
+- **`Document.querySelector()`** is the recommended modern way of selecting elements since it is based on CSS selectors. This method only matches the first matching element. To select all elements, you need **`Document.querySelectorAll()`**. This method matches every element of the given type and stores it in a list called **NodeList**. 
+- There are other ways to select elements. These are older and would work in old browsers, but they are out of fashion. They include:
+	+ **`Document.getElementById()`** selects an element by its id. It returns an element with the given id.
+	+ **`Document.getElementsByTagName()`** selects an element by its tag name. It returns an array of the selected elements. 
+
+### Creating and Placing New Nodes:
+- The following code is a typical scenario where a node is created and placed in a specified location in the document:
+```javascript
+const section1 = document.querySelector('#section1');
+const p = document.createElement('p');
+p.textContent = "This is my first node";
+section1.appendChild(p);
+```
+- You can also create a text node with **`Document.createTextNode()`** as in:
+```javascript
+const text = document.createTextNode('I\'m a text node');
+```
+- There are other methods to select elements based on their relative position or relation in a DOM tree to other specified elements.
+
+### Moving and Removing Elements:
+- **`Node.appendChild()` DOES LITERALLY MOVES AN ELEMENT FROM PART OF THE TREE TO ANOTHER**. If you select some element and append it to another element, the element is moved fromt its original location and not just copied.
+- To copy an element, you can use **`Node.cloneNode()`** to make the copy and then append it where you want as in:
+```javascript
+const copyLink = link.cloneNode(true);
+p.appendChild(copyLink)
+```
+- Instead of moving an element around, the `cloneNode()` method makes a copy which can then be appended where need be.
+- Removing a node is straightforward. It can be removed using a reference to its parent and itself as the following snippet shows:
+```javascript
+section1.removeChild(p);
+```
+- It can also be done using a reference to the element to be removed as in:
+```javascript
+p.remove();
+```
+- This last method is not available in older browsers. If you don't know the parent node of the element you want to remove, you can use the **`parentNode`** property as follows:
+```javascript
+p.parentNode.removeChild(p);
+```
+
+### Manipulating Styles:
+- There are multiple ways styling can be manipulated.
+- The **`Document.stylesheets`** returns an array of **`CSSStyleSheet`** objects. You can access these objects and change them as you wish, but this is an outdated and hard way to manipulate styles.
+- The cooler and more standard way of styling these days is done withe the **`HTMLElement.style`** property which can be used to manipulate the styling of an element directly as in:
+```javascript
+p.style.color = 'red';
+p.style.backgroundColor = 'yellow';
+```
+- Notice that while CSS properties have have a dash in the middle as in `background-color`, JavaScript style properties are camelcased (`backgroundColor`).
+- Another, I would say ingenious method to change styling is through the use of **`Element.setAttribute()`** which sets an attribute to an element. This method usage is not restricted to styling but is general. It takes a parameters, one for the attribute and the second one for desired value to be set to the element. Let's say you have a predefined class `focused` you want to add to some element. You can simply do with the following snippet:
+```javascript
+textInput.setAttribute('class', 'focused');
+```
+
+## Getting Useful Information from the Window Object:
+- The following almost self-explanatory example shows how the `Window` object can be used to change the style of an element:
+```javascript
+window.onresize = function() {
+  winWidth = window.innerWidth;
+  winHeight = window.innerHeight;
+  div.style.width = winWidth + 'px';
+  div.style.height = winHeight + 'px';
+}
+```
+- This is freaking cool.
+
+## A Dynamic Shopping List:
+- I will attempt making this shopping list on my own and compare my results to the one given by MDN. 
+- This was easy. It took just a few minutes. The result can be found my [codepen](https://codepen.io/ahmaazouzi/pen/XWJxJmm).
 
 # Fetching Data from the Server:
 # Third Party APIs
