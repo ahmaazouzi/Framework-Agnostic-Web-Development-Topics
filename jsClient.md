@@ -159,8 +159,11 @@ window.onresize = function() {
 - A common ask in modern websites is to retrieve relatively small chunks of data and update sections of a web page without requiring a whole page refresh. This feature has revolutionized the web in term of responsiveness. It is done mainly with the **XMLHttpRequest** and **Fetch** APIs.
 
 ## What Is the Problem?
-- In the olden days, even updating a very small section of a page requires that you reload the whole page. This meant you had to wait for a second or more. It was unacceotable.
-- **Ajax** which stands for ***asynchronous JavaScript and XML*** is "s a set of web development techniques using many web technologies on the client side to create asynchronous web applications." 
+- In the olden days, even updating a very small section of a page requires that you reload the whole page. This meant you had to wait for a second or more, which was and is still unacceptable.
+- **Ajax** which stands for ***asynchronous JavaScript and XML*** is "s a set of web development techniques using many web technologies on the client side to create asynchronous web applications." Ajax came to solve this problem. Using Ajax, a web page now can request small chunks of data in the form of XML, JSON, HTML or plain text and use them to update portions of the display only when needed. This is done chiefly by **`XMLHttpRequest`** and the the newer **Fetch API**.
+- Ajax uses a web API as a proxy that sits between the client and the internet and manages data flow in smarter ways, allowing for  partial display updates and partial data loading. This makes the web page much more responsive. Ajax APIs also allow storing data in the local machine and only reload the data when it changes.
+<img src="practice/ajax.png" height="383" width="512">
+
 
 ## A Basic Ajax Request:
 ## A More Complex Example:
