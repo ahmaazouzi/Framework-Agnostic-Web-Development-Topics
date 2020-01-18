@@ -1,4 +1,4 @@
-Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs) and Wikipedia's [article](https://en.wikipedia.org/wiki/Ajax_%28programming%28) on Ajax.
+Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs) and Wikipedia's [article](https://en.wikipedia.org/wiki/Ajax_%28programming%29) on Ajax.
 
 # Introduction to Web APIs:
 - This section is a high-level overview of APIs, how they work, how to use them and how they are structured. It also treats the different kinds of APIs.
