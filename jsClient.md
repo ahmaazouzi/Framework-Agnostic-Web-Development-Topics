@@ -1,4 +1,4 @@
-Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs).
+Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs) and Wikipedia's [article](https://en.wikipedia.org/wiki/Ajax_%28programming%28) on Ajax.
 
 # Introduction to Web APIs:
 - This section is a high-level overview of APIs, how they work, how to use them and how they are structured. It also treats the different kinds of APIs.
@@ -66,7 +66,7 @@ Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Le
 </html>
 ```
 - Passing the code above through Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/), yields the following nice break up of the DOM tree:
-<img src="practice/domStructure.png" alt="DOM Tree" width="500" height="350" />
+<img src="practice/domStructure.png" alt="DOM Tree" width="440" height="350" />
 - We can see that each **element** or bit of **text** has its own entry in the tree. Each one of these is called a **node**. Node can be described in terms of their type and their position in the tree in relation to other nodes:
 	+ **Element node** is an element as it exists in the DOM.
 	+ **Root node** the top node of the tree, which is the `HTML` node in HTML. XML and SVG have their own root nodes.
@@ -156,5 +156,13 @@ window.onresize = function() {
 - This was easy. It took just a few minutes. The result can be found my [codepen](https://codepen.io/ahmaazouzi/pen/XWJxJmm).
 
 # Fetching Data from the Server:
-# Third Party APIs
+- A common ask in modern websites is to retrieve relatively small chunks of data and update sections of a web page without requiring a whole page refresh. This feature has revolutionized the web in term of responsiveness. It is done mainly with the **XMLHttpRequest** and **Fetch** APIs.
+
+## What Is the Problem?
+- In the olden days, even updating a very small section of a page requires that you reload the whole page. This meant you had to wait for a second or more. It was unacceotable.
+- **Ajax** which stands for ***asynchronous JavaScript and XML*** is "s a set of web development techniques using many web technologies on the client side to create asynchronous web applications." 
+
+## A Basic Ajax Request:
+## A More Complex Example:
+
 # Client-side Storage.
