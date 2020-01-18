@@ -66,7 +66,9 @@ Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Le
 </html>
 ```
 - Passing the code above through Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/), yields the following nice break up of the DOM tree:
-<img src="practice/domStructure.png" alt="DOM Tree" width="440" height="350" />
+<div style="text-align: center">
+	<img src="practice/domStructure.png" alt="DOM Tree" width="440" height="350" />
+</div>
 - We can see that each **element** or bit of **text** has its own entry in the tree. Each one of these is called a **node**. Node can be described in terms of their type and their position in the tree in relation to other nodes:
 	+ **Element node** is an element as it exists in the DOM.
 	+ **Root node** the top node of the tree, which is the `HTML` node in HTML. XML and SVG have their own root nodes.
@@ -154,7 +156,6 @@ window.onresize = function() {
 ## A Dynamic Shopping List:
 - I will attempt making this shopping list on my own and compare my results to the one given by MDN. 
 - This was easy. It took just a few minutes. The result can be found my [codepen](https://codepen.io/ahmaazouzi/pen/XWJxJmm).
-
 # Fetching Data from the Server:
 - A common ask in modern websites is to retrieve relatively small chunks of data and update sections of a web page without requiring a whole page refresh. This feature has revolutionized the web in term of responsiveness. It is done mainly with the **XMLHttpRequest** and **Fetch** APIs.
 
@@ -162,10 +163,41 @@ window.onresize = function() {
 - In the olden days, even updating a very small section of a page requires that you reload the whole page. This meant you had to wait for a second or more, which was and is still unacceptable.
 - **Ajax** which stands for ***asynchronous JavaScript and XML*** is "s a set of web development techniques using many web technologies on the client side to create asynchronous web applications." Ajax came to solve this problem. Using Ajax, a web page now can request small chunks of data in the form of XML, JSON, HTML or plain text and use them to update portions of the display only when needed. This is done chiefly by **`XMLHttpRequest`** and the the newer **Fetch API**.
 - Ajax uses a web API as a proxy that sits between the client and the internet and manages data flow in smarter ways, allowing for  partial display updates and partial data loading. This makes the web page much more responsive. Ajax APIs also allow storing data in the local machine and only reload the data when it changes.
-<img src="practice/ajax.png" height="383" width="512">
-
+<div style="text-align: center">
+	<img src="practice/ajax.png" height="383" width="512">
+</div>
 
 ## A Basic Ajax Request:
-## A More Complex Example:
+### XMLHttpRequest:
+- The `XMLHttpRequest` constructor (also called **XHR**) is the good old way to do Ajax stuff.
+- The following code is a portion of a larger code example provided by MDN, but using XHR is largely simple and the example here is self-explanatory:
+
+```javascript
+let request = new XMLHttpRequest();
+request.open('GET', url);
+request.responseType = 'text';
+
+request.onload = function() {
+  poemDisplay.textContent = request.response;
+};
+request.send();
+```
+- Basically, you'd:
+	+ create an XHR object and store a reference to it in a variable.
+	+ You open a request with the **`XMLHttpRequest.open()`** function which takes at least two parameters, one specifying the type of the request and the other the url pointing to the resource to be loaded.
+	+ You define the the type of the response you want with the **`XMLHttpRequest.responseType`** property. This can be  `text`, `blob`, `json`, etc. 
+	+ You define a function that perform an action when the data is loaded with the **`XMLHttpRequest.onload`**.
+	+ Finally, you send the request with **`XMLHttpRequest.send()`**.
+
+### Fetch:
+- Using the **Fetch API** you can achieve the same results as you did with XHR in far fewer lines:
+```javascript
+fetch(url)
+.then(response => response.text())
+.then((text) => poemDisplay.textContent = text);
+```
+- We've covered this in the [Promises](jsAsync.md#promises-basic-syntax) section.
+- The only thing that I still don't really understand is the `<Response>.text()` method reun on the returned object. I know its purpose is similar to specifying the type of the data, but I don't know how it works.
 
 # Client-side Storage.
+- 
