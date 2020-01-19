@@ -1,5 +1,34 @@
 Credits go to [MDN client-side APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs) and Wikipedia's [article](https://en.wikipedia.org/wiki/Ajax_%28programming%29) on Ajax.
 
+# Table of Content:
+- [Introduction to Web APIs](#introduction-to-web-apis)
+	* [What is an API?](#what-is-an-api)
+	* [What Can APIs Do?](#what-can-apis-do)
+	* [How Do APIs Work?](#how-do-apis-work)
+- [Manipulating Documents](#manipulating-documents)
+	* [The Important Parts of a Web Browser](#the-important-parts-of-a-web-browser)
+	* [The Document Object Model](#the-document-object-model)
+	* [Basic DOM Manipulation](#basic-dom-manipulation)
+		+ [Selecting Elements to Be Manipulated](#selecting-elements-to-be-manipulated)
+		+ [Creating and Placing New Nodes](#creating-and-placing-new-nodes)
+		+ [Moving and Removing Elements](#moving-and-removing-elements)
+		+ [Manipulating Styles](#manipulating-styles)
+	* [Getting Useful Information from the Window Object](#getting-useful-information-from-the-window-object)
+	* [A Dynamic Shopping List](#a-dynamic-shopping-list)
+- [Fetching Data from the Server](#fetching-data-from-the-server)
+	* [What Is the Problem?](#what-is-the-problem)
+	* [A Basic Ajax Request](#a-basic-ajax-request)
+		+ [XMLHttpRequest](#xmlhttprequest)
+		+ [Fetch](#fetch)
+- [Client-side Storage.](#client-side-storage)
+	* [What Is Client-side Storage?](#what-is-client-side-storage)
+		+ [Cookies](#cookies)
+		+ [Web Storage and IndexedDB](#web-storage-and-indexeddb)
+		+ [Cache API](#cache-api)
+	* [Storing Simple Data with Web Storage](#storing-simple-data-with-web-storage)
+		+ [Basic Syntax](#basic-syntax)
+		+ [Separate Storage for Each Domain](#separate-storage-for-each-domain)
+
 # Introduction to Web APIs:
 - This section is a high-level overview of APIs, how they work, how to use them and how they are structured. It also treats the different kinds of APIs.
 
@@ -200,4 +229,50 @@ fetch(url)
 - The only thing that I still don't really understand is the `<Response>.text()` method reun on the returned object. I know its purpose is similar to specifying the type of the data, but I don't know how it works.
 
 # Client-side Storage.
-- 
+## What Is Client-side Storage?
+- Client-side storage is somehow similar to server-side storage. It consists of JavaScript APIs that allows for storing data on the client and retrieving it when needed. Reasons for doing so include:
+	+ Personalizing user experience.
+	+ Persisting previous activity.
+	+ Saving data and assists for for quicker loading.
+	+ Saving documents for offline use.
+- Client-side and server-side storage can cooperate to store things.
+- There are limits on the size that storage client-side can take both per API and cumulatively.
+
+### Cookies:
+- Cookie are the OG way of storing data on the client. Cookies suffer from security, size limitations and other problems. They are almost obsolete. Their only virtue is that they are supported in ancient browsers.
+- MDN claims that the reasons why cookies are still being used is legacy libraries that still use libraries and unupdated and old reference and training material that's not aware of the newer technologies for client storage.
+
+### Web Storage and IndexedDB:
+- The **Web Storage API** provides a simple syntax for storing and retrieving small and simple data items. Such data items are in the form of name/value pairs.
+- **IndexedDB** is a complete database system on the client. It stores complex data such as customer records and even stuff like audio and video files.
+
+### Cache API:
+- This is the newest method of client-side storage. It stores responses to some requests and is ideal for storing website assets in the client for use when offline, it is used with **Service Worker API**. What's this, mate??!
+
+## Storing Simple Data with Web Storage:
+### Basic Syntax:
+- Web Storage syntax is freaking easy. It consists of simple name/value pairs that are retrieved when needed.
+- Web Storage data is contained within two object like structures:
+	+ **`sessionStorage`** which persists data as long as the browser is open. Once closed, the data is lost.
+	+ **`localStorage`** which stores data even after the browser is closed. It's there forever, and it's generally more useful.
+- **`Storage.setItem()`** allows you to store data in the client. It takes a name parameter and a value parameter. The name should be a string. It won't work if it's not a string in the current version of Firefox.
+```javascript
+localStorage.setItem('name','Merneptah');
+```
+- **`Storage.getItem() `** takes the name of the data item and returns its value. It's better to use it with a variable:
+```javascript
+let name1 = localStorage.getItem('name');
+name1 // returns "Merneptah"
+```
+- **`Storage.removeItem() `** takes the name of the item and removes it from storage:
+```javascript
+localStorage.removeItem('name');
+let name1 = localStorage.getItem('name');
+name1 // Value now is null
+```
+
+### Separate Storage for Each Domain:
+- Each domain has its own separate data store. This is an obvious constrain for obvious security reasons.
+
+***I am tired and not enjoying this indexedDB thing***
+
