@@ -118,7 +118,7 @@ form.onsubmit = function(e) {
 
 ## Event Bubbling and Capture:
 - **Event bubbling** and **event capture** are "two mechanisms that describe what happens when two handlers of the same event type are activated on one element." Really?
-- A problem arises when an event happens in nested elements. When an event is attached to an outer element, it can be triggered not only in that element, but also in elements nested within it. It kinda `cascades` down and gets inherited by the element's children. This can be really annoying as the child elements have to respond to the same event differently from those of their parents.
+- A problem arises when an event happens in nested elements. When an event is attached to an outer element, it can be triggered not only in that element, but also in elements nested within it. It kinda `cascades` down and gets inherited by the element's children. This can be really annoying as the child elements has to respond to the same event differently from those of their parents.
 
 ### Bubbling and Capturing Defined:
 - When an event is fired on a nested element, modern browsers run two different phases, the **capturing phase** and the **bubbling phase**.
@@ -139,4 +139,4 @@ btn.onclick = (e) => {
 = Why is there is whole mess of bubbling and capturing. In the first days of browsers, Netscape used event capturing while IE used bubbling. To standardize things, W3C included both behaviors.
 
 ### Event Delegation:
-- Event Bubbling made **event delegation** possible. "If you want some code to run when you click on any one of a large number of child elements, you can set the event listener on their parent and have events that happen on them bubble up to their parent rather than having to set the event listener on every child individually." If you want, for example, a message to pop up when a list item is clicked, instead of setting an event listener on every one individual `<li>`, you would just set that listener on the parent `<ul>`. This is both convenient, maintainable and probably more efficient.
+- Event Bubbling made **event delegation** possible. "If you want some code to run when you click on any one of a large number of child elements, you can set the event listener on their parent and have events that happen on them bubble up to their parent rather than having to set the event listener on every child individually." If you want, for example, a message to pop up when a list item is clicked, instead of setting an event listener on every one individual `<li>`, you would just set that listener on the parent `<ul>`. This is both convenient, maintainable and probably more efficient. Attaching event listeners to a thousand child elements is extremely inefficient.
