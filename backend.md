@@ -20,6 +20,7 @@
 	+ The **query parameters** which is data passed to be passed to the server. These usually correspond to HTML input. They are a list of key-value pairs `key=value`. They are separated from each other byt a `?` as in `key1=value1&key2=value2`. The list of query parameters is separated from the rest of the url. The bold part in the following url is the query parameter list `http://www.example.com:80/path/to/myfile.html?`**`key1=value1&key2=value2`**.
 	+ The **fragment identifier** is represented by a `#` and it is used to point to a certain part of the html document. This is never sent to the server. The bold part here is the fragment identifier in this URL `http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#`**`SomewhereInTheDocument`**.
 - The backend developer should pay special attention to the path and the query parameters as they are linked very tightly to what takes place when a HTTP (or any other application layer protocol) messages are exchanged between the client and the server. 
+- If a forward slash `/` is not meant as a directory delimiter in the path within the a URL, it must be encoded into `%2F`. Generally, speaking a URL is composed of ACII characters. These characters are either reserved or unreserved. Reserved characters have a special meaning in a URL. They are used as delimiters for example in a path or are used to separate query parameters such as `?` .. etc. If you want to include a reserved character in the URL without it having its special URL meaning, you can percent encode it, i.e. replace it with a percent symbol followed by two hexadecimal digits representing its ASCII value, so `/` becomes `%2F`. Non-ASCII characters in a URL such as `UTF-8` are also encoded in this way.
 
 ## The HTTP Protocol:
 - HTTP stands fpr **Hypertext Transfer Protocol**. It is the main protocol for exchanging messages between clients and servers in the Web. 
@@ -32,13 +33,23 @@ Connection: close
 User-agent: Mozilla/10.0
 Accept-language: fr
 ```
-- A Typical request consits of:
+- A Typical request consists of:
 	- The first line of the request is called a **request line**. The request line itself consists of:
 		+ The request method, such as GET, POST ..etc. A request method dictates how the client communicates with the server. With GET, for example, a client usually fetches data or documents. A google search, for example, asks for search resulsts. 
 		+ The **path** which points to the requested resource.
 		+ The HTTP **version**. The most common version is http 1.1.
 	- **Request headers** are key value pairs. They inclued, the host, user agent..etc. There can be a lot of headers.
 	- A request might also have a **body** that contains parameters added to the request. A POST method has a body while GET doesn't. query parameters in a POST method are added to the request's body and are not appended to the URL as in a GET request.
+- `POST` and `GET` are the most commonly used HTTP request methods. The following tables shows some of the fundamental differences between the two
+
+| **`GET`** | **`POST`**
+| --- | --- |
+| Parameters are placed in URL | Parameters in body
+| Used for fetching documents | Updates data in server
+| Has a maximum URL length | No max length
+| Cachable | Non-cachable
+| Not for changing server | supposed to change server
+
 - A typical HTTP response looks as follow:
 ```
 HTTP/1.1 200 OK 
@@ -53,4 +64,13 @@ Content-Type: text/html
 - It has headers and a body just like a request, but it differes from a request in that it has a **status line** instead of a request line. A status line consists of 3 parts:
 	+ The HTTP verdion.
 	+ A **status code** which is a number indicating if the request was successful. Codes include 202 for a successful request, 404 for a not found page, 500 for a server error.. etc. 
-	+ "A **status message**, a non-authoritative short description of the status code.""
+	+ "A **status message**, a non-authoritative short description of the status code."
+
+## Forms and Inputs:
+- A form is the primary way a client sends data to the server. It consists of one or more input fields. Important attributes in a form (or a form input field) to pay special attention to are. Form attributes include:
+	+ `action='something.php'` this attribute causes the running of the script in `something.php` file. 
+	+ `method='post'` determines the http request method in whihc the data is to be sent to the server such as a `GET`, `POST`, 'PUT'... etc. 
+- Input attributes include:
+	+ `name='something'` is directly linked to the URL query parameters in a `GET` request. This attribute and its value are the data that gets actually sent to the server when the submit button of a form is clicked. 
+	+ `type='submit'` is for the type of the input field whether it should be a text input field, radio button, checkbox.. etc. The `submit` value of is of special interest to us as it is used to submit/send all the data in a given form. 
+
