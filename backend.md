@@ -74,16 +74,7 @@ Content-Type: text/html
 	+ `method='post'` determines the http request method in which the data is to be sent to the server such as a `GET`, `POST`, 'PUT'... etc. 
 - Input attributes include:
 	+ `name='something'` is directly linked to the URL query parameters in a `GET` request. This attribute and its value are the data that gets actually sent to the server when the submit button of a form is clicked. 
-	+ `value='something'` is also linked to URL query parameters. In a radio type input, all the input buttons have the same name, but different values. `value` point to these values a button can take, as the following example shows:
-```xml
-<form>
-	<input type="radio" name="a" value="1">
-	<input type="radio" name="a" value="2">
-	<input type="radio" name="a" value="3">
-	<br>
-	<input type="submit" name="">
-</form>
-```
+	+ `value='something'` is also linked to URL query parameters. In a radio type input, all the input buttons have the same name, but different values. `value` point to these values a button can take
 	+ `type='submit'` is for the type of the input field whether it should be a text input field, radio button, checkbox.. etc. The `submit` value of is of special interest to us as it is used to submit/send all the data in a given form. 
 -  From a frontend perspective, forms and input fields are a big trickier, especially input fields of type radio or select.. etc. Radio input buttons for example should have the same name but different values. In a select dropdown, the select tag should have the name attribute and options should have the different values to select from.
 
