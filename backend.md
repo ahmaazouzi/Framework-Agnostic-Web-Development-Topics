@@ -35,12 +35,12 @@ Accept-language: fr
 ```
 - A Typical request consists of:
 	- The first line of the request is called a **request line**. The request line itself consists of:
-		+ The request method, such as GET, POST ..etc. A request method dictates how the client communicates with the server. With GET, for example, a client usually fetches data or documents. A google search, for example, asks for search resulsts. 
+		+ The request method, such as GET, POST ..etc. A request method dictates how the client communicates with the server. With GET, for example, a client usually fetches data or documents. A google search, for example, asks for search results. 
 		+ The **path** which points to the requested resource.
 		+ The HTTP **version**. The most common version is http 1.1.
-	- **Request headers** are key value pairs. They inclued, the host, user agent..etc. There can be a lot of headers.
+	- **Request headers** are key value pairs. They include the host, user agent..etc. There can be a lot of headers.
 	- A request might also have a **body** that contains parameters added to the request. A POST method has a body while GET doesn't. query parameters in a POST method are added to the request's body and are not appended to the URL as in a GET request.
-- `POST` and `GET` are the most commonly used HTTP request methods. The following tables shows some of the fundamental differences between the two
+- `POST` and `GET` are the most commonly used HTTP request methods. The following tables shows some of the fundamental differences between the two:
 
 | **`GET`** | **`POST`**
 | --- | --- |
@@ -49,6 +49,8 @@ Accept-language: fr
 | Has a maximum URL length | No max length
 | Cachable | Non-cachable
 | Not for changing server | supposed to change server
+
+- These fundamental differences between `POST` and `GET` dictate the fact that `GET` is mostly used to retrieve documents (or data) from the server, while `POST` is used to send data to the server and actuate changes
 
 - A typical HTTP response looks as follow:
 ```
@@ -61,16 +63,55 @@ Content-Type: text/html
 
 <h1>Hello, World!</h1>
 ```
-- It has headers and a body just like a request, but it differes from a request in that it has a **status line** instead of a request line. A status line consists of 3 parts:
-	+ The HTTP verdion.
+- It has headers and a body just like a request, but it differs from a request in that it has a **status line** instead of a request line. A status line consists of 3 parts:
+	+ The HTTP version.
 	+ A **status code** which is a number indicating if the request was successful. Codes include 202 for a successful request, 404 for a not found page, 500 for a server error.. etc. 
 	+ "A **status message**, a non-authoritative short description of the status code."
 
 ## Forms and Inputs:
 - A form is the primary way a client sends data to the server. It consists of one or more input fields. Important attributes in a form (or a form input field) to pay special attention to are. Form attributes include:
 	+ `action='something.php'` this attribute causes the running of the script in `something.php` file. 
-	+ `method='post'` determines the http request method in whihc the data is to be sent to the server such as a `GET`, `POST`, 'PUT'... etc. 
+	+ `method='post'` determines the http request method in which the data is to be sent to the server such as a `GET`, `POST`, 'PUT'... etc. 
 - Input attributes include:
 	+ `name='something'` is directly linked to the URL query parameters in a `GET` request. This attribute and its value are the data that gets actually sent to the server when the submit button of a form is clicked. 
+	+ `value='something'` is also linked to URL query parameters. In a radio type input, all the input buttons have the same name, but different values. `value` point to these values a button can take, as the following example shows:
+```xml
+<form>
+	<input type="radio" name="a" value="1">
+	<input type="radio" name="a" value="2">
+	<input type="radio" name="a" value="3">
+	<br>
+	<input type="submit" name="">
+</form>
+```
 	+ `type='submit'` is for the type of the input field whether it should be a text input field, radio button, checkbox.. etc. The `submit` value of is of special interest to us as it is used to submit/send all the data in a given form. 
+-  From a frontend perspective, forms and input fields are a big trickier, especially input fields of type radio or select.. etc. Radio input buttons for example should have the same name but different values. In a select dropdown, the select tag should have the name attribute and options should have the different values to select from.
+
+## Form Validation: 
+- Users can and will often send large, malicious or garbage data to your server. User input must be validated to have a working and secure application. Some form of form validation can be done in the front end for the sake of user experience, but this shouldn't be taken as a substitute to server validation. Bots and non-browser clients would pass bad input to your app and you should be ready for that. 
+- Hoffman suggests the use of abbreviations as a way to tolerate misspelling and offer suggestions to the users. For example, the first 3 correct letters of a month name are enough to deem it valid and match it in the server with a full month name.
+- The validation process follows this basic workflow:
+	+ The client GET's a form.
+	+ The client fills and POSTs the form.
+	+ The server validates the form's data.
+	+ If the data is valid, it notifies the client of the submission's success.
+	+ If the data is invalid, it resends the form to the client along with a message about the invalidity of the form.
+	+ The whole process is repeated until the form is valid.
+- It is also nice to preserve the valid portions of an invalid form (bar sensitive data for security reasons). This is good from a UX perspective! There were several times I stopped filling forms because I had to refill a long form after an invalid attempt.
+- Certain characters have a special meaning for browser or anything that parses and interprets HTML. These characters such as  need to be escaped. The following table shows these characters and their escape counterparts:
+
+| HTML Character| HTML Escape Character 
+| --- | --- |
+| `<` | `&lt;`
+| `>` | `&gt;`
+| `"` | `&quot;`
+| `'` | `&apos;`
+| `&` |`&amp;`
+
+- Allowing these characters go be posted to your server is both stupid and dangerous!
+- 
+
+
+
+
 
