@@ -100,9 +100,26 @@ Content-Type: text/html
 | `&` |`&amp;`
 
 - Allowing these characters go be posted to your server is both stupid and dangerous!
-- 
+- Most frameworks and languages might have built-in support for html escaping but be sure to do the correct configurations.
 
+## Redirections:
+- It is desirable and even advisable to redirect after a form is submitted to the server. Refreshing the page would result in resubmitting the form or in an awkward warning message about form resubmission.
 
+## Templates:
+- Templates are html documents that mix static and dynamic content. Instead of generating whole html content in your application, you would use templates where only the dynamic parts change. This makes development easier and less messy. They do also offer html escaping out of the box resulting in more secure apps. Generally speaking templates lead to better readability, security and maintainability through the principle of separation of concerns.
+- Using templates is great but misusing them results in security and complexity issues. Here some general tips to using templates effectively:
+	+ Always enable html autoescaping.
+	+ Minimize code in templates.
+	+ Minimize html in code.
+- Another powerful feature of HTML templating technologies is the ability to easily include chunks of html in other html documents in a process called ***inheritance***.
+
+## Persistence and Databases:
+- "Webapps, or as I like to call them: Skins around databases." Thomas Figg (whoever the bleep is Thomas Figg).
+- As this statement that angered a few shows, databases are an important component of a dynamic webapp. It is not just a storage facility for persisting data. The design of a database and all the work that goes around it can make or break a web app. 
+- Databases, especially relational databases, are a field of study on their own. The scope of this document doesn't allow for a detailed treatment on the subject.
+- The developer should make rational choices about what types of databases to use based on criteria like the rates of reads vs writes. Scaling issues should also be considered. When should a relational database be sharded? 
+- For security purposes, the webapp should do extra validation to prevent sql and no-sequel injections. This can also be done with stored procedures and preparted statements, all of which can be treated in detail in a SQL (or no-SQL) context. 
+- Another rather important object is **ORMs**. *Object Relational Mappers* are programs that map database data to objects in object oriented languages. Since most programming languages used in webapps are object oriented, it is nice to make use of such utilities. It reduces the existential malaise associated with switching between, say Java's objects and SQL's declarations.  
 
 
 
