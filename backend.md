@@ -156,10 +156,10 @@ Set-Cookie: cookie-name=3243434; Domain=.github.com; Expires=Wed, 20-May-20 05:1
 	3. It is extremely unlikely that two slightly different messages will have the same hash."
 - Even a small change to the original content should result in a drastically different hash.
 - Popular such functions include:
-	+ CRC32 which fast but not secure at all and can frequently result in collisions. It is used for file checksums.
-	+ MD5 is fast but not secure.
-	+ SHA1 is not so secure. It's been cracked!
-	+ SHA265 is very secure.
+	+ **CRC32** which fast but not secure at all and can frequently result in collisions. It is used for file checksums.
+	+ **MD5** is fast but not secure.
+	+ **SHA1** is not so secure. It's been cracked!
+	+ **SHA265** is very secure.
 - Hashing a cookie's value to prevent tampering has the following workflow:
 	1. The server hashes a cookie's value, attaches it to the value (separated by some some symbol such as a pipe `|`) and sends it when a browser requests it.
 	2. When the server receives a cookie, it parses the value out, hashes and attaches it to the value and compare it against the received value and hash.
@@ -173,6 +173,7 @@ Set-Cookie: cookie-name=3243434; Domain=.github.com; Expires=Wed, 20-May-20 05:1
 - Another important topic concerning webapp security and sensitive data in particular, especially passwords, is network traffic encryption. This is done through TLS (transport layer security) and you should invest in adding it to your application. Today, TLS is the default and even Google delists websites that still use plain HTTP instead of HTTPS.
 
 ## App routing:
+## How:
 
 
 
