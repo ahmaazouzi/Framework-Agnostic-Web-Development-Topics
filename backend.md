@@ -118,8 +118,58 @@ Content-Type: text/html
 - As this statement that angered a few shows, databases are an important component of a dynamic webapp. It is not just a storage facility for persisting data. The design of a database and all the work that goes around it can make or break a web app. 
 - Databases, especially relational databases, are a field of study on their own. The scope of this document doesn't allow for a detailed treatment on the subject.
 - The developer should make rational choices about what types of databases to use based on criteria like the rates of reads vs writes. Scaling issues should also be considered. When should a relational database be sharded? 
-- For security purposes, the webapp should do extra validation to prevent sql and no-sequel injections. This can also be done with stored procedures and preparted statements, all of which can be treated in detail in a SQL (or no-SQL) context. 
-- Another rather important object is **ORMs**. *Object Relational Mappers* are programs that map database data to objects in object oriented languages. Since most programming languages used in webapps are object oriented, it is nice to make use of such utilities. It reduces the existential malaise associated with switching between, say Java's objects and SQL's declarations.  
+- For security purposes, the webapp should do extra validation to prevent sql and no-sequel injections. This can also be done with stored procedures and prepared statements, all of which can be treated in detail in a SQL (or no-SQL) context. 
+- Another rather important object is **ORMs**. *Object Relational Mappers* are programs that map database data to objects in object oriented languages. Since most programming languages used in webapps are object oriented, it is nice to make use of such utilities. It reduces the existential malaise associated with switching between, say Java's objects and SQL's declarations. 
+
+# Authentication (A Login System):
+- HTTP was designed from the start to be stateless, meaning that each request is independent of another request. How would a server keep track of a client with which it shares multiple HTTP messages? Why wouldn't a user have to enter a username and a password with each request? These problems are solved with so-called authentication (some like to use authentication (verifying who a user claims to be) and authorization (verifying what a user has access to)). 
+- Following on the steps of Steve Huffman's course, I will divide this topic into two main subtopics, cookies and passwords.
+
+## Cookies:
+- A cookies is a small piece of data stored in a client (browser). It size might not exceed 4000 bytes. It is in the general form `<name=value>`, e.g. `user_id=123435`.
+- When a server is visited it attaches a cookie to a response to the browser. The browser stores cookie and each time it sends a request to the server that cookie is attached to the server. This is how the server uniquely identifies this browser.
+- There are a few browser-dependent rules that govern the use of cookies such as 20 cookies per domain, the size limit of a cookie (4096 bytes) .. etc. 
+- A cookie is sent as a part of an HTTP message header. In an HTTP response it follows this syntax:
+```
+HTTP/2.0 200 OK
+Content-type: text/html
+Set-Cookies: user_id=123445
+Set-Cookies: something=aa
+Set-Cookies: something_else=bb
+
+[ Message body]
+```
+- The browser concatenate the cookies with a semi-column and sends them in the 'Cookie-header'
+```
+GET /sample_page.html HTTP/2.0
+Host: www.example.org
+Cookie: user_id=123445; something=aa; something_else=bb
+```
+- The following example shows that you can apply certain restrictions to a cookie such as a domain name, an expiry date.. etc.:
+```
+Set-Cookie: cookie-name=3243434; Domain=.github.com; Expires=Wed, 20-May-20 05:18:38 GMT
+```
+- Persistent cookies stay in your browser until their expiry date. Persistant cookies are the ones that have an `Expires` field. Non-persistent cookies are deleted when the browser is closed.
+- Cookies are an important part of web applications, however, they are easy to tamper. To avoid tampering, we use **cryptographic hashing** to verify the authentication of cookies. A **Cryptographic hash function** is, according to Wikipedia, "a hash function which takes an input (or 'message') and returns a fixed-size string of bytes. The string is called the 'hash value', 'message digest', 'digital fingerprint', 'digest' or 'checksum'. The ideal hash function has three main properties:
+	1. It is extremely easy to calculate a hash for any given data.
+	2. It is extremely computationally difficult to calculate an alphanumeric text that has a given hash.
+	3. It is extremely unlikely that two slightly different messages will have the same hash."
+- Even a small change to the original content should result in a drastically different hash.
+- Popular such functions include:
+	+ CRC32 which fast but not secure at all and can frequently result in collisions. It is used for file checksums.
+	+ MD5 is fast but not secure.
+	+ SHA1 is not so secure. It's been cracked!
+	+ SHA265 is very secure.
+- Hashing a cookie's value to prevent tampering has the following workflow:
+	1. The server hashes a cookie's value, attaches it to the value (separated by some some symbol such as a pipe `|`) and sends it when a browser requests it.
+	2. When the server receives a cookie, it parses the value out, hashes and attaches it to the value and compare it against the received value and hash.
+	3. If the value hasn't been tampered with, the server continues using the cookie as usual, but it has been forged, the server resets the cookie for future use.
+- Hashing alone as described above is not secure enough. To get real security, you would have to concatenate a secret string to the cookie's value and hash the result. This method has been standardized into so-called **HMAC** (**hash-based message authentication code**). An HMAC function would take a value, a secret and a hashing function as inputs.
+
+## Passwords:
+- Storing plain text passwords is stupid and dangerous. They should instead be hashed and the resulting hashes are to be stored. If the storage facility is hacked, the hacker only has useless hashes. In the logging code, the user must have the original password which gets hashed and the resulting hash is compared to the stored hash and if they match permissions are granted.
+- It's hard to generate the original message from the hashed value, but easy to the opposite. Bad actors found a way. They pre-hashed many possible passwords and put them in so called rainbow tables. Getting a value from a hash becomes easier. 
+- To invalidate rainbow tables, you need to salt the password hashes. Salting is similar to **hmac**king. Salts are random strings of characters that can be hashed along with the passwords. They do invalidate rainbow tables, and it's OK to keep them visible and store them along with the hashes.
 
 
 
