@@ -170,6 +170,9 @@ Set-Cookie: cookie-name=3243434; Domain=.github.com; Expires=Wed, 20-May-20 05:1
 - Storing plain text passwords is stupid and dangerous. They should instead be hashed and the resulting hashes are to be stored. If the storage facility is hacked, the hacker only has useless hashes. In the logging code, the user must have the original password which gets hashed and the resulting hash is compared to the stored hash and if they match permissions are granted.
 - It's hard to generate the original message from the hashed value, but easy to the opposite. Bad actors found a way. They pre-hashed many possible passwords and put them in so called rainbow tables. Getting a value from a hash becomes easier. 
 - To invalidate rainbow tables, you need to salt the password hashes. Salting is similar to **hmac**king. Salts are random strings of characters that can be hashed along with the passwords. They do invalidate rainbow tables, and it's OK to keep them visible and store them along with the hashes.
+- Another important topic concerning webapp security and sensitive data in particular, especially passwords, is network traffic encryption. This is done through TLS (transport layer security) and you should invest in adding it to your application. Today, TLS is the default and even Google delists websites that still use plain HTTP instead of HTTPS.
+
+## App routing:
 
 
 
