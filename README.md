@@ -6,12 +6,9 @@
 - [JavaScript Events](jsEvents.md)
 - [JavaScript Objects](jsObj.md)
 - [Asynchronous JavaScript](jsAsync.md)
-- [Ajax and JSON](jsonAjax.md)
 - [Client Side JavaScript](jsClient.md)
-- [JavaScript Graphics](jsGraphics.md)
 - [ES6 Primer](jsES6.md)
-- [Miscellaneous](jsMiscellaneous.md) 
-- [Web Security](security.md)
+- [Backend Topics](backend.md)
 
 
  
