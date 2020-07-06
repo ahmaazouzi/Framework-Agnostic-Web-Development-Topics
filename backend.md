@@ -4,7 +4,7 @@
 - A solid understanding of such general concepts would free me of asking many nonsensical questions on stackoverflow and probably making it easier to learn a new web framework and avoid misusing it.
 - Obviously, this overview won't cover all the low level details, but some knowledge of what's abstracted away from you is better than none!
 - This document is based on a variety of resources including:
-	* MDN's (What is a URL)[https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL]
+	* MDN's [What is a URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL).
 	* Udacity's [Intro to Backend](https://classroom.udacity.com/courses/ud171) .
 	* Udacity's [Full Stack Foundations](https://classroom.udacity.com/courses/ud088)
 	* MDN's [Server-side website programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side).
